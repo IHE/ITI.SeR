@@ -42,29 +42,27 @@ The current version of the IHE IT Infrastructure Technical Framework can be foun
 
 ## Introduction to this Supplement
 
-This supplement defines new functionalities for an XDS environment with a unique and
+This supplement defines new functionalities for an affinity domain with a unique and
 centralized Access Control system. As a Trial Implementation Supplement, this profile
 is limited to those deployment models and their policies where a central authorization
 authority can make complete and definitive decisions, yet support federated
-identity/authentication. These use-cases specifically mean that neither XDS Document
-Source nor XDS Document Repository Actors need to have any more fine-grain policies
+identity/authentication. These use-cases specifically mean that no actors
+need to have any more fine-grain policies
 to enforce. The supplement describes how to create a "system of trust" between
 the actor that can perform Access Decisions (on behalf of Consent Docs, Policies and
-Creation/Access/Disclosure rules) and XDS Actors that actually store clinical data
-and documents. Access decisions are often based on metadata (e.g., document types,
-practiceSetting); therefore, the source of truth for metadata (i.e., the XDS Document
-Registry) is the best place to make the decisions. With the objective to keep the
-data close to the decision point, the XDS Document Registry in many implementations,
-is a good candidate to perform access control decisions (Authorization Decisions Manager
-or Policy Decision Point). In a typical XDS environment, there are many XDS Document
+Creation/Access/Disclosure rules) and actors that actually store clinical data
+and documents. For example, in a typical XDS environment, there are many XDS Document
 Repositories that store documents. These systems are not aware of Consent Documents
 published by patients, and cannot apply Access/Creation/Disclosure Policies to requests
 for Document retrieval; then the replication of Access Control functionalities is
 unfeasible and/or too expensive (due to integration burdens and total cost of ownership).
 
 The objective of the Secure Retrieve Profile is the definition of a mechanism to convey
-Authorization Decisions between XDS Actors, attesting that the reliable Policy Decision
+Authorization Decisions between affinity domain actors, attesting that the reliable Policy Decision
 Point (PDP) has already made an access decision.
+
+<!-- Dmytro: No changes are required below because this fragment describes _starting_ 
+requirements and constraints, i.e. the history and not the current state. -->
 
 The starting requirements/constraints upon which this profile is developed are described
 below:
@@ -100,7 +98,8 @@ the existence of Authorization Decisions granted to an entity and for specific d
 
 ## Open Issues and Questions
 
-None
+11. As the profile covers not only document retrieval, shall it be renamed from
+    "Secure Retrieve" (SeR) to e.g. "User Authorization" (UAZ)?
 
 ## Closed Issues
 
@@ -286,12 +285,12 @@ Add new Section 39
 ## 39 Secure Retrieve (SeR) Profile
 
 This profile defines a framework able to enforce a centralized Access Control system,
-conveying between actors involved in an XDS environment the evidence of the reliable
+conveying between actors involved in an affinity domain the evidence of the reliable
 decisions already made by an Access Decision Manager.
 
 The main objective of this profile is to create a system of trust between the actor
-that performs access decisions (Authorization Decisions Manager), and actors that store
-clinical data (XDS Document Repositories). This split of responsibilities is needed
+that produces access decisions (Authorization Decisions Manager), and actors that enforce
+them (e.g. XDS Document Repositories). This split of responsibilities is needed
 in many environments where systems that expose clinical data are not able to replicate
 and repeat access decisions.
 
@@ -312,36 +311,37 @@ This type of approach is useful in many situations:
   Servers that store/register clinical data and cannot be regulated by the Consumer itself.
 
 In those scenarios, this profile defines how to create a "logical federation" between an
-Access Decision Manager (responsible for enabling/denying accesses) and XDS Document
-Repositories (that store documents and expose them without knowledge related to the
+Access Decision Manager (responsible for enabling/denying accesses) and
+actors that enforce access decisions (e.g. XDS Document
+Repositories that store documents and expose them without knowledge related to the
 user/role/consent documents/policies etc.). Actors that store clinical data could only
 trust a decision made by the Access Decision Manager.
 
 Access Decision Manager functionalities are out of scope for this profile because typically
 they are domain specific and locally defined. It is out scope of the profile to cover all
 the Access Control Decision issues. This profile allows the creation of a system where
-the existence of a document that cannot be accessed by a specific user is totally obscured
+the existence of a clinical data item that cannot be accessed by a specific user is totally obscured
 from the Consumers.
 
 Creation, management and enforcement of policies are out of scope for this profile.
 However, this profile takes in consideration best practices and common implementations
 for Access Decision Manager functionalities.
 
-This profile allows addressing the following security risks (related to XDS Document
-Repository exposure):
+This profile allows addressing the following security risks (related to clinical data
+exposure):
 
-- The Document Repository does not know the access control decision that should be
+- The actor storing clinical data does not know the access control decision that should be
   enforced. Therefore, if it denies access to data, there is a failure of availability.
   If it provides the document inappropriately, there is a risk to confidentiality.
-  The SeR Profile allows the Repository to be aware of the decision made, only asking for
+  The SeR Profile allows this actor to be aware of the decision made, only asking for
   the existence of Authorizations granted by the trusted Access Decision Manager and
-  enforcing that decision. In accordance with Affinity Domain policies, the XDS Document
-  Repository can make further access control decisions.
+  enforcing that decision. In accordance with Affinity Domain policies, the
+  actor storing clinical data can make further access control decisions.
 
-- A separation of duties between Document Consumer (that requests authorization and
-  documents) and the Policy Decision Point is created. The SeR Profile moves the decisions
-  and enforcement into the service layer by grouping decisions with the Registry
-  and enforcement with the Repository (instead of the Consumer).
+- A separation of duties between the clinical data consumer (that requests authorization and
+  clinical data items) and the Policy Decision Point is created. The SeR Profile moves the decisions
+  and enforcement into the service layer by grouping decisions with the Authorization
+  Decision Manager and enforcement with the Authorization Decision Verifier.
 
 ## 39.1 SeR Actors, Transactions, and Content Modules
 
@@ -352,8 +352,10 @@ transactions between them. If needed for context, other actors that may be indir
 involved due to their participation in other related profiles are shown in dotted
 lines. Actors which have a mandatory grouping are shown in conjoined boxes.
 
-![Figure 39.1-1: SeR Actor Diagram](assets/images/SeR_Actor_Diagram.png)
+![Figure 39.1-1: SeR Actor Diagram](assets/images/SeR_Actor_Diagram-NEW.svg)
 _Figure 39.1-1: SeR Actor Diagram_
+
+<!-- Dmytro: The original diagram is moved to section 39.4.2.1. -->
 
 Table 39.1-1 lists the transactions for each actor directly involved in the SeR Profile.
 To claim compliance with this profile, an actor shall support all required
@@ -366,6 +368,13 @@ _Table 39.1-1: SeR Profile - Actors and Transactions_
 | Authorization Decisions Manager  | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 |
 | Authorization Decisions Verifier | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 |
 
+The Authorization Decisions Query [ITI-79] provides support for different query types,
+depending on which actor is grouped with the Authorization Decision Verifier and which
+transactions (which clinical data items) are in focus. This supplement described only one standard
+query type: "Retrieve Document Set Authorization Decision". Additional query types may be
+defined on vendor, community, regulatory domain, or national level. The optionality of
+supporting various query types is a subject of local regulations.
+
 ### 39.1.1  Actor Descriptions and Actor Profile Requirements
 
 Most requirements are documented in Transactions (Volume 2) and Content Modules (Volume 3).
@@ -374,13 +383,16 @@ This section documents any additional requirements on profile's actors.
 #### 39.1.1.1 Authorization Decisions Manager
 
 The Authorization Decisions Manager is responsible for the management of access control
-decisions in the entire XDS domain. From the Access Control point of view, this actor is
+decisions in the entire affinity domain. From the Access Control point of view, this actor is
 the unique Policy Decision Point (PDP) of the entire domain for all documents because it
 may decide on the outcome of an incoming authorization request in order to provide access
-to specific resources (documents). The Authorization Decisions Manager completes the
-Authorization Decision creating and storing a security token. This security token does
-not need to be exposed to other systems, and it certifies the decision made. This actor
-could implement additional Access Control functionalities required in the specific
+to specific resources (e.g. documents). The Authorization Decisions Manager completes the
+Authorization Decision creating a security token. <!-- Dmytro: See the sentence inserted 
+below; token caching should not be a required feature. --> This security token does
+not need to be exposed to other systems, and it certifies the decision made.
+The Authorization Decision Manager MAY cache the token and reuse it when processing subsequent
+requests with the same parameters, if the local domain policies allow such behavior, and
+implement additional Access Control functionalities required in the specific
 implementation scenario.
 
 (Refer to the White Paper IHE ITI
@@ -400,8 +412,8 @@ The Requester Entities (XDS Document Consumer) convey at least the following inf
 to the Authorization Decisions Verifier:
 
 - Requester Entity that obtains authorization (e.g., using an identity assertion)
-- The unique ID of the document that can be accessed (within the Retrieve Document Set-b
-  Request)
+- The unique ID of the clinical data item that can be accessed (e.g. a unique ID of a document
+  within the Retrieve Document Set-b Request)
 
 (Refer to the White Paper IHE ITI
 [Access Control White Paper](https://www.ihe.net/Technical_Framework/upload/IHE_ITI_TF_WhitePaper_AccessControl_2009-09-28.pdf)
@@ -421,16 +433,10 @@ _Table 39.2-1: SeR - Actors and Options_
 
 ## 39.3 SeR Required Actor Groupings
 
-SeR Actors are involved in an XDS document sharing infrastructure. The groupings between
-XDS Actors and SeR Actors enforce the system of trust between the XDS Document Registry
-that localizes the XDS DocumentEntries and the XDS Document Repositories that store XDS
-documents. The mandatory grouping between the XDS Document Registry and the Authorization
-Decisions Manager is needed to leave the protocols and semantics of the Authorization
-Request transaction unspecified. The Authorization Decisions Manager needs metadata,
-entity identification, policies applicable etc.
+<!-- Dmytro: The paragraph is moved to section 39.4.2.1. -->
 
 This profile requires the identification of the entity that actually performs queries
-and retrieves of documents. Authorization Decisions are granted to a specific entity
+and retrieves of clinical data. Authorization Decisions are granted to a specific entity
 and can be used only by that entity to get access to document entries.
 
 Grouping with XUA Actors shall be supported. Other approaches for entity identification
@@ -452,12 +458,7 @@ _Table 39.3-1: SeR - Required Actor Groupings_
         <th>Content Bindings Reference</th>
     <tr>
     <tr>
-        <td rowspan="3">Authorization Decisions Manager</td>
-        <td>XDS Document Registry</td>
-        <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1">ITI TF-1: 10.1</a></td>
-        <td>--</td>
-    </tr>
-    <tr>
+        <td rowspan="2">Authorization Decisions Manager</td>
         <td>XUA X-Service Provider</td>
         <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4">ITI TF-1: 13.4</a></td>
         <td>--</td>
@@ -468,12 +469,7 @@ _Table 39.3-1: SeR - Required Actor Groupings_
         <td>--</td>
     </tr>
     <tr>
-        <td rowspan="3">Authorization Decisions Verifier</td>
-        <td>XDS Document Repository</td>
-        <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1">ITI TF-1: 10.1</a></td>
-        <td>--</td>
-    </tr>
-    <tr>
+        <td rowspan="2">Authorization Decisions Verifier</td>
         <td>XUA X-Service Provider</td>
         <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4">ITI TF-1: 13.4</a></td>
         <td>--</td>
@@ -503,8 +499,8 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 This section describes the primary use-cases for the SeR Profile. In this use case,
 the storing facility relies on a trusted actor able to evaluate access rights.
 
-The Authorization Decisions Manager is grouped with the XDS Document Registry.
-It acts as a Policy Decision Point (PDP) and implements functions of Policy Information
+The Authorization Decisions Manager
+acts as a Policy Decision Point (PDP) and implements functions of Policy Information
 Point (PIP) and Policy Administration Point (PAP). The Authorization Decisions Manager
 in this use-case act as a PIP because it manages the whole set of information needed to
 perform an access decision:
@@ -524,6 +520,22 @@ and maintaining Affinity Domain Policies.
 
 This use-case describes how an XDS Document Repository without internal Access Control
 mechanisms uses Authorization Decisions made by a third party.
+
+<!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory" 
+originally present there is removed. -->
+
+SeR Actors are involved in an XDS document sharing infrastructure. The groupings between
+XDS Actors and SeR Actors enforce the system of trust between the XDS Document Registry
+that localizes the XDS DocumentEntries and the XDS Document Repositories that store
+XDS documents. The grouping between the XDS Document Registry and the Authorization
+Decisions Manager is needed to leave the protocols and semantics of the Authorization
+Request transaction unspecified. The Authorization Decisions Manager needs metadata,
+entity identification, policies applicable etc.
+
+![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
+_Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
+
+<!-- Dmytro: This diagram is moved from section 39.1. -->
 
 ##### 39.4.2.1.1 Environment with a centralized Access Decision Manager Use Case Description
 
@@ -579,7 +591,7 @@ stored by the Authorization Decisions Manager) could avoid the disclosure of sen
 information.
 
 The centralized Access Control system introduces a single point-of-failure risk in the
-XDS environment. A failure of the Authorization Decisions Manager could result in
+affinity domain. A failure of the Authorization Decisions Manager could result in
 legitimate access being denied.
 
 This profile introduces an XDS Error Code in order to codify an additional reason for
@@ -592,7 +604,8 @@ Consumer that can then try to refine subsequent requests.
 
 The SeR Profile does not define how to perform the Access Decision. However, this profile
 supports the creation of a system where the existence of a document that cannot be
-accessed by a specific user is not revealed. Each document returned within the Query
+accessed by a specific user is not revealed. In this case, the aforementioned error
+code SHALL NOT be used. Each document returned within the Query
 Response should be considered Authorized for the retrieval at the time of the Query Request.
 
 If the Authorization Decisions Verifier is allowed to perform new access decisions when
@@ -624,7 +637,7 @@ decisions, granted and managed by the Authorization Decisions Manager. These aut
 decisions are created for an entity that is authorized to disclose specific documents.
 
 The Authorization Decisions Verifier asks for authorizations based on the Requester Entity
-and the requested documents identifiers.
+and other attributes suitable for a given use case.
 
 This transaction is based on SOAP v1.2 exchange protocol and Synchronous Web services (see
 [ITI TF-2: Appendix V](https://profiles.ihe.net/ITI/TF/Volume2/ch-V.html)).
@@ -655,9 +668,9 @@ _Figure 3.79.4-1: Interaction Diagram_
 
 This message enables the Authorization Decisions Verifier to query the Authorization
 Decisions Manager for authorizations. This message relies on the SAML v2.0 extension
-for XACML and uses the element `<XACMLAuthzDecisionQuery>` to convey the document
-identifiers and the subject identifier. The Authorization Decisions Verifier can ask
-for authorization for many documents in one query, so the Request message complies
+for XACML and uses the element `<XACMLAuthzDecisionQuery>` to convey the subject
+identifier and other query parameters. The Authorization Decisions Verifier can ask
+for authorization for many clinical data items in one query, so the Request message complies
 with the Multiple resource profile of XACML v2.0. Actors involved support XUA and use
 SAML identity assertions to identify entities (see ITI TF-1: 39.5 and ITI TF-1: 39.6).
 SAML attribute elements shall be mapped into xacml-context attribute elements as defined
@@ -666,11 +679,12 @@ in SAML 2.0 Profile of XACML v2.0 (Section 2).
 ##### 3.79.4.1.1 Trigger Events
 
 The Authorization Decisions Verifier sends this message when it needs to verify whether
-there is an Authorization to disclose specific documents to an entity requesting them.
-The trigger event is the grouped XDS Document Repository receiving a Retrieve Document
-Set Request message (see
-[ITI TF-2: 3.43.4.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-43.html#3.43.4.1))
-and a Provide X-User Assertion [ITI-40] transaction from an XDS Document Consumer
+there is an Authorization to disclose specific clinical data items to an entity requesting them.
+The trigger event is the actor grouped with the Authorization Decisions Verifier (e.g. an
+XDS Document Repository) receiving a request (e.g. a Retrieve Document Set Request message,
+see [ITI TF-2: 3.43.4.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-43.html#3.43.4.1))
+and a Provide X-User Assertion [ITI-40] transaction from the client (e.g. an XDS
+Document Consumer)
 that identifies the specific Requester Entity within a SAML Assertion.
 
 ##### 3.79.4.1.2 Message Semantics
@@ -696,8 +710,29 @@ The `<XACMLAuthzDecisionQuery>` element shall have only one child element `<Requ
 This element shall comply with OASIS Multiple resource profile of XACML v2.0.
 This element shall have the following child elements:
 
-- It shall have one child element `<Subject>`. This element identifies the Requester
-  Entity. The `<Subject>` element shall have at least one child element `<Attribute>`
+- Exactly one child element `<Subject>` that identifies the Requester Entity.
+- One or more elements `<Resource>` that identify particular clinical data items or classes
+  of clinical data items.
+- Exactly one element `<Action>` that identifies the action the Authorization
+  Decisions Manager has to authorize.
+- Exactly one element `<Environment>` that identifies run-time properties of the
+  execution context.
+
+Particular assignment of attributes on these elements depends on the query type,
+as described in the next sub-section.
+
+###### 3.79.4.1.2.1 Query Types and Request Attribute Assignments
+
+Currently, there is only one standard query type: "Retrieve Document Set
+Authorization Decision". Additional query types MAY be defined on vendor,
+community, regulatory domain, or national level.
+
+###### 3.79.4.1.2.1.1 Retrieve Document Set Authorization Decision Request Attributes
+
+The SeR query type "Retrieve Document Set Authorization Decision" requires the
+following assignment of request attributes:
+
+- The `<Subject>` element shall have at least one child element `<Attribute>`
   characterized by `@AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"`
   and `@DataType="http://www.w3.org/2001/XMLSchema#string"`. The `<AttributeValue>`
   child element shall convey the subject identifier. This element shall have the same
@@ -708,14 +743,14 @@ This element shall have the following child elements:
   identified as related to the subject (each attribute with "XACML Category" equal to
   `urn:oasis:names:tc:xacml:1.0:subject-category:access-subject`).
 
-- It shall have one or more <Resource> elements that identify resources. There is one
+- There is one
   `<Resource>` element for each document requested by the Requester Entity. In the XDS
   environment, a `<Resource>` element identifies a document. Each document is identified
   by two required `<Attribute>` child elements.
     - The first `<Attribute>` element shall have
       `@AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"` and
       `@DataType="http://www.w3.org/2001/XMLSchema#string"`. The `<AttributeValue>` child
-      element stores the value of the XDSDocumentEntry.uniqueId. 
+      element stores the value of the XDSDocumentEntry.uniqueId.
     - The second `<Attribute>` element shall have
       `@AttributeId="urn:ihe:iti:ser:2016:document-entry:repository-unique-id"` and
       `@DataType="http://www.w3.org/2001/XMLSchema#anyURI"`. The `<AttributeValue>` child
@@ -730,8 +765,7 @@ Attributes that belong to the XACML environment category (e.g., XUA attributes w
 "XACML Category" equal to `urn:oasis:names:tc:xacml:1.0:environment` in Table 3.79.4.1.2-1)
 shall be added to an `<Environment>` element.
 
-The `<Action>` element identifies the action that the Authorization Decisions Manager
-has to authorize. This element shall have a child element `<Attribute>` with
+The `<Action>` element shall have a child element `<Attribute>` with
 `@AttributeId="urn:oasis:names:tc:xacml:1.0:action:action-id"` and
 `@DataType="http://www.w3.org/2001/XMLSchema#anyURI"`. This attribute shall have a child
 element `<AttributeValue>` characterized by value:
@@ -806,7 +840,7 @@ XACML Version 2.0, Section 2 provides guidance in mapping SAML attributes into X
 attributes. Domain Policies should define to which XACML category (Subject, Resource,
 Action or Environment) each additional Attribute belongs.
 
-###### 3.79.4.1.2.1 Example of a SOAP v1.2 XACMLAuthorizationDecisionQuery Request message
+###### 3.79.4.1.2.1.1.1 Example of a SOAP v1.2 XACMLAuthorizationDecisionQuery Request message
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -880,9 +914,9 @@ Action or Environment) each additional Attribute belongs.
 
 When the Authorization Decisions Manager receives an XACMLAuthorizationDecisionQuery
 Request message, it evaluates each Authorization Request conveyed within the
-XACMLAuthorizationDecision (one for each `<Resource>` element). The Authorization Decisions
-Manager shall verify the existence of Authorization Decisions that match the XACML Query
-parameters:
+XACMLAuthorizationDecision (one for each `<Resource>` element). If the Authorization Decisions
+Manager supports decision caching, then it shall verify the existence of Authorization
+Decisions that match the XACML Query parameters:
 
 - The Requester Entity identified within the XACMLAuthorizationDecisionQuery
   (`<Subject>/<Attribute>` element with
@@ -916,11 +950,11 @@ Response message that conveys the results of this evaluation. One Result for eac
 The XACMLAuthorizationDecisionQuery Response message is created by the Authorization
 Decisions Manager in response to the XACMLAuthorizationDecisionQuery Request. This
 message conveys to the Authorization Decisions Verifier the results of the evaluation
-made by the Authorization Decisions Manager. For each Resource (document) specified within
+made by the Authorization Decisions Manager. For each Resource (e.g. a document) specified within
 the Request message, the Authorization Decisions Manager provides an Authorization Result
-that shall be used by the Authorization Decisions Verifier / XDS Document Repository to
-determine which of the requested documents to return to the Document Consumer in response
-to the [ITI-43] Retrieve Document Set request, in accordance with local policies.
+that shall be used by the Authorization Decisions Verifier to
+determine which of the requested clinical data items to return to the client in response
+to the trigger transaction request, in accordance with local policies.
 This message relies on the XACML extension of SAML v2.0 protocol standard. Authorization
 Results are conveyed using an XACMLAuthzDecisionStatement.
 
@@ -928,8 +962,8 @@ Results are conveyed using an XACMLAuthzDecisionStatement.
 
 This message is created by the Authorization Decisions Manager after the evaluation of the
 XACML AuthorizationDecisionQuery Request message. The Authorization Decisions Manager
-identifies Authorization Decisions applicable to the Documents/Requester Entity and produces
-a result of the evaluation done.
+identifies Authorization Decisions applicable to the requested clinical data items and the
+Requester Entity, and produces a result of the evaluation done.
 
 ##### 3.79.4.2.2 Message Semantics
 
@@ -941,10 +975,12 @@ The Addressing Action header of the SOAP message shall be:
 The XACMLAuthorizationStatement (defined in the OASIS SAML 2.0 Profile of XACML Version 2.0)
 is conveyed within a SAML v2.0 Assertion. The Assertion does not need to be
 signed. The SAML StatusCode of the Response message shall be
-`urn:oasis:names:tc:SAML:2.0:status:Success`.
+set as defined in section 4.10 "Element `<samlp:Response>`: XACMLAuthzDecision Response"
+of OASIS SAML 2.0 profile of XACML v2.0 (errata).
 
 The `<Issuer>` of the Authorization Assertion should identify the trusted Authorization
-Decisions Manager (SOAP endpoint of the Web Service).
+Decisions Manager (e.g. SOAP endpoint of the Web Service, or the home community OID
+in URN format, depending on local policies).
 
 See Section 3.1 of the OASIS SAML 2.0 Profile of XACML Version 2.0 document for further
 details on the message structure. As specified in the OASIS Multiple resource profile of
@@ -1015,6 +1051,11 @@ described below:
 
 ##### 3.79.4.2.3 Expected Actions
 
+Expected actions are part of each query type definition. This section describes expected
+actions of the standard SeR query types.
+
+###### 3.79.4.2.3.1 Retrieve Document Set Authorization Decision Expected Actions
+
 When the Authorization Decisions Verifier receives a XACMLAuthorizationDecisionQuery
 Response, the XDS Document Repository shall enforce the decision results according to local
 policy.
@@ -1048,7 +1089,7 @@ Relevant Security Considerations are defined in ITI TF-1: 39.5. The Authorizatio
 Query transaction requires TLS communication between actors involved.
 
 This transaction mandates the creation of Authorizations associated at least with the
-Requester Entity and with the document requested. If additional parameters need to be
+Requester Entity and with the clinical data item requested. If additional parameters need to be
 associated to the authorization, then the same parameters shall be provided within the
 Authorization Decisions Query transaction.
 
@@ -1060,8 +1101,9 @@ to record the "Query" event creating audit messages in accordance to the followi
 The audit message shall identify:
 
 - The entity that requires authorization
-- The documents have been requested
+- The clinical data items that have been requested
 - The overall result of the Authorization processing
+- Human users, if known
 
 ##### 3.79.5.1.1 Authorization Decisions Verifier audit message
 
@@ -1099,6 +1141,7 @@ The audit message shall identify:
         <td>EV("ITI-79", "IHE Transactions", "Authorization Decisions Query")</td>
     </tr>
     <tr><td colspan="4">Source (Authorization Decisions Verifier) (1)</td></tr>
+    <tr><td colspan="4">Human Requestor (0..n)</td></tr>
     <tr><td colspan="4">Destination (Authorization Decisions Verifier) (1)</td></tr>
     <tr><td colspan="4">Query Parameters (1)</td></tr>
     <tr><td colspan="4">Requester Entity (1)</td></tr>
@@ -1107,7 +1150,7 @@ The audit message shall identify:
 
 <table border="1">
     <tr>
-        <td rowspan="7"><center><b>Source:</b><br>AuditMessage/ ActiveParticipant</center></td>
+        <td rowspan="7"><center><b>Source:</b><br>AuditMessage/ ActiveParticipant (1)</center></td>
         <td><i>UserId</i></td>
         <td><i>U</i></td>
         <td><i>Not specialized</i></td>
@@ -1141,6 +1184,45 @@ The audit message shall identify:
         <td>NetworkAccessPointID</td>
         <td>U</td>
         <td>The machine name or IP address, as specified in DICOM PS 3.15 A.5.3.</td>
+    </tr>
+</table>
+
+<table border="1">
+    <tr>
+        <td rowspan="7"><center><b>Human Requestor:</b><br>AuditMessage/ ActiveParticipant (0..n)</center></td>
+        <td>UserId</td>
+        <td>M</td>
+        <td>identity of the human that initiated the transaction</td>
+    </tr>
+    <tr>
+        <td><i>AlternativeUserID</i></td>
+        <td><i>U</i></td>
+        <td><i>Not specialized</i></td>
+    </tr>
+    <tr>
+        <td><i>UserName</i></td>
+        <td><i>U</i></td>
+        <td><i>Not specialized</i></td>
+    </tr>
+    <tr>
+        <td><i>UserIsRequestor</i></td>
+        <td><i>U</i></td>
+        <td><i>Not specialized</i></td>
+    </tr>
+    <tr>
+        <td>RoleIDCode</td>
+        <td>U</td>
+        <td>Access Control role(s) the user holds that allows this transaction</td>
+    </tr>
+    <tr>
+        <td><i>NetworkAccessPointTypeCode</i></td>
+        <td><i>NA</i></td>
+        <td><i></i></td>
+    </tr>
+    <tr>
+        <td><i>NetworkAccessPointID</i></td>
+        <td><i>NA</i></td>
+        <td><i></i></td>
     </tr>
 </table>
 
@@ -1366,6 +1448,7 @@ The audit message shall identify:
         <td>EV("ITI-79", "IHE Transactions", "Authorization Decisions Query")</td>
     </tr>
     <tr><td colspan="4">Source (Authorization Decisions Verifier) (1)</td></tr>
+    <tr><td colspan="4">Human Requestor (0..n)</td></tr>
     <tr><td colspan="4">Destination (Authorization Decisions Verifier) (1)</td></tr>
     <tr><td colspan="4">Query Parameters (1)</td></tr>
     <tr><td colspan="4">Requester Entity (1)</td></tr>
@@ -1408,6 +1491,45 @@ The audit message shall identify:
         <td>NetworkAccessPointID</td>
         <td>U</td>
         <td>The machine name or IP address, as specified in DICOM PS 3.15 A.5.3.</td>
+    </tr>
+</table>
+
+<table border="1">
+    <tr>
+        <td rowspan="7"><center><b>Human Requestor:</b><br>AuditMessage/ ActiveParticipant (0..n)</center></td>
+        <td>UserId</td>
+        <td>M</td>
+        <td>identity of the human that initiated the transaction</td>
+    </tr>
+    <tr>
+        <td><i>AlternativeUserID</i></td>
+        <td><i>U</i></td>
+        <td><i>Not specialized</i></td>
+    </tr>
+    <tr>
+        <td><i>UserName</i></td>
+        <td><i>U</i></td>
+        <td><i>Not specialized</i></td>
+    </tr>
+    <tr>
+        <td><i>UserIsRequestor</i></td>
+        <td><i>U</i></td>
+        <td><i>Not specialized</i></td>
+    </tr>
+    <tr>
+        <td>RoleIDCode</td>
+        <td>U</td>
+        <td>Access Control role(s) the user holds that allows this transaction</td>
+    </tr>
+    <tr>
+        <td><i>NetworkAccessPointTypeCode</i></td>
+        <td><i>NA</i></td>
+        <td><i></i></td>
+    </tr>
+    <tr>
+        <td><i>NetworkAccessPointID</i></td>
+        <td><i>NA</i></td>
+        <td><i></i></td>
     </tr>
 </table>
 
