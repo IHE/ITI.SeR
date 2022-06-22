@@ -437,7 +437,7 @@ Grouping with XUA Actors shall be supported. Other approaches for entity identif
 could be defined by local domain policies.
 
 An actor from this profile (Column 1) shall implement all of the required transactions
-and/or content modules in this profile in addition to all of the transactions required
+and/or content modules in this profile __*in addition*__ to all of the transactions required
 for the grouped actor (Column 2).
 
 Section 39.5 describes some optional groupings that may be of interest for security
@@ -1054,8 +1054,9 @@ Authorization Decisions Query transaction.
 
 #### 3.79.5.1 Security Audit Considerations
 
-Both the actors involved in the Authorization Decisions Query transaction are recommended to record the "Query" event
-creating audit messages in accordance to the following structure.
+Both the actors involved in the Authorization Decisions Query transaction are recommended 
+to record the "Query" event creating audit messages in accordance to the following structure.
+
 The audit message shall identify:
 
 - The entity that requires authorization
