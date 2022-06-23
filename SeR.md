@@ -93,13 +93,22 @@ This profile does not describe how Authorization Decisions are performed. Howeve
 this profile relies on XACM-SAML framework, so these standards could be good candidates
 to implement Authorization Requests.
 
-This profile describes how a Service Provider (e.g., Document Repository) can discover
+This profile describes how a Service Provider (e.g. Document Repository) can discover
 the existence of Authorization Decisions granted to an entity and for specific documents.
 
 ## Open Issues and Questions
 
 11. As the profile covers not only document retrieval, shall it be renamed from
     "Secure Retrieve" (SeR) to e.g. "User Authorization" (UAZ)?
+12. A change in section 3.79.4.2.2 prescribes to populate the status code according
+    to section 4.10 "Element <samlp:Response>: XACMLAuthzDecision Response" of OASIS 
+    SAML 2.0 profile of XACML v2.0 (errata) instead of using a fixed value
+    `urn:oasis:names:tc:SAML:2.0:status:Success` -- this is because otherwise it would
+    be impossible cover error cases. Does this change break the backward compatibility?
+13. Shall information about human users in the Authorization Decisions Manager's audit 
+    record (added with the Swiss change proposal) be deleted again?
+14. Shall the audit record definitions of the both actors be reworked to be made 
+    consistent with definitions in other IHE profiles? 
 
 ## Closed Issues
 
@@ -190,7 +199,7 @@ the existence of Authorization Decisions granted to an entity and for specific d
     Repository that stores this resource. This approach is not described in standard
     specification yet.
     - The Pull approach is chosen to reduce computational load on the central
-      Authorization Decision Manager
+      Authorization Decisions Manager
 
 ## IHE Technical Frameworks General Introduction
 
@@ -265,8 +274,8 @@ General Introduction Appendix D</a>
 | Glossary Term           | Definition                                                                                                                                                                                                                                                                                                          | 
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Access Decision Manager | A complex system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor can implement additional functionalities typical of a PDP (Policy Decision Point), PAP (Policy Administration Point) and a PIP (Policy Information Point). |
-| Authorization Decision  | A security token that describes which documents can be accessed by a specific entity.                                                                                                                                                                                                                               |
-| Requester Entity        | The entity identified within the identity assertion. This entity asks for resources (documents). This entity performs query to the registry and try to retrieve documents from repositories. Authorization Decisions are created and associated with the Requester Entity.                                                                                                                                                                                                                                                                                                                    |
+| Authorization Decision  | An authorization token that describes which documents can be accessed by a specific entity.                                                                                                                                                                                                                             |
+| Requester Entity        | The entity identified within the identity assertion. This entity asks for resources (documents). This entity performs query to the registry and try to retrieve documents from repositories. Authorization Decisions are created and associated with the Requester Entity.                                          |
 
 # Volume 1 &mdash; Profiles
 
@@ -290,7 +299,7 @@ decisions already made by an Access Decision Manager.
 
 The main objective of this profile is to create a system of trust between the actor
 that produces access decisions (Authorization Decisions Manager), and actors that enforce
-them (e.g. XDS Document Repositories). This split of responsibilities is needed
+access decisions (e.g. XDS Document Repositories). This split of responsibilities is needed
 in many environments where systems that expose clinical data are not able to replicate
 and repeat access decisions.
 
@@ -341,7 +350,7 @@ exposure):
 - A separation of duties between the clinical data consumer (that requests authorization and
   clinical data items) and the Policy Decision Point is created. The SeR Profile moves the decisions
   and enforcement into the service layer by grouping decisions with the Authorization
-  Decision Manager and enforcement with the Authorization Decision Verifier.
+  Decisions Manager and enforcement with the Authorization Decisions Verifier.
 
 ## 39.1 SeR Actors, Transactions, and Content Modules
 
@@ -369,7 +378,7 @@ _Table 39.1-1: SeR Profile - Actors and Transactions_
 | Authorization Decisions Verifier | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 |
 
 The Authorization Decisions Query [ITI-79] provides support for different query types,
-depending on which actor is grouped with the Authorization Decision Verifier and which
+depending on which actor is grouped with the Authorization Decisions Verifier and which
 transactions (which clinical data items) are in focus. This supplement described only one standard
 query type: "Retrieve Document Set Authorization Decision". Additional query types may be
 defined on vendor, community, regulatory domain, or national level. The optionality of
@@ -387,10 +396,10 @@ decisions in the entire affinity domain. From the Access Control point of view, 
 the unique Policy Decision Point (PDP) of the entire domain for all documents because it
 may decide on the outcome of an incoming authorization request in order to provide access
 to specific resources (e.g. documents). The Authorization Decisions Manager completes the
-Authorization Decision creating a security token. <!-- Dmytro: See the sentence inserted 
-below; token caching should not be a required feature. --> This security token does
+Authorization Decision creating a authorization token. <!-- Dmytro: See the sentence inserted 
+below; token caching should not be a required feature. --> This authorization token does
 not need to be exposed to other systems, and it certifies the decision made.
-The Authorization Decision Manager MAY cache the token and reuse it when processing subsequent
+The Authorization Decisions Manager may cache the token and reuse it when processing subsequent
 requests with the same parameters, if the local domain policies allow such behavior, and
 implement additional Access Control functionalities required in the specific
 implementation scenario.
@@ -586,7 +595,7 @@ Decisions Verifier should perform queries only to the domain-identified Authoriz
 Decisions Manager.
 
 Authorization Decisions are collected by the Authorization Decisions Manager. These
-security tokens should not be exposed to other systems. Encryption of this token (when
+authorization tokens should not be exposed to other systems. Encryption of these tokens (when
 stored by the Authorization Decisions Manager) could avoid the disclosure of sensitive
 information.
 
@@ -605,7 +614,7 @@ Consumer that can then try to refine subsequent requests.
 The SeR Profile does not define how to perform the Access Decision. However, this profile
 supports the creation of a system where the existence of a document that cannot be
 accessed by a specific user is not revealed. In this case, the aforementioned error
-code SHALL NOT be used. Each document returned within the Query
+code shall not be used. Each document returned within the Query
 Response should be considered Authorized for the retrieval at the time of the Query Request.
 
 If the Authorization Decisions Verifier is allowed to perform new access decisions when
@@ -724,7 +733,7 @@ as described in the next sub-section.
 ###### 3.79.4.1.2.1 Query Types and Request Attribute Assignments
 
 Currently, there is only one standard query type: "Retrieve Document Set
-Authorization Decision". Additional query types MAY be defined on vendor,
+Authorization Decision". Additional query types may be defined on vendor,
 community, regulatory domain, or national level.
 
 ###### 3.79.4.1.2.1.1 Retrieve Document Set Authorization Decision Request Attributes
