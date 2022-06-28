@@ -396,7 +396,7 @@ decisions in the entire affinity domain. From the Access Control point of view, 
 the unique Policy Decision Point (PDP) of the entire domain for all documents because it
 may decide on the outcome of an incoming authorization request in order to provide access
 to specific resources (e.g. documents). The Authorization Decisions Manager completes the
-Authorization Decision creating a authorization token. <!-- Dmytro: See the sentence inserted 
+Authorization Decision creating an authorization token. <!-- Dmytro: See the sentence inserted 
 below; token caching should not be a required feature. --> This authorization token does
 not need to be exposed to other systems, and it certifies the decision made.
 The Authorization Decisions Manager may cache the token and reuse it when processing subsequent
