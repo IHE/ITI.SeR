@@ -539,7 +539,7 @@ originally present there is removed. -->
 In this use-case the groupings between XDS Actors and SeR Actors enforce the system
 of trust between the XDS Document Registry that localizes the XDS DocumentEntries
 and the XDS Document Repositories that store XDS documents. This use-case assumes
-that Authorization Decisions are based on the metadata of the documents and groups
+that Authorization Decisions are based on the document metadata and groups
 the XDS Document Registry and the Authorization Decisions Manager for simplicity.
 
 ![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
@@ -549,12 +549,20 @@ _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 
 ##### 39.4.2.1.1 XDS Repositories with a centralized Access Decision Manager Use Case Description
 
-The XDS Document Repositories are all in the same XDS Affinity Domain, but are unable to
-perform access decisions. When an entity tries to retrieve some documents from an XDS
-Repository, the XDS Document Repository lacks the information needed to make an access
-control decision. The Authorization Decisions Manager can make the decision at the time
-of the query to the XDS Registry. This decision is enforced by the XDS Document
-Repository grouped with an Authorization Decisions Verifier.
+In this use-case the XDS Document Repositories are all in the same XDS Affinity
+Domain and delegate Access Decisions to the Authorization Decisions Manager grouped
+with the XDS Document Registry.
+
+When an Requester Entity (XDS Document Consumer) request documents from an XDS
+Repository, the XDS Document Repository uses an Authorization Decisions Query [ITI-79]
+to query the Authoriztaion Decision from the Authorization Decisions Manager.
+The Authorization Decisions Manager builds an Access Decision based on
+- the information send with the Authorization Decisions Query [ITI-79]
+- the document metadata stored in the XDS Registry
+- the Patienet Consent and Access Policies.
+
+The XDS Document Repository grouped with an Authorization Decisions Verifier enforces
+the Access Decision returned with the Authorization Decisions Query [ITI-79].
 
 For example:
 
