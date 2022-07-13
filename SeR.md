@@ -420,7 +420,10 @@ for further information about PDP and Access Control Systems.)
 
 The Authorization Decisions Verifier is the actor that verifies if the Requester Entity
 is authorized to access specific resources by querying the Authorization Decisions Verifier.
-The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP) and enforces the Access Decision made by the trusted Policy Decision Point. The Authorization Decisions Verifier actor enables the secure exposure of documents, allowing access only to Requester Entities previously authorized by the Policy Decision Point.
+The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP) and enforces the
+Access Decision made by the trusted Policy Decision Point. The Authorization Decisions Verifier actor
+enables the secure exposure of documents, allowing access only to Requester Entities previously
+authorized by the Policy Decision Point.
 
 The Requester Entities (XDS Document Consumer) convey at least the following information
 to the Authorization Decisions Verifier:
