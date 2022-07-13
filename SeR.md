@@ -628,10 +628,11 @@ Add Section 3.79
 
 This transaction is used by the Authorization Decisions Verifier to query for authorization
 decisions, granted and managed by the Authorization Decisions Manager. These authorization
-decisions are created for an entity that is authorized to disclose specific documents.
+decisions are created for an Requester Entity that is authorized to disclose specific documents.
 
-The Authorization Decisions Verifier asks for authorizations based on the Requester Entity
-and other attributes suitable for a given use case.
+The information required to perfom Access Decision shall be conveyed with the
+Authorization Decisions Query [ITI-79] request, i.e., the identifier of the
+Requester Entity and other attributes required for a given use case.
 
 This transaction is based on SOAP v1.2 exchange protocol and Synchronous Web services (see
 [ITI TF-2: Appendix V](https://profiles.ihe.net/ITI/TF/Volume2/ch-V.html)).
@@ -660,26 +661,25 @@ _Figure 3.79.4-1: Interaction Diagram_
 
 #### 3.79.4.1 XACMLAuthorizationDecisionQuery Request
 
-This message enables the Authorization Decisions Verifier to query the Authorization
-Decisions Manager for authorizations. This message relies on the SAML v2.0 extension
+This message shall be used by the Authorization Decisions Verifier to query the Authorization
+Decisions Manager for Access Decisions. This message relies on the SAML v2.0 extension
 for XACML and uses the element `<XACMLAuthzDecisionQuery>` to convey the subject
-identifier and other query parameters. The Authorization Decisions Verifier can ask
-for authorization for many clinical data items in one query, so the Request message complies
-with the Multiple resource profile of XACML v2.0. Actors involved support XUA and use
-SAML identity assertions to identify entities (see ITI TF-1: 39.5 and ITI TF-1: 39.6).
+identifier and other query parameters. The Authorization Decisions Verifier may query
+Access Decisions for many clinical data items in one query, so the Request message complies
+with the multiple resource profile of XACML v2.0. Actors involved support XUA and use
+SAML identity assertions to identify entities (see [ITI TF-1: 39.5](#395-ser-security-considerations) and [ITI TF-1: 39.6](#396-ser-cross-profile-considerations)).
 SAML attribute elements shall be mapped into xacml-context attribute elements as defined
 in SAML 2.0 Profile of XACML v2.0 (Section 2).
 
 ##### 3.79.4.1.1 Trigger Events
 
-The Authorization Decisions Verifier sends this message when it needs to verify whether
-there is an Authorization to disclose specific clinical data items to an entity requesting them.
+The Authorization Decisions Verifier sends this message to request Access Decisions
+to disclose specific clinical data items to an Requester Entity.
 The trigger event is the actor grouped with the Authorization Decisions Verifier (e.g. an
 XDS Document Repository) receiving a request (e.g. a Retrieve Document Set Request message,
 see [ITI TF-2: 3.43.4.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-43.html#3.43.4.1))
 and a Provide X-User Assertion [ITI-40] transaction from the client (e.g. an XDS
-Document Consumer)
-that identifies the specific Requester Entity within a SAML Assertion.
+Document Consumer) that identifies the specific Requester Entity within a SAML Assertion.
 
 ##### 3.79.4.1.2 Message Semantics
 
