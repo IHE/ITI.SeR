@@ -536,13 +536,13 @@ made by the Authorization Decisions Manager.
 <!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory"
 originally present there is removed. -->
 
-SeR Actors are involved in an XDS document sharing infrastructure. The groupings between
-XDS Actors and SeR Actors enforce the system of trust between the XDS Document Registry
-that localizes the XDS DocumentEntries and the XDS Document Repositories that store
-XDS documents. The grouping between the XDS Document Registry and the Authorization
-Decisions Manager is needed to leave the protocols and semantics of the Authorization
-Request transaction unspecified. The Authorization Decisions Manager needs metadata,
-entity identification, policies applicable etc.
+In this use-case the groupings between XDS Actors and SeR Actors enforce the system
+of trust between the XDS Document Registry that localizes the XDS DocumentEntries
+and the XDS Document Repositories that store XDS documents.
+
+This use-case assumes that Authorization Decisions require the metadata of the
+documents requested and groups the XDS Document Registry and the Authorization
+Decisions Manager for simplicity.
 
 ![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
 _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
