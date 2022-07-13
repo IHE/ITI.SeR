@@ -256,7 +256,7 @@ Frameworks General Introduction located
 <a href="https://profiles.ihe.net/GeneralIntro/index.html">here</a>.
 </i></td></tr></table>
 
-## [Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html) &mdash; Actor Summary Definition
+## Appendix A - Actor Summary Definition
 
 <table border="1"><tr><td><i>
 Add the following <b>new or modified</b> actors to the
@@ -269,7 +269,7 @@ General Introduction Appendix A</a>
 | Authorization Decisions Manager  | Actor that can perform Access Control decision, evaluating requests for authorization. The result of this evaluation is the creation of an Authorization Decision that certifies the decision made.                                                                      |
 | Authorization Decisions Verifier | This actor queries for Authorization Decisions related to the Requester Entity before disclosing specific documents. An Authorization Decision is stored and managed by the Authorization Decisions Manager and certifies that a decision was made by a trustable actor. |
 
-## [Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html) &mdash; Transaction Summary Definitions
+## Appendix B - Transaction Summary Definitions
 
 <table border="1"><tr><td><i>
 Add the following <b>new or modified</b> transactions to the
@@ -281,7 +281,7 @@ General Introduction Appendix B</a>
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Authorization Decisions Query [ITI-79] | Transaction used by the service provider (Authorization Decisions Verifier) to request valid authorization decisions granted for the Requester Entity to disclose specific documents. |
 
-## [Appendix D](https://profiles.ihe.net/GeneralIntro/ch-D.html) &mdash; Glossary
+## Appendix D - Glossary
 
 <table border="1"><tr><td><i>
 Add the following <b>new or modified</b> glossary terms to the
