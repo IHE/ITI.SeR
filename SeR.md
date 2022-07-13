@@ -421,15 +421,13 @@ for further information about PDP and Access Control Systems.)
 The Authorization Decisions Verifier is the actor that verifies if the Requester Entity
 is authorized to access specific resources by querying the Authorization Decisions Verifier.
 The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP) and enforces the
-Access Decision made by the trusted Policy Decision Point. The Authorization Decisions Verifier actor
-enables the secure exposure of documents, allowing access only to Requester Entities previously
-authorized by the Policy Decision Point.
+Access Decision made by the trusted Policy Decision Point.
 
 The Requester Entities (XDS Document Consumer) convey at least the following information
 to the Authorization Decisions Verifier:
 
-- Requester Entity that obtains authorization (e.g., using an identity assertion)
-- The unique ID of the clinical data item that can be accessed (e.g. a unique ID of a document
+- Requester Entity that obtains authorization (e.g., using an X-User Assertion (XUA))
+- The unique ID of the clinical data item that is requested (e.g. a unique ID of a document
   within the Retrieve Document Set-b Request)
 
 (Refer to the White Paper IHE ITI
@@ -452,12 +450,12 @@ _Table 39.2-1: SeR - Actors and Options_
 
 <!-- Dmytro: The paragraph is moved to section 39.4.2.1. -->
 
-This profile requires the identification of the entity that actually performs queries
-and retrieves of clinical data. Authorization Decisions are granted to a specific entity
+This profile requires the identification of the entity that queries
+clinical data. Authorization Decisions are granted to a specific entity
 and can be used only by that entity to get access to document entries.
 
 Grouping with XUA Actors shall be supported. Other approaches for entity identification
-could be defined by local domain policies.
+may be defined by local domain policies.
 
 An actor from this profile (Column 1) shall implement all of the required transactions
 and/or content modules in this profile __*in addition*__ to all of the transactions required
@@ -513,30 +511,27 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 
 ### 39.4.1 Concepts
 
-This section describes the primary use-cases for the SeR Profile. In this use case,
-the storing facility relies on a trusted actor able to evaluate access rights.
+This section describes the primary use-cases for the SeR Profile.
 
-The Authorization Decisions Manager
-acts as a Policy Decision Point (PDP) and implements functions of Policy Information
-Point (PIP) and Policy Administration Point (PAP). The Authorization Decisions Manager
-in this use-case act as a PIP because it manages the whole set of information needed to
-perform an access decision:
+In the primary use-cases the Authorization Decisions Manager manages the whole set of information
+needed to perform an access decision and therefore combines the functionality of a Policy Decision Point (PDP) and a Policy Information Point (PIP).
 
+In the primary use case the Authorization Decisions Manager manages:  
 - Consent Documents subscribed by patients
 - Security & Privacy Metadata
 - Access Policies
 - Patients and Providers Master Data and relationship between them
 - Etc.
 
-The Authorization Decisions Manager may implement functions of a PAP, administering
-and maintaining Affinity Domain Policies.
+The Authorization Decisions Manager may also implement functions of a Policy
+Administration Point (PAP), administering and maintaining Affinity Domain Policies.
 
 ### 39.4.2 Use Cases
 
 #### 39.4.2.1 Use Case #1: Environment with a centralized Access Decision Manager
 
-This use-case describes how an XDS Document Repository without internal Access Control
-mechanisms uses Authorization Decisions made by a third party.
+This use-case describes how an XDS Document Repository uses Authorization Decisions
+made by the Authorization Decisions Manager.
 
 <!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory"
 originally present there is removed. -->
@@ -554,7 +549,7 @@ _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 
 <!-- Dmytro: This diagram is moved from section 39.1. -->
 
-##### 39.4.2.1.1 Environment with a centralized Access Decision Manager Use Case Description
+##### 39.4.2.1.1 XDS Repositories with a centralized Access Decision Manager Use Case Description
 
 The XDS Document Repositories are all in the same XDS Affinity Domain, but are unable to
 perform access decisions. When an entity tries to retrieve some documents from an XDS
