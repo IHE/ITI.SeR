@@ -673,13 +673,10 @@ in SAML 2.0 Profile of XACML v2.0 (Section 2).
 
 ##### 3.79.4.1.1 Trigger Events
 
-The Authorization Decisions Verifier sends this message to request Access Decisions
-to disclose specific clinical data items to an Requester Entity.
-The trigger event is the actor grouped with the Authorization Decisions Verifier (e.g. an
-XDS Document Repository) receiving a request (e.g. a Retrieve Document Set Request message,
-see [ITI TF-2: 3.43.4.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-43.html#3.43.4.1))
-and a Provide X-User Assertion [ITI-40] transaction from the client (e.g. an XDS
-Document Consumer) that identifies the specific Requester Entity within a SAML Assertion.
+Actors grouped with a Authorization Decisions Verifier triggers the XACMLAuthorizationDecisionQuery
+Request when a Requester Entity requests clinical data items (e.g. a Retrieve Document Set Request
+message,
+see [ITI TF-2: 3.43.4.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-43.html#3.43.4.1) which require authorization.
 
 ##### 3.79.4.1.2 Message Semantics
 
