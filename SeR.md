@@ -559,7 +559,7 @@ to query the Authoriztaion Decision from the Authorization Decisions Manager.
 The Authorization Decisions Manager builds an Access Decision based on
 - the information send with the Authorization Decisions Query [ITI-79]
 - the document metadata stored in the XDS Registry
-- the Patienet Consent and Access Policies.
+- the Patient Consent and the Access Policies.
 
 The XDS Document Repository grouped with an Authorization Decisions Verifier enforces
 the Access Decision returned with the Authorization Decisions Query [ITI-79].
@@ -571,10 +571,8 @@ Report is shared in an XDS infrastructure. Using his EHR, Dr. Brown queries for 
 Laboratory Reports shared in the XDS infrastructure. The Query Response returns some
 DocumentEntries to the XDS Document Consumer. Each XDSDocumentEntry in the response is
 authorized for the retrieval. Dr. Brown uses his XDS Document Consumer to retrieve these
-documents. XDS Document Repository verifies the authorization for the Requester Entity
-for each document requested before providing documents.
-
-No other access control decisions are needed at this level.
+documents. The XDS Document Repository enforces the Access Decision for each document
+requested before providing documents for the Requester Entity.
 
 Each Authorization Decision has a time slot of validity. Dr. Brown can retrieve documents
 until the Authorization expires. The Repository discloses only documents requested and
@@ -585,8 +583,7 @@ There are conditions where XDS Document Repository might not be providing docume
 - The Requester Entity does not have authorization according to the Authorization
   Decisions Query
 - The authorization was granted too long ago and the Authorization Decision is expired
-
-The user attempting to retrieve from the XDS Document Repository is different from the
+- The user attempting to retrieve from the XDS Document Repository is different from the
 user that was authorized (there is a mismatch between the user that performs the retrieve
 and the user that queries for documents).
 
