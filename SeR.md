@@ -55,7 +55,7 @@ The current version of the IHE Technical Framework can be found at [https://prof
 - [IHE Technical Frameworks General Introduction Appendices](#ihe-technical-frameworks-general-introduction-appendices)
   - [Appendix A - Actor Summary Definition](#appendix-a---actor-summary-definitions)
   - [Appendix B - Transaction Summary Definitions](#appendix-b---transaction-summary-definitions)
-	- [Appendix D - Glossary](#appendix-d---glossary)
+  - [Appendix D - Glossary](#appendix-d---glossary)
 - [Volume 1 - Profiles](#volume-1---profiles)
 - [39 Secure Retrieve (SeR) Profile](#39-secure-retrieve-ser-profile)
     - [39.1 SeR Actors, Transactions, and Content Modules](#391-ser-actors-transactions-and-content-modules)
