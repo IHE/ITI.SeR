@@ -1,5 +1,3 @@
-# Secure Retrieve (SeR) Supplement
-
 **Integrating the Healthcare Enterprise**
 
 ![IHE\_LOGO\_for\_tf-docs](assets/images/IHE-logo.jpeg)
