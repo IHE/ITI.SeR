@@ -528,7 +528,7 @@ Administration Point (PAP), administering and maintaining Affinity Domain Polici
 
 ### 39.4.2 Use Cases
 
-#### 39.4.2.1 Use Case #1: Environment with a centralized Access Decision Manager
+#### 39.4.2.1 Use Case #1: XDS Repositories with a centralized Access Decision Manager
 
 This use-case describes how an XDS Document Repository uses Authorization Decisions
 made by the Authorization Decisions Manager.
