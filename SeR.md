@@ -48,12 +48,12 @@ The current version of the IHE Technical Framework can be found at [https://prof
 <!-- TOC depthFrom:1 depthTo:2 -->
 
 - [Introduction to this Supplement](#introduction-to-this-supplement)
-- [Open Issues and Question](#open-issues-and-question)
+- [Open Issues and Questions](#open-issues-and-questions)
 - [Closed Issues](#closed-issues)
 - [IHE Technical Frameworks General Introduction](#ihe-technical-frameworks-general-introduction)
 	- [9 Copyright Licenses](#9-copyright-licenses)
 - [IHE Technical Frameworks General Introduction Appendices](#ihe-technical-frameworks-general-introduction-appendices)
-    - [Appendix A - Actor Summary Definitions](#appendix-a---actor-summary-definitions)
+  - [Appendix A - Actor Summary Definition](#appendix-a---actor-summary-definitions)
 	- [Appendix B - Transaction Summary Definitions](#appendix-b---transaction-summary-definitions)
 	- [Appendix D - Glossary](#appendix-d---glossary)
 - [Volume 1 - Profiles](#volume-1---profiles)
@@ -256,7 +256,7 @@ Frameworks General Introduction located
 <a href="https://profiles.ihe.net/GeneralIntro/index.html">here</a>.
 </i></td></tr></table>
 
-## [Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html) &mdash; Actors
+## [Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html) &mdash; Actor Summary Definition
 
 <table border="1"><tr><td><i>
 Add the following <b>new or modified</b> actors to the
@@ -269,7 +269,7 @@ General Introduction Appendix A</a>
 | Authorization Decisions Manager  | Actor that can perform Access Control decision, evaluating requests for authorization. The result of this evaluation is the creation of an Authorization Decision that certifies the decision made.                                                                      |
 | Authorization Decisions Verifier | This actor queries for Authorization Decisions related to the Requester Entity before disclosing specific documents. An Authorization Decision is stored and managed by the Authorization Decisions Manager and certifies that a decision was made by a trustable actor. |
 
-## [Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html) &mdash; Transactions
+## [Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html) &mdash; Transaction Summary Definitions
 
 <table border="1"><tr><td><i>
 Add the following <b>new or modified</b> transactions to the
