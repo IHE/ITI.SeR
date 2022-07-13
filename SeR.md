@@ -574,10 +574,10 @@ authorized for the retrieval. Dr. Brown uses his XDS Document Consumer to retrie
 documents. The XDS Document Repository enforces the Access Decision for each document
 requested by limiting the documents provided to Dr. Brown.
 
-##### 39.4.2.1.2 Environment with a centralized Access Decision Manager Process Flow
+##### 39.4.2.1.2 XDS Repositories with a centralized Access Decision Manager Process Flow
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/Basic_Process_Flow.png)
-_Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile_
+_Figure 39.4.2.1.2-1: Process Flow of the use-case_
 
 ## 39.5 SeR Security Considerations
 
