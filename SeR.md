@@ -538,11 +538,9 @@ originally present there is removed. -->
 
 In this use-case the groupings between XDS Actors and SeR Actors enforce the system
 of trust between the XDS Document Registry that localizes the XDS DocumentEntries
-and the XDS Document Repositories that store XDS documents.
-
-This use-case assumes that Authorization Decisions require the metadata of the
-documents requested and groups the XDS Document Registry and the Authorization
-Decisions Manager for simplicity.
+and the XDS Document Repositories that store XDS documents. This use-case assumes
+that Authorization Decisions are based on the metadata of the documents and groups
+the XDS Document Registry and the Authorization Decisions Manager for simplicity.
 
 ![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
 _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
