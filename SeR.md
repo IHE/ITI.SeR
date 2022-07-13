@@ -1,46 +1,77 @@
 # Secure Retrieve (SeR) Supplement
 
-Revision 1.6 &mdash; Trial Implementation
+**Integrating the Healthcare Enterprise**
 
-## Foreword
+![IHE\_LOGO\_for\_tf-docs](assets/images/IHE-logo.jpeg)
 
-This is a supplement to the IHE IT Infrastructure Technical Framework V19.0.
-Each supplement undergoes a process of public comment and trial implementation
-before being incorporated into the volumes of the Technical Frameworks.
+**[IHE ITI](https://profiles.ihe.net/ITI)**
 
-This supplement is published on June 17, 2022 for trial implementation and may be
-available for testing at subsequent IHE Connectathons. The supplement may be amended
-based on the results of testing. Following successful testing it will be incorporated
-into the IT Infrastructure Technical Framework. Comments are invited and can be
-submitted at
-[http://www.ihe.net/ITI_Public_Comments](http://www.ihe.net/ITI_Public_Comments).
+**Technical Framework Supplement**
+
+**Secure Retrieve (SeR)**
+
+**Revision 1.6 - Trial Implementation**
+
+Date: July 16, 2022
+
+Author: ITI Technical Committee
+
+Email: iti@ihe.net
+
+**Please verify you have the most recent version of this document.** See [here](http://profiles.ihe.net/ITI) for Trial Implementation and Final Text versions and [here](https://profiles.ihe.net/ITI/#1.3) for Public Comment versions.
+
+**Foreword**
+
+This is a supplement to the IHE IT Infrastructure Technical Framework. Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
+
+This supplement is published on June 17, 2022 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results of testing. Following successful testing it will be incorporated into the IT Infrastructure Technical Framework. Comments are invited and can be submitted using the [ITI Public Comment form](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](https://github.com/IHE/ITI.IUA/issues/new?assignees=&labels=&template=public-comment-issue-template.md&title=).
 
 This supplement describes changes to the existing technical framework documents.
-"Boxed" instructions like the sample below indicate to the Volume Editor how to
-integrate the relevant section(s) into the relevant Technical Framework volume.
 
-<table border="1"><tr><td><i>
-Amend Section X.X by the following:
-</i></td></tr></table>
+"Boxed" instructions like the sample below indicate to the Volume Editor how to integrate the relevant section(s) into the relevant Technical Framework volume.
 
-Where the amendment adds text, make the added text <b><u>bold underline</u></b>.
-Where the amendment removes text, make the removed text <b><s>bold strikethrough</s></b>.
-When entire new sections are added, introduce with editor's instructions to "add new
-text" or similar, which for readability are not bolded or underlined.
+| **Editor: Please amend Section X.X by the following** |
+|------------------------------------------------------|
 
-General information about IHE can be found at [IHE.net](http://ihe.net/).
+Where the amendment adds text, make the added text **<ins>bold underline</ins>**. Where the amendment removes text, make the removed text **~~bold strikethrough~~**. When entire new sections are added, introduce with editor's instructions to "add new text" or similar, which for readability are not bolded or underlined.
 
-Information about the IHE IT Infrastructure domain can be found at
-[IHE Domains](https://www.ihe.net/IHE_Domains/).
+General information about IHE can be found at [http://www.ihe.net](http://www.ihe.net).
 
-Information about the organization of IHE Technical Frameworks and Supplements and
-the process used to create them can be found at [Profiles](http://ihe.net/Profiles)
-and [IHE Process](http://ihe.net/IHE_Process).
+Information about the IHE IT Infrastructure domain can be found at [https://www.ihe.net/IHE_Domains](https://www.ihe.net/IHE_Domains/).
 
-The current version of the IHE IT Infrastructure Technical Framework can be found at
-[IT Infrastructure Technical Framework](https://profiles.ihe.net/ITI/TF/index.html).
+Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at [https://www.ihe.net/about_ihe/ihe_process](https://www.ihe.net/about_ihe/ihe_process/) and [https://www.ihe.net/resources/profiles](https://www.ihe.net/resources/profiles/).
 
-## Introduction to this Supplement
+The current version of the IHE Technical Framework can be found at [https://profiles.ihe.net/](https://profiles.ihe.net/).
+
+**CONTENTS**
+
+<!-- TOC depthFrom:1 depthTo:2 -->
+
+- [Introduction to this Supplement](#introduction-to-this-supplement)
+- [Open Issues and Question](#open-issues-and-question)
+- [Closed Issues](#closed-issues)
+- [IHE Technical Frameworks General Introduction](#ihe-technical-frameworks-general-introduction)
+	- [9 Copyright Licenses](#9-copyright-licenses)
+- [IHE Technical Frameworks General Introduction Appendices](#ihe-technical-frameworks-general-introduction-appendices)
+    - [Appendix A - Actor Summary Definitions](#appendix-a---actor-summary-definitions)
+	- [Appendix B - Transaction Summary Definitions](#appendix-b---transaction-summary-definitions)
+	- [Appendix D - Glossary](#appendix-d---glossary)
+- [Volume 1 - Profiles](#volume-1---profiles)
+- [39 Secure Retrieve (SeR) Profile](#39-secure-retrieve-ser-profile)
+    - [39.1 SeR Actors, Transactions, and Content Modules](#391-ser-actors-transactions-and-content-modules)
+    - [39.2 SeR Actor Options](#392-ser-actor-options)
+    - [39.3 SeR Required Actor Groupings](#393-ser-required-actor-groupings)
+    - [39.4 SeR Overview](#394-ser-overview)
+    - [39.5 SeR Security Considerations](#395-ser-security-considerations)
+    - [39.6 SeR Cross Profile Considerations](#396-ser-cross-profile-considerations)
+- [Volume 2 - Transactions](#volume-2---transactions)
+    - [3.79 Authorization Decision Query [ITI-79]](#371-get-access-token-iti-71)
+- [Volume 2 - Appendices](#volume-2--appendices)
+- [Volume 3 - Content Modules](#volume-3--content-modules)
+- [Volume 4 - National Extensions](#volume-4--national-extensions)
+
+
+# Introduction to this Supplement
 
 This supplement defines new functionalities for an affinity domain with a unique and
 centralized Access Control system. As a Trial Implementation Supplement, this profile
@@ -61,7 +92,7 @@ The objective of the Secure Retrieve Profile is the definition of a mechanism to
 Authorization Decisions between affinity domain actors, attesting that the reliable Policy Decision
 Point (PDP) has already made an access decision.
 
-<!-- Dmytro: No changes are required below because this fragment describes _starting_ 
+<!-- Dmytro: No changes are required below because this fragment describes _starting_
 requirements and constraints, i.e. the history and not the current state. -->
 
 The starting requirements/constraints upon which this profile is developed are described
@@ -96,21 +127,21 @@ to implement Authorization Requests.
 This profile describes how a Service Provider (e.g. Document Repository) can discover
 the existence of Authorization Decisions granted to an entity and for specific documents.
 
-## Open Issues and Questions
+# Open Issues and Questions
 
 11. As the profile covers not only document retrieval, shall it be renamed from
     "Secure Retrieve" (SeR) to e.g. "User Authorization" (UAZ)?
 12. A change in section 3.79.4.2.2 prescribes to populate the status code according
-    to section 4.10 "Element <samlp:Response>: XACMLAuthzDecision Response" of OASIS 
+    to section 4.10 "Element <samlp:Response>: XACMLAuthzDecision Response" of OASIS
     SAML 2.0 profile of XACML v2.0 (errata) instead of using a fixed value
     `urn:oasis:names:tc:SAML:2.0:status:Success` -- this is because otherwise it would
     be impossible cover error cases. Does this change break the backward compatibility?
-13. Shall information about human users in the Authorization Decisions Manager's audit 
+13. Shall information about human users in the Authorization Decisions Manager's audit
     record (added with the Swiss change proposal) be deleted again?
-14. Shall the audit record definitions of the both actors be reworked to be made 
-    consistent with definitions in other IHE profiles? 
+14. Shall the audit record definitions of the both actors be reworked to be made
+    consistent with definitions in other IHE profiles?
 
-## Closed Issues
+# Closed Issues
 
 1. Which is the best technical approach for the solution?
     - It is suggested an evaluation of both the technical approaches: SAML token vs. JWT
@@ -201,7 +232,7 @@ the existence of Authorization Decisions granted to an entity and for specific d
     - The Pull approach is chosen to reduce computational load on the central
       Authorization Decisions Manager
 
-## IHE Technical Frameworks General Introduction
+# IHE Technical Frameworks General Introduction
 
 The [IHE Technical Framework General Introduction](https://profiles.ihe.net/GeneralIntro/)
 is shared by all of the IHE domain technical frameworks. Each technical framework volume
@@ -209,44 +240,31 @@ contains links to this document where appropriate.
 
 ## 9 Copyright Licenses
 
-IHE technical documents refer to, and make use of, a number of standards developed and
-published by several standards development organizations. Please refer to the IHE Technical
-Frameworks General Introduction,
-[Chapter 9 - Copyright Licenses](https://profiles.ihe.net/GeneralIntro/ch-9.html)
-for copyright license information for frequently referenced base standards. Information
-pertaining to the use of IHE International copyrighted materials is also available there.
+IHE technical documents refer to, and make use of, a number of standards developed and published by several standards development organizations. Please refer to the IHE Technical Frameworks General Introduction, Chapter 9 - [Copyright Licenses](https://profiles.ihe.net/GeneralIntro/ch-9.html) for copyright license information for frequently referenced base standards.
 
-## 10 Trademark
-
-IHE® and the IHE logo are trademarks of the Healthcare Information Management Systems
-Society in the United States and trademarks of IHE Europe in the European Community.
-Please refer to the IHE Technical Frameworks General Introduction,
-[Chapter 10 - Trademark](https://profiles.ihe.net/GeneralIntro/ch-10.html)
-for information on their use.
-
-## IHE Technical Frameworks General Introduction Appendices
+# IHE Technical Frameworks General Introduction Appendices
 
 The [IHE Technical Framework General Introduction Appendices](https://profiles.ihe.net/GeneralIntro/index.html)
 are components shared by all of the IHE domain technical frameworks. Each technical
 framework volume contains links to these documents where appropriate.
 
 <table border="1"><tr><td><i>
-Update the following appendices to the General Introduction as indicated below. 
-Note that these are <b>not</b> appendices to this domain's Technical Framework 
-(TF-1, TF-2, TF-3 or TF-4) but rather, they are appendices to the IHE Technical 
-Frameworks General Introduction located 
+Update the following appendices to the General Introduction as indicated below.
+Note that these are <b>not</b> appendices to this domain's Technical Framework
+(TF-1, TF-2, TF-3 or TF-4) but rather, they are appendices to the IHE Technical
+Frameworks General Introduction located
 <a href="https://profiles.ihe.net/GeneralIntro/index.html">here</a>.
 </i></td></tr></table>
 
 ## [Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html) &mdash; Actors
 
 <table border="1"><tr><td><i>
-Add the following <b>new or modified</b> actors to the 
-<a href="https://profiles.ihe.net/GeneralIntro/ch-A.html">IHE Technical Frameworks 
+Add the following <b>new or modified</b> actors to the
+<a href="https://profiles.ihe.net/GeneralIntro/ch-A.html">IHE Technical Frameworks
 General Introduction Appendix A</a>
 </i></td></tr></table>
 
-| Actor                            | Definition                                                                                                                                                                                                                                                               | 
+| Actor                            | Definition                                                                                                                                                                                                                                                               |
 |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Authorization Decisions Manager  | Actor that can perform Access Control decision, evaluating requests for authorization. The result of this evaluation is the creation of an Authorization Decision that certifies the decision made.                                                                      |
 | Authorization Decisions Verifier | This actor queries for Authorization Decisions related to the Requester Entity before disclosing specific documents. An Authorization Decision is stored and managed by the Authorization Decisions Manager and certifies that a decision was made by a trustable actor. |
@@ -254,38 +272,30 @@ General Introduction Appendix A</a>
 ## [Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html) &mdash; Transactions
 
 <table border="1"><tr><td><i>
-Add the following <b>new or modified</b> transactions to the 
-<a href="https://profiles.ihe.net/GeneralIntro/ch-B.html">IHE Technical Frameworks 
+Add the following <b>new or modified</b> transactions to the
+<a href="https://profiles.ihe.net/GeneralIntro/ch-B.html">IHE Technical Frameworks
 General Introduction Appendix B</a>
 </i></td></tr></table>
 
-| Transaction                              | Definition                                                                                                                                                                            | 
+| Transaction                              | Definition                                                                                                                                                                            |
 |------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Authorization Decisions Query [ITI-79] | Transaction used by the service provider (Authorization Decisions Verifier) to request valid authorization decisions granted for the Requester Entity to disclose specific documents. |
 
 ## [Appendix D](https://profiles.ihe.net/GeneralIntro/ch-D.html) &mdash; Glossary
 
 <table border="1"><tr><td><i>
-Add the following <b>new or modified</b> glossary terms to the 
-<a href="https://profiles.ihe.net/GeneralIntro/ch-D.html">IHE Technical Frameworks 
+Add the following <b>new or modified</b> glossary terms to the
+<a href="https://profiles.ihe.net/GeneralIntro/ch-D.html">IHE Technical Frameworks
 General Introduction Appendix D</a>
 </i></td></tr></table>
 
-| Glossary Term           | Definition                                                                                                                                                                                                                                                                                                          | 
+| Glossary Term           | Definition                                                                                                                                                                                                                                                                                                          |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Access Decision Manager | A complex system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor can implement additional functionalities typical of a PDP (Policy Decision Point), PAP (Policy Administration Point) and a PIP (Policy Information Point). |
 | Authorization Decision  | An authorization token that describes which documents can be accessed by a specific entity.                                                                                                                                                                                                                             |
 | Requester Entity        | The entity identified within the identity assertion. This entity asks for resources (documents). This entity performs query to the registry and try to retrieve documents from repositories. Authorization Decisions are created and associated with the Requester Entity.                                          |
 
 # Volume 1 &mdash; Profiles
-
-## Copyright Licenses
-
-NA
-
-## Domain-specific additions
-
-NA
 
 <table border="1"><tr><td><i>
 Add new Section 39
@@ -396,7 +406,7 @@ decisions in the entire affinity domain. From the Access Control point of view, 
 the unique Policy Decision Point (PDP) of the entire domain for all documents because it
 may decide on the outcome of an incoming authorization request in order to provide access
 to specific resources (e.g. documents). The Authorization Decisions Manager completes the
-Authorization Decision creating an authorization token. <!-- Dmytro: See the sentence inserted 
+Authorization Decision creating an authorization token. <!-- Dmytro: See the sentence inserted
 below; token caching should not be a required feature. --> This authorization token does
 not need to be exposed to other systems, and it certifies the decision made.
 The Authorization Decisions Manager may cache the token and reuse it when processing subsequent
@@ -493,12 +503,12 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 <!--
 | SeR Actor                        | Actor to be grouped with               | Reference                                                                 | Content Bindings Reference |
 |----------------------------------|----------------------------------------|---------------------------------------------------------------------------|----------------------------|
-| Authorization Decisions Manager  | XDS Document Registry                  | [ITI TF-1: 10.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1) | --                         | 
-| --- " ---                        | XUA X-Service Provider                 | [ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4) | --                         | 
-| --- " ---                        | ATNA Secure Node or Secure Application | [ITI TF-1: 9.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1)    | --                         | 
-| Authorization Decisions Verifier | XDS Document Repository                | [ITI TF-1: 10.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1) | --                         | 
-| --- " ---                        | XUA X-Service Provider                 | [ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4) | --                         | 
-| --- " ---                        | ATNA Secure Node or Secure Application | [ITI TF-1: 9.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1)    | --                         | 
+| Authorization Decisions Manager  | XDS Document Registry                  | [ITI TF-1: 10.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1) | --                         |
+| --- " ---                        | XUA X-Service Provider                 | [ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4) | --                         |
+| --- " ---                        | ATNA Secure Node or Secure Application | [ITI TF-1: 9.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1)    | --                         |
+| Authorization Decisions Verifier | XDS Document Repository                | [ITI TF-1: 10.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1) | --                         |
+| --- " ---                        | XUA X-Service Provider                 | [ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4) | --                         |
+| --- " ---                        | ATNA Secure Node or Secure Application | [ITI TF-1: 9.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1)    | --                         |
 -->
 
 ## 39.4 SeR Overview
@@ -530,7 +540,7 @@ and maintaining Affinity Domain Policies.
 This use-case describes how an XDS Document Repository without internal Access Control
 mechanisms uses Authorization Decisions made by a third party.
 
-<!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory" 
+<!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory"
 originally present there is removed. -->
 
 SeR Actors are involved in an XDS document sharing infrastructure. The groupings between
@@ -801,7 +811,7 @@ _Table 3.79.4.1.2-1: [ITI-40] Attributes mapping into XACML Query Attributes_
 | Subject Role                       | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xacml:2.0:subject:role           | http://www.w3.org/2001/XMLSchema#anyURI |
 | Authz-Consent                      | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:ihe:iti:bppc:2007:docid                         | http://www.w3.org/2001/XMLSchema#anyURI |
 | Patient Identifier                 | urn:oasis:names:tc:xacml:1.0:resource                        | urn:ihe:iti:ser:2016:patient-id                     | http://www.w3.org/2001/XMLSchema#string |
-| PurposeOfUse                       | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:purposeofuse    | http://www.w3.org/2001/XMLSchema#anyURI | 
+| PurposeOfUse                       | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:purposeofuse    | http://www.w3.org/2001/XMLSchema#anyURI |
 
 _Note 1: To enable authorization decisions for this [ITI-79] transaction, Home Community Id
 identifies the requesting user's community identity as identified in the SAML header
@@ -1104,7 +1114,7 @@ Authorization Decisions Query transaction.
 
 #### 3.79.5.1 Security Audit Considerations
 
-Both the actors involved in the Authorization Decisions Query transaction are recommended 
+Both the actors involved in the Authorization Decisions Query transaction are recommended
 to record the "Query" event creating audit messages in accordance to the following structure.
 
 The audit message shall identify:
@@ -1743,8 +1753,8 @@ Not applicable
 # Volume 3 &mdash; Content Modules
 
 <table border="1"><tr><td><i>
-Add the following ErrorCode in 
-<a href="https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1">ITI TF-3: Table 4.2.4.1-2</a>: 
+Add the following ErrorCode in
+<a href="https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1">ITI TF-3: Table 4.2.4.1-2</a>:
 Error Codes
 </i></td></tr></table>
 
@@ -1755,4 +1765,3 @@ Error Codes
 # Volume 4 &mdash; National Extensions
 
 Not applicable
-
