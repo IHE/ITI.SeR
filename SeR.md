@@ -597,22 +597,15 @@ affinity domain. A failure of the Authorization Decisions Manager could result i
 legitimate access being denied.
 
 This profile introduces an XDS Error Code in order to codify an additional reason for
-document retrieve failure. See [ITI TF-3: Table 4.2.4.1-2](https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1). Adding more technical details
-within the failure response could be used to refine malicious requests. For example,
-if the error created by the Authorization Decisions Verifier conveys the reason of the
-failure, such as "the authorization is expired" or "the authorization is released in
-a different Functional Context," it could provide information to the malicious Document
-Consumer that can then try to refine subsequent requests.
+document retrieve failure. See [ITI TF-3: Table 4.2.4.1-2](https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1).
 
-The SeR Profile does not define how to perform the Access Decision. However, this profile
-supports the creation of a system where the existence of a document that cannot be
-accessed by a specific user is not revealed. In this case, the aforementioned error
-code shall not be used. Each document returned within the Query
-Response should be considered Authorized for the retrieval at the time of the Query Request.
-
-If the Authorization Decisions Verifier is allowed to perform new access decisions when
-it receives an XACMLAuthorizationDecisionsQuery Request message, performance could be
-inadequate. In order to avoid that, a previous Query is recommended.
+Adding more technical details within the failure response could be used to refine
+malicious requests. For example, if the error created by the Authorization Decisions
+Verifier conveys the reason of the failure, such as "the authorization is expired" or "the
+authorization is released in a different Functional Context," it could provide
+information to the malicious Document Consumer that can then try to refine subsequent requests.
+This profile supports to hide the Access Decision to the Requester Entity. In this
+case, the aforementioned error code shall not be used.
 
 ## 39.6 SeR Cross Profile Considerations
 
