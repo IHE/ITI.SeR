@@ -572,20 +572,7 @@ Laboratory Reports shared in the XDS infrastructure. The Query Response returns 
 DocumentEntries to the XDS Document Consumer. Each XDSDocumentEntry in the response is
 authorized for the retrieval. Dr. Brown uses his XDS Document Consumer to retrieve these
 documents. The XDS Document Repository enforces the Access Decision for each document
-requested before providing documents for the Requester Entity.
-
-Each Authorization Decision has a time slot of validity. Dr. Brown can retrieve documents
-until the Authorization expires. The Repository discloses only documents requested and
-authorized.
-
-There are conditions where XDS Document Repository might not be providing documents:
-
-- The Requester Entity does not have authorization according to the Authorization
-  Decisions Query
-- The authorization was granted too long ago and the Authorization Decision is expired
-- The user attempting to retrieve from the XDS Document Repository is different from the
-user that was authorized (there is a mismatch between the user that performs the retrieve
-and the user that queries for documents).
+requested by limiting the documents provided to Dr. Brown.
 
 ##### 39.4.2.1.2 Environment with a centralized Access Decision Manager Process Flow
 
