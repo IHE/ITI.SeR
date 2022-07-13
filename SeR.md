@@ -675,8 +675,7 @@ in SAML 2.0 Profile of XACML v2.0 (Section 2).
 
 Actors grouped with a Authorization Decisions Verifier triggers the XACMLAuthorizationDecisionQuery
 Request when a Requester Entity requests clinical data items (e.g. a Retrieve Document Set Request
-message,
-see [ITI TF-2: 3.43.4.1](https://profiles.ihe.net/ITI/TF/Volume2/ITI-43.html#3.43.4.1) which require authorization.
+message) which require authorization.
 
 ##### 3.79.4.1.2 Message Semantics
 
@@ -1076,17 +1075,17 @@ The XDS Document Repository shall generate an Error of type:
 
 ### 3.79.5 Security Considerations
 
-Relevant Security Considerations are defined in ITI TF-1: 39.5. The Authorization Decisions
-Query transaction requires TLS communication between actors involved.
+The Authorization Decisions Query transaction requires TLS communication between
+actors involved.
 
-This transaction mandates the creation of Authorizations associated at least with the
+This transaction mandates the creation of Access Decisions associated at least with the
 Requester Entity and with the clinical data item requested. If additional parameters need to be
-associated to the authorization, then the same parameters shall be provided within the
+associated to the Access Decision, these parameters shall be provided within the
 Authorization Decisions Query transaction.
 
 #### 3.79.5.1 Security Audit Considerations
 
-Both the actors involved in the Authorization Decisions Query transaction are recommended
+Actors involved in the Authorization Decisions Query transaction are recommended
 to record the "Query" event creating audit messages in accordance to the following structure.
 
 The audit message shall identify:
