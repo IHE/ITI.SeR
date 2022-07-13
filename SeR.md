@@ -555,7 +555,7 @@ with the XDS Document Registry.
 
 When an Requester Entity (XDS Document Consumer) request documents from an XDS
 Repository, the XDS Document Repository uses an Authorization Decisions Query [ITI-79]
-to query the Authoriztaion Decision from the Authorization Decisions Manager.
+to query the Authorization Decision from the Authorization Decisions Manager.
 The Authorization Decisions Manager builds an Access Decision based on
 - the information send with the Authorization Decisions Query [ITI-79]
 - the document metadata stored in the XDS Registry
@@ -597,7 +597,7 @@ affinity domain. A failure of the Authorization Decisions Manager could result i
 legitimate access being denied.
 
 This profile introduces an XDS Error Code in order to codify an additional reason for
-document retrieve failure. See ITI TF-3: Table 4.2.4.1-2. Adding more technical details
+document retrieve failure. See [ITI TF-3: Table 4.2.4.1-2](https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1). Adding more technical details
 within the failure response could be used to refine malicious requests. For example,
 if the error created by the Authorization Decisions Verifier conveys the reason of the
 failure, such as "the authorization is expired" or "the authorization is released in
