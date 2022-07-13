@@ -609,11 +609,10 @@ case, the aforementioned error code shall not be used.
 
 ## 39.6 SeR Cross Profile Considerations
 
-An XDS Document Consumer that participates in an XDS environment using SeR framework
-shall be grouped with an [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html)
-X-Service User.
+XDS Document Consumer that participates in an XDS environment using SeR framework
+shall be grouped with an [XUA X-Service User](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html).
 
-An X-Service User involved in a SeR framework shall be able to identify the specific
+XUA X-Service User involved in a SeR framework shall be able to identify the specific
 Requester Entity conveying its logical identity (user ID, application ID, etc.)
 within the `<Subject>/<NameID>` element.
 
