@@ -125,7 +125,8 @@ this profile relies on the XACML-SAML framework for messages and transactions be
 the actors.
 
 This profile describes how a Service Provider (e.g. Document Repository) can request
-Authorization Decisions for clinical data granted to an Requester Entity.
+Authorization Decisions for clinical data granted to an Requester Entity
+(e.g., a user retrieving clinical documents).
 
 # Open Issues and Questions
 
@@ -264,10 +265,10 @@ Add the following <b>new or modified</b> actors to the
 General Introduction Appendix A</a>
 </i></td></tr></table>
 
-| Actor                            | Definition                                                                                                                                                                                                                                                               |
-|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Authorization Decisions Manager  | Actor that can perform Access Control decision, evaluating requests for authorization. The result of this evaluation is the creation of an Authorization Decision that certifies the decision made.                                                                      |
-| Authorization Decisions Verifier | This actor queries for Authorization Decisions related to the Requester Entity before disclosing specific documents.|
+| Actor | Definition |
+|--|--|
+| Authorization Decisions Manager  | Actor that can perform Access decision, evaluating requests for authorization. The result of this evaluation is an Access Decision that certifies the disclosing of clinical data.|
+| Authorization Decisions Verifier | This actor queries for Authorization Decisions for Requester Entities used to enforce Access Decisions.|
 
 ## Appendix B - Transaction Summary Definitions
 
@@ -277,8 +278,8 @@ Add the following <b>new or modified</b> transactions to the
 General Introduction Appendix B</a>
 </i></td></tr></table>
 
-| Transaction                              | Definition                                                                                                                                                                            |
-|------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Transaction | Definition |
+|--|--|
 | Authorization Decisions Query [ITI-79] | Transaction used by the Service Provider (Authorization Decisions Verifier) to request valid authorization decisions granted for the Requester Entity to disclose specific documents. |
 
 ## Appendix D - Glossary
@@ -289,11 +290,11 @@ Add the following <b>new or modified</b> glossary terms to the
 General Introduction Appendix D</a>
 </i></td></tr></table>
 
-| Glossary Term           | Definition                                                                                                                                                                                                                                                                                                          |
-|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Glossary Term | Definition |
+|--|--|
 | Access Decision Manager | A system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor can implement additional functionalities typical of a PDP (Policy Decision Point), PAP (Policy Administration Point) and a PIP (Policy Information Point). |
-| Authorization Decision  | An authorization token that describes which documents can be accessed by a specific entity.                                                                                                                                                                                                                             |
-| Requester Entity        | The entity identified within the identity assertion. This entity asks for resources (documents). This entity performs query to the registry and try to retrieve documents from repositories. Authorization Decisions are created and associated with the Requester Entity.                                          |
+| Authorization Decision  | An authorization token that describes which documents can be accessed by a specific entity.|
+| Requester Entity        | The entity identified within the identity assertion. This entity asks for resources (documents). This entity performs query to the registry and try to retrieve documents from repositories. Authorization Decisions are created and associated with the Requester Entity.|
 
 # Volume 1 &mdash; Profiles
 
