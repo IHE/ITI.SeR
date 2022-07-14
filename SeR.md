@@ -510,41 +510,34 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 
 This section describes use-cases for the SeR Profile.
 
-In the use-cases the Authorization Decisions Manager manages all information
-needed to perform an access decision and therefore combines the functionality of a
-Policy Decision Point (PDP) and a Policy Information Point (PIP).
-
-In the use-cases the Authorization Decisions Manager manages:  
-- Consent Documents subscribed by patients
-- Security & Privacy Metadata
-- Access Policies
-- Patients and Providers Master Data and relationship between them
-- Etc.
-
-The Authorization Decisions Manager may also implement functions of a Policy
-Administration Point (PAP), administering and maintaining Affinity Domain Policies.
-
 ### 39.4.2 Use Cases
 
 #### 39.4.2.1 Use Case #1: XDS Repositories with a centralized Access Decision Manager
 
-This use-case describes how an XDS Document Repository uses Authorization Decisions
+This use case describes how an XDS Document Repository uses Authorization Decisions
 made by the Authorization Decisions Manager.
 
 <!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory"
 originally present there is removed. -->
 
-In this use-case the groupings between XDS Actors and SeR Actors enforce the system
+In this use case the groupings between XDS Actors and SeR Actors enforce the system
 of trust between the XDS Document Registry that localizes the XDS DocumentEntries
-and the XDS Document Repositories that store XDS documents. This use-case assumes
+and the XDS Document Repositories that store XDS documents. This use case assumes
 that Authorization Decisions are based on the document metadata and groups
 the XDS Document Registry and the Authorization Decisions Manager for simplicity.
 
-In this use-case the XDS Document Repositories are all in the same XDS Affinity
+In this use case the XDS Document Repositories are all in the same XDS Affinity
 Domain and delegate Access Decisions to the Authorization Decisions Manager grouped
 with the XDS Document Registry.
 
-In this use-case a special implementation is used intended to increase the overall
+In this use case the Authorization Decisions Manager manages all information
+needed to perform an access decision and therefore combines the functionality of a
+Policy Decision Point (PDP) and a Policy Information Point (PIP).
+
+The Authorization Decisions Manager may also implement functions of a Policy
+Administration Point (PAP), administering and maintaining Affinity Domain Policies.
+
+In this use case a special implementation is used intended to increase the overall
 perfomance. Access Decisions are created when the Requester Entity queries the XDS
 metadata and stored for a specific time interval, expecting that the document metadatda
 are queried from the XDS Registry before the documents are queried from the XDS
@@ -582,6 +575,71 @@ requested by limiting the documents provided to Dr. Brown.
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/Basic_Process_Flow.png)
 _Figure 39.4.2.1.2-1: Process Flow of the use-case_
+
+
+#### 39.4.2.2 Use Case #2: Query Type Extension Use Case
+
+This use case describes how an XDS Affinity Domain which uses the SeR Profile to
+enforce authorization for all actors which manage sensitive data and uses
+various query types in a national extensions.
+
+In this use case sensitive information has been identified to be:
+- clinical documents which contain the details of the disorder and the treatment
+- the document metadata which contain information on the author and clinical facility
+which may be used to draw conclusions about the disorder
+- the patient identifiers which contain identifier of the assigning authorities and
+may be used to draw conclusions about about the disorder
+- the personal data of the healthcare professionals and their relation to institutions
+which may be used to draw conclusions about the employer-employee relationship
+
+To protect the sensitive information against malicious misuse the following actors
+in the Affinity Domain are grouped with the Authorization Decisions Verifier:
+- XDS Document Repository
+- XDS Document Registry
+- Patient Demographics Supplier
+- Healthcare Provider Directory
+
+These actors use Authorization Decisions Query [ITI-79] messages whenever a Requester
+Entity queries for the sensitive data to retrieve an Access Decision from a single
+Authorization Decisions Manager in the Affinity Domain and disclose the data only
+in the case the access is authorized.
+
+Actors which request sensitive information are grouped with the X-Service User actor
+of the XUA Profile. They use the authentication data identifying the Requester
+Entity to retrieve the X-User Assertion from the X-Assertion Provider and provides
+the X-User Assertion in the security header of the request for sensitive information.
+The X-User Assertion conveys the identity data and further information required
+for Access Decisions (user role, user institution, etc.) from other sources
+(e.g., Healthcare Provider Directory).
+
+The information required by the Authorization Decisions Manager differs depending on
+the actor which is queried for sensitive information. The difference is reflected in
+the query options choosen and different query types are used, which are specified as
+extensions (e.g., national extension) to this profile.
+
+##### 39.4.2.2.1  Query Type Extension Use Case Description
+
+A healthcare professional queries sensitive data which requires authorization from
+an actor managing the data. The actors involved perform all nessesary actions to
+enforce Access Decision for the data in the background and returns only the data
+the healthcare professional is autorized for.    
+
+The actor used by the healthcare professional to query the sensitive information
+perfoms the following steps:  
+- authenticate the healthcare professional
+- exchange the authentication assertion to an X-User Assertion
+- perform the query adding the X-User Assertion in the security header of the query request.
+
+The actor queried for the sensitive data performs the following steps:
+- request an Access Decision from the Authorization Decisions Manager using the information provided with the query payload and the X-User Assertion
+- enforce the Access Decision returning only the data the healthcare professional is authorized for.  
+
+
+##### 39.4.2.2.2  Query Type Extension Process Flow
+
+![Figure 39.4.2.1.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
+_Figure 39.4.2.1.2-1: Process Flow of the use-case_
+
 
 ## 39.5 SeR Security Considerations
 
