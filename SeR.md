@@ -74,8 +74,8 @@ The current version of the IHE Technical Framework can be found at [https://prof
 This supplement defines new functionalities for an affinity domain with a unique and
 centralized Access Control system. This profile is limited to those deployment models
 and their policies where a central authorization authority can make complete and
-definitive decisions, yet support federated identity/authentication. These deployment
-models specifically mean that no actors except the central authorization authority
+definitive decisions, yet support federated identity/authentication. In these
+deployment models no actors except the central authorization authority
 need to know the fine-grain policies to enforce.
 
 The supplement describes how to create a "system of trust" between
@@ -88,7 +88,9 @@ for Document retrieval; then the replication of Access Control functionalities i
 unfeasible and/or too expensive (due to integration burdens and total cost of ownership).
 
 The objective of the Secure Retrieve Profile is the definition of a mechanism to convey
-Authorization Decisions between affinity domain actors, attesting that the reliable Authorization Decisions Manager implementing a Policy Decision Point (PDP) has already made an access decision.
+Authorization Decisions between affinity domain actors, attesting that the reliable
+Authorization Decisions Manager implementing a Policy Decision Point (PDP) makes the
+an access decision.
 
 <!-- Dmytro: No changes are required below because this fragment describes _starting_
 requirements and constraints, i.e. the history and not the current state. -->
@@ -112,17 +114,18 @@ below:
 
 This supplement is a standalone profile because it defines a flexible pattern that
 could be used by any Service Provider that queries for Authorization Decisions
-already granted by a trusted Authorization Decisions Manager (or PDP). However,
+granted by a trusted Authorization Decisions Manager (or PDP). However,
 the focus is to add Access Control functionalities to the XDS environment.
 
 This profile introduces two new actors (Authorization Decisions Manager and
 Authorization Decisions Verifier) and one new transaction (Authorization Decisions Query).
 
 This profile does not describe how Authorization Decisions are performed. However,
-this profile relies on XACM-SAML framework.
+this profile relies on the XACML-SAML framework for messages and transactions between
+the actors.
 
 This profile describes how a Service Provider (e.g. Document Repository) can request
-Authorization Decisions granted to an entity and for specific documents.
+Authorization Decisions for clinical data granted to an Requester Entity.
 
 # Open Issues and Questions
 
