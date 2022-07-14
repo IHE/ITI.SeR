@@ -280,7 +280,7 @@ General Introduction Appendix B</a>
 
 | Transaction | Definition |
 |--|--|
-| Authorization Decisions Query [ITI-79] | Transaction used by the Service Provider (Authorization Decisions Verifier) to request valid authorization decisions granted for the Requester Entity to disclose specific documents. |
+| Authorization Decisions Query [ITI-79] | Transaction used by the Service Provider (Authorization Decisions Verifier) to request Access Decisions to clinical data granted for the Requester Entity. |
 
 ## Appendix D - Glossary
 
@@ -292,11 +292,17 @@ General Introduction Appendix D</a>
 
 | Glossary Term | Definition |
 |--|--|
-| Access Decision Manager | A system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor can implement additional functionalities typical of a PDP (Policy Decision Point), PAP (Policy Administration Point) and a PIP (Policy Information Point). |
-| Authorization Decision  | An authorization token that describes which documents can be accessed by a specific entity.|
-| Requester Entity        | The entity identified within the identity assertion. This entity asks for resources (documents). This entity performs query to the registry and try to retrieve documents from repositories. Authorization Decisions are created and associated with the Requester Entity.|
+| Access Decision Manager | A system that is responsible for access/creation/disclosure decisions performed
+according to Domain Policies, Consent Documents, etc. This actor may implement additional functionalities
+of Policy Decision Points (PDP), Policy Administration Points (PAP) and a Policy Information Points
+(PIP). |
+| Authorization Decision  | An authorization token that describes whether clinical data can be accessed by a
+specific Requester Entity.|
+| Requester Entity        | The entity identified within the identity assertion. This entity queries any actor
+grouped with the Authorization Decision Verifier for clinical data (e.g., documents). Access Decisions are
+created and associated with the Requester Entity.|
 
-# Volume 1 &mdash; Profiles
+# Volume 1 - Profiles
 
 <table border="1"><tr><td><i>
 Add new Section 39
@@ -305,14 +311,10 @@ Add new Section 39
 ## 39 Secure Retrieve (SeR) Profile
 
 This profile defines a framework for a centralized Access Control system, which
-conveys the evidence of the reliable decisions made by an Access Decision Manager
-between actors involved in an affinity domain.
+separates the duties of creation and enforcement of Access Decisions.
 
 The main objective of this profile is to create a system of trust between the actor
-that produces access decisions (Authorization Decisions Manager), and actors that enforce
-access decisions (e.g. XDS Document Repositories). This separation of duties is
-needed in environments where systems that expose clinical data are not intended to
-replicate and repeat access decisions.
+that produces Access Decisions (Authorization Decisions Manager), and actors that are groouped with Authorization Decisions Verifier to enforce the Access Decisions (e.g., XDS Document Repositories).
 
 This type of approach is useful in many situations:
 
@@ -332,25 +334,24 @@ This type of approach is useful in many situations:
 
 In those scenarios, this profile defines how to create a "logical federation" between an
 Access Decision Manager (responsible for enabling/denying accesses) and
-actors that enforce access decisions (e.g. XDS Document
+actors that enforce Access Decisions (e.g. XDS Document
 Repositories that store documents and expose them without knowledge related to the
 user/role/consent documents/policies etc.). Actors that store clinical data could only
 trust a decision made by the Access Decision Manager.
 
-Access Decision Manager functionalities are out of scope for this profile because typically
-they are domain specific and locally defined. It is out scope of the profile to cover all
-the Access Control Decision issues. This profile allows the creation of a system where
-the existence of a clinical data item that cannot be accessed by a specific user is totally obscured
-from the Consumers.
+Authorization Decision Manager functionalities are out of scope for this profile. The
+implementation details typically are domain specific and locally defined.
+
+This profile allows the creation of a system where the existence of a clinical data
+item that cannot be accessed by a specific user is totally obscured from the
+Requester Entity.
 
 Creation, management and enforcement of policies are out of scope for this profile.
-However, this profile takes in consideration best practices and common implementations
-for Access Decision Manager functionalities.
 
 This profile allows addressing the following security risks (related to clinical data
 exposure):
 
-- The actor storing clinical data does not know the access control decision that should be
+- The actor storing clinical data does not know the Access Decision that should be
   enforced. Therefore, if it denies access to data, there is a failure of availability.
   If it provides the document inappropriately, there is a risk to confidentiality.
   The SeR Profile allows this actor to be aware of the decision made, only asking for
@@ -359,7 +360,7 @@ exposure):
   actor storing clinical data can make further access control decisions.
 
 - A separation of duties between the clinical data consumer (that requests authorization and
-  clinical data items) and the Access Decision Manager (or PDP) is created. The SeR Profile
+  clinical data items) and the Access Decisions Manager (or PDP) is created. The SeR Profile
   delegates decisions to the the Authorization Decisions Manager and the enforcement to the Authorization Decisions Verifier.
 
 ## 39.1 SeR Actors, Transactions, and Content Modules
