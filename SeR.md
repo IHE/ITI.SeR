@@ -406,16 +406,15 @@ decisions in the entire affinity domain. From the Access Control point of view, 
 the unique Policy Decision Point (PDP) of the entire domain because it
 may decide on the outcome of an incoming authorization request in order to provide access
 to specific resources (e.g. documents). The Authorization Decisions Manager creates an
-Authorization Decision.
+Access Decision.
 
 <!-- Dmytro: See the sentence inserted below; token caching should not be a required feature. -->
 
-The Authorization Decision does
-not need to be exposed to other systems, and it certifies the decision made.
-The Authorization Decisions Manager may cache the Authorization Decision and reuse it when processing subsequent
-requests with the same parameters, if the local domain policies allow such behavior, and
-implement additional Access Control functionalities required in the specific
-implementation scenario.
+The Authorization Decision does not need to be exposed to other systems, and it
+certifies the decision made. The Authorization Decisions Manager may cache the
+Access Decision and reuse it when processing subsequent requests with the same
+parameters, if the local domain policies allow such behavior, and implement additional
+Access Control functionalities required in the specific implementation scenario.
 
 (Refer to the White Paper IHE ITI
 [Access Control White Paper](https://www.ihe.net/Technical_Framework/upload/IHE_ITI_TF_WhitePaper_AccessControl_2009-09-28.pdf)
@@ -424,16 +423,9 @@ for further information about PDP and Access Control Systems.)
 #### 39.1.1.2 Authorization Decisions Verifier
 
 The Authorization Decisions Verifier is the actor that verifies if the Requester Entity
-is authorized to access specific resources by querying the Authorization Decisions Verifier.
-The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP) and enforces the
-Access Decision made by the trusted Policy Decision Point.
-
-The Requester Entities (XDS Document Consumer) convey at least the following information
-to the Authorization Decisions Verifier:
-
-- Requester Entity that obtains authorization (e.g., using an X-User Assertion (XUA))
-- The unique ID of the clinical data item that is requested (e.g. a unique ID of a document
-  within the Retrieve Document Set-b Request)
+is authorized to access clinical data by querying the Authorization Decisions Verifier.
+The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP)
+and enforces the Access Decision made by the trusted Policy Decision Point.
 
 (Refer to the White Paper IHE ITI
 [Access Control White Paper](https://www.ihe.net/Technical_Framework/upload/IHE_ITI_TF_WhitePaper_AccessControl_2009-09-28.pdf)
@@ -455,9 +447,9 @@ _Table 39.2-1: SeR - Actors and Options_
 
 <!-- Dmytro: The paragraph is moved to section 39.4.2.1. -->
 
-This profile requires the identification of the entity that queries
-clinical data. Authorization Decisions are granted to a specific entity
-and can be used only by that entity to get access to document entries.
+This profile requires the identification of the entity that queries clinical data.
+Authorization Decisions are granted to a specific entity and can be used only by
+that entity to get access to the clinical data.
 
 Grouping with XUA Actors shall be supported. Other approaches for entity identification
 may be defined by local domain policies.
@@ -518,8 +510,9 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 
 This section describes the primary use-cases for the SeR Profile.
 
-In the primary use-cases the Authorization Decisions Manager manages the whole set of information
-needed to perform an access decision and therefore combines the functionality of a Policy Decision Point (PDP) and a Policy Information Point (PIP).
+In the primary use-cases the Authorization Decisions Manager manages the information
+needed to perform an access decision and therefore combines the functionality of a
+Policy Decision Point (PDP) and a Policy Information Point (PIP).
 
 In the primary use case the Authorization Decisions Manager manages:  
 - Consent Documents subscribed by patients
@@ -547,6 +540,16 @@ and the XDS Document Repositories that store XDS documents. This use-case assume
 that Authorization Decisions are based on the document metadata and groups
 the XDS Document Registry and the Authorization Decisions Manager for simplicity.
 
+In this use-case the XDS Document Repositories are all in the same XDS Affinity
+Domain and delegate Access Decisions to the Authorization Decisions Manager grouped
+with the XDS Document Registry.
+
+In this use case a special implementation is used intended to increase the overall
+perfomance. Access Decisions are created when the Requester Entity queries the XDS
+metadata and stored for a specific time interval, expecting that the document metadatda
+are queried from the XDS Registry before the documents are queried from the XDS
+Repository within the time frame set by the Access Decision lifetime.     
+
 ![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
 _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 
@@ -554,14 +557,10 @@ _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 
 ##### 39.4.2.1.1 XDS Repositories with a centralized Access Decision Manager Use Case Description
 
-In this use-case the XDS Document Repositories are all in the same XDS Affinity
-Domain and delegate Access Decisions to the Authorization Decisions Manager grouped
-with the XDS Document Registry.
-
-When an Requester Entity (XDS Document Consumer) request documents from an XDS
-Repository, the XDS Document Repository uses an Authorization Decisions Query [ITI-79]
-to query the Authorization Decision from the Authorization Decisions Manager.
-The Authorization Decisions Manager builds an Access Decision based on
+When an Requester Entity request documents from an XDS Repository, the XDS Document
+Repository uses an Authorization Decisions Query [ITI-79] to query the Authorization
+Decision from the Authorization Decisions Manager. The Authorization Decisions Manager
+builds an Access Decision based on
 - the information send with the Authorization Decisions Query [ITI-79]
 - the document metadata stored in the XDS Registry
 - the Patient Consent and the Access Policies.
