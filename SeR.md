@@ -591,10 +591,10 @@ accept queries only from a restricted set of Secure Nodes/Applications. The Auth
 Decisions Verifier should perform queries only to the domain-identified Authorization
 Decisions Manager.
 
-Authorization Decisions are collected by the Authorization Decisions Manager. These
-authorization tokens should not be exposed to other systems. Encryption of these tokens (when
-stored by the Authorization Decisions Manager) could avoid the disclosure of sensitive
-information.
+Access Decisions my be collected by the Authorization Decisions Manager. These
+Access Decisions should not be exposed to other systems and encryption may be used
+(when stored by the Authorization Decisions Manager) to avoid the disclosure
+of sensitive information.
 
 The centralized Access Control system introduces a single point-of-failure risk in the
 affinity domain. A failure of the Authorization Decisions Manager could result in
@@ -603,12 +603,12 @@ legitimate access being denied.
 This profile introduces an XDS Error Code in order to codify an additional reason for
 document retrieve failure. See [ITI TF-3: Table 4.2.4.1-2](https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1).
 
-Adding more technical details within the failure response could be used to refine
+Adding more technical details within the failure response may be used to refine
 malicious requests. For example, if the error created by the Authorization Decisions
 Verifier conveys the reason of the failure, such as "the authorization is expired" or "the
-authorization is released in a different Functional Context," it could provide
-information to the malicious Document Consumer that can then try to refine subsequent requests.
-This profile supports to hide the Access Decision to the Requester Entity. In this
+authorization is released in a different Functional Context," it may provide
+information to a malicious Document Consumer that can then try to refine subsequent requests.
+This profile supports to hide the Access Decisions to the Requester Entity. In this
 case, the aforementioned error code shall not be used.
 
 ## 39.6 SeR Cross Profile Considerations
@@ -643,10 +643,10 @@ This transaction is based on SOAP v1.2 exchange protocol and Synchronous Web ser
 
 ### 3.79.2 Actor Roles
 
-| Actor                            | Role                                                                                                                      |
-|----------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| Authorization Decisions Manager  | This actor stores and manages authorization decisions granted for an entity and for specific documents.                   |
-| Authorization Decisions Verifier | This actor queries for authorization decisions granted based on the Requester Entity and requested documents identifiers. |
+| Actor | Role |
+|--|--|
+| Authorization Decisions Manager  | This actor stores and manages Access Decisions granted for an Requester Entity and for specific clinical data.|
+| Authorization Decisions Verifier | This actor queries for Access Decisions based on the Requester Entity and requested clinical data. |
 
 ### 3.79.3 Referenced Standards
 
@@ -668,10 +668,10 @@ _Figure 3.79.4-1: Interaction Diagram_
 This message shall be used by the Authorization Decisions Verifier to query the Authorization
 Decisions Manager for Access Decisions. This message relies on the SAML v2.0 extension
 for XACML and uses the element `<XACMLAuthzDecisionQuery>` to convey the subject
-identifier and other query parameters. The Authorization Decisions Verifier may query
-Access Decisions for many clinical data items in one query, so the Request message complies
-with the multiple resource profile of XACML v2.0. Actors involved support XUA and use
-SAML identity assertions to identify entities (see [ITI TF-1: 39.5](#395-ser-security-considerations) and [ITI TF-1: 39.6](#396-ser-cross-profile-considerations)).
+identifier and other query parameters. The request message complies
+with the multiple resource profile of XACML v2.0 and the Authorization Decisions Verifier may query
+Access Decisions for many clinical data items in one query. Actors involved support XUA and use
+SAML assertions to identify entities (see [ITI TF-1: 39.5](#395-ser-security-considerations) and [ITI TF-1: 39.6](#396-ser-cross-profile-considerations)).
 SAML attribute elements shall be mapped into xacml-context attribute elements as defined
 in SAML 2.0 Profile of XACML v2.0 (Section 2).
 
@@ -931,9 +931,8 @@ Decisions Manager shall verify the match with these additional parameters (e.g.,
 authorization is created for document A for entity X acting for PurposeOfUse Y, the same
 entity cannot retrieve the documents acting for PurposeOfUse Z).
 
-If authorization decisions that match the query parameters of the
-XACMLAuthorizationDecisionQuery Request message were not cached by the Authorization
-Decisions Manager, this actor can make a new access decision based on those query parameters.
+The Authorization Decisions Manager may cache Access Decisions and return the cached
+Access Decisions to requests whose query parameters macth.
 
 The Authorization Decisions Manager shall produce a XACMLAuthorizationDecisionQuery
 Response message that conveys the results of this evaluation. One Result for each
