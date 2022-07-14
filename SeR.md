@@ -508,13 +508,13 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 
 ### 39.4.1 Concepts
 
-This section describes the primary use-cases for the SeR Profile.
+This section describes use-cases for the SeR Profile.
 
-In the primary use-cases the Authorization Decisions Manager manages the information
+In the use-cases the Authorization Decisions Manager manages all information
 needed to perform an access decision and therefore combines the functionality of a
 Policy Decision Point (PDP) and a Policy Information Point (PIP).
 
-In the primary use case the Authorization Decisions Manager manages:  
+In the use-cases the Authorization Decisions Manager manages:  
 - Consent Documents subscribed by patients
 - Security & Privacy Metadata
 - Access Policies
@@ -544,7 +544,7 @@ In this use-case the XDS Document Repositories are all in the same XDS Affinity
 Domain and delegate Access Decisions to the Authorization Decisions Manager grouped
 with the XDS Document Registry.
 
-In this use case a special implementation is used intended to increase the overall
+In this use-case a special implementation is used intended to increase the overall
 perfomance. Access Decisions are created when the Requester Entity queries the XDS
 metadata and stored for a specific time interval, expecting that the document metadatda
 are queried from the XDS Registry before the documents are queried from the XDS
