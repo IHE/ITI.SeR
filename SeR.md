@@ -638,7 +638,7 @@ The actor queried for the sensitive data performs the following steps:
 ##### 39.4.2.2.2  Query Type Extension Process Flow
 
 ![Figure 39.4.2.2.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
-_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solif lines._
+_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines._
 
 
 ## 39.5 SeR Security Considerations
