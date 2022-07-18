@@ -579,7 +579,7 @@ _Figure 39.4.2.1.2-1: Process Flow of the use-case_
 
 #### 39.4.2.2 Use Case #2: Query Type Extension Use Case
 
-This use case describes how an XDS Affinity Domain which uses the SeR Profile to
+This use case describes how an XDS Affinity Domain uses the SeR Profile to
 enforce authorization for all actors which manage sensitive data and uses
 various query types in a national extensions.
 
@@ -634,10 +634,48 @@ The actor queried for the sensitive data performs the following steps:
 - request an Access Decision from the Authorization Decisions Manager using the information provided with the query payload and the X-User Assertion
 - enforce the Access Decision returning only the data the healthcare professional is authorized for.  
 
-
 ##### 39.4.2.2.2  Query Type Extension Process Flow
 
 ![Figure 39.4.2.2.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
+_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines._
+
+
+#### 39.4.2.3 Use Case #3: Mobile Health Use Case
+
+This use case describes how an MHD Document Responder uses Authorization Decisions
+made by the Authorization Decisions Manager.
+
+To protect the sensitive information against malicious misuse the MHD Document
+Responder is grouped with the Authorization Decisions Verifier and performs
+an Authorization Decisions Query [ITI-79] messages whenever a MHD Document
+Consumer queries for the sensitive data to disclose the data based on the Access
+Decision.
+
+In this use case the MHD Document Consumer actor is grouped with IUA Authorization Client
+actor and uses the data provided by the IUA Authorization Server which identifies
+the Requester Entity and further information required for Access Decisions (user role,
+user institution, etc.).
+
+In addition the MHD Document Responder is grouped with the IUA Resource Server to
+support the Incorporate Access Token [ITI-72] transaction.
+
+##### 39.4.2.3.1  Mobile Health Use Case Description
+
+In this use case Dr. Brown uses the new mHealth infrastructure provides by his
+hospital.
+
+Dr. Brown uses her tablet to query the laboratory reports of her patient Mr. White.
+The hospitals mHealth app has previously been registered and authorized by
+the hospital IT authorizing the mHealth app to perform the transactions defined in
+the MHD Profile.
+
+The mHealth infrastructure enforces access decisions in the background and discloses
+the laboratory reports depending on the access policies of the hospital (e.g.,
+identity and role of Dr. Brown, employment state, etc.). 
+
+##### 39.4.2.3.2  Mobile Health Use Case Process Flow
+
+![Figure 39.4.2.2.2-1: Mobile Health Process Flow](assets/images/uc2-flow.png)
 _Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines._
 
 
