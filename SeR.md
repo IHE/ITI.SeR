@@ -675,8 +675,8 @@ identity and role of Dr. Brown, employment state, etc.).
 
 ##### 39.4.2.3.2  Mobile Health Use Case Process Flow
 
-![Figure 39.4.2.2.2-1: Mobile Health Process Flow](assets/images/mhealth-flow.png)
-_Figure 39.4.2.2.2-1: Process Flow of the mhealth use case. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines._
+![Figure 39.4.2.3.2-1: Mobile Health Process Flow](assets/images/mhealth-flow.png)
+_Figure 39.4.2.3.2-1: Process Flow of the mhealth use case. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines._
 
 
 ## 39.5 SeR Security Considerations
