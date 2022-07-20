@@ -574,7 +574,7 @@ requested by limiting the documents provided to Dr. Brown.
 ##### 39.4.2.1.2 XDS Repositories with a centralized Access Decision Manager Process Flow
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/uc1-flow.png)
-_Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML diagram is avaliable [here]()._
+_Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
 
 
 #### 39.4.2.2 Use Case #2: Query Type Extension Use Case
@@ -637,7 +637,7 @@ The actor queried for the sensitive data performs the following steps:
 ##### 39.4.2.2.2  Query Type Extension Process Flow
 
 ![Figure 39.4.2.2.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
-_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is avaliable [here]()._
+_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc2-flow.plantuml)._
 
 
 #### 39.4.2.3 Use Case #3: Mobile Health Use Case
@@ -676,7 +676,7 @@ identity and role of Dr. Brown, employment state, etc.).
 ##### 39.4.2.3.2  Mobile Health Use Case Process Flow
 
 ![Figure 39.4.2.3.2-1: Mobile Health Process Flow](assets/images/uc3-flow.png)
-_Figure 39.4.2.3.2-1: Process Flow of the mhealth use case. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines. The source code for the UML diagram is avaliable [here]()_
+_Figure 39.4.2.3.2-1: Process Flow of the mhealth use case. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines. The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc3-flow.plantuml)._
 
 
 ## 39.5 SeR Security Considerations
