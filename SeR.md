@@ -879,7 +879,7 @@ _Table 3.79.4.1.2-1: [ITI-40] Attributes mapping into XACML Query Attributes_
 | Patient Identifier                 | urn:oasis:names:tc:xacml:1.0:resource                        | urn:ihe:iti:ser:2016:patient-id                     | http://www.w3.org/2001/XMLSchema#string |
 | PurposeOfUse                       | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:purposeofuse    | http://www.w3.org/2001/XMLSchema#anyURI |
 
-_Note 1: To enable authorization decisions for this [ITI-79] transaction, Home Community Id
+_Note 1: To enable Authorization Decisions for this [ITI-79] transaction, Home Community Id
 identifies the requesting user's community identity as identified in the SAML header
 in [ITI-40]. I.e., it is not the homeCommunityId of the community where the requested document
 resides._
@@ -1017,7 +1017,8 @@ Authorization Decisions that match the XACML Query parameters:
 
 AND
 
-- Among these authorizations, there is an authorization for each clinical data item identified within
+- Among these authorizations, there is an Authorization Decision for each clinical
+data item identified within
   the XACMLAuthorizationDecisionQuery (`<Resource>/<Attribute>` elements with
   `@AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"` and
   `"urn:ihe:iti:xds-b:2007:document-entry:repository-unique-id"`).
@@ -1026,8 +1027,9 @@ If other parameters (such as attributes taken from an [ITI-40] identity assertio
 specified within the XACMLAuthorizationDecisionQuery Request message and if domain policies
 require the creation of authorizations related to these parameters, then the Authorization
 Decisions Manager shall verify the match with these additional parameters (e.g., an
-authorization is created for clinical data item A for entity X acting for PurposeOfUse Y, the same
-entity cannot retrieve the clinial data item acting for PurposeOfUse Z).
+Authorization Decision is created for clinical data item A for entity X acting for
+PurposeOfUse Y, the same entity cannot retrieve the clinial data item acting for
+PurposeOfUse Z).
 
 #### 3.79.4.2 XACMLAuthorizationDecisionQuery Response
 
@@ -1077,13 +1079,13 @@ As defined in the XACML v2.0 standard, there are four possible values associated
 `<Decision>`. The Authorization Decisions Manager shall associate codes to the result as
 described below:
 
-- Permit: if a valid authorization decision exists allowing the disclosure of the requested
+- Permit: if a valid Authorization Decision exists allowing the disclosure of the requested
   clinical data item to the Requester Entity.
-- Deny: if no valid authorization decisions exist for the identified Document/Requester
-  Entity, or if authorization decision does not allow disclosure of the Document to the
+- Deny: if no valid Authorization Decisions exist for the identified Document/Requester
+  Entity, or if Authorization Decision does not allow disclosure of the Document to the
   Requester Entity.
-- Indeterminate: if the Authorization Decisions Manager cannot discover if authorization
-  decisions are granted (e.g., internal Errors, or DB unreachable for network problems, ...).
+- Indeterminate: if the Authorization Decisions Manager cannot discover if Authorization
+  Decisions are granted (e.g., internal Errors, or DB unreachable for network problems, ...).
 - NotApplicable: if access to the requested clinial data item is not managed by the Authorization
   Decisions Manager. If the Authorization Decisions Manager cannot determine if the Requester
   Entity can access the clinical data item requested.
