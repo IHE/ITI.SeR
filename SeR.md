@@ -71,7 +71,7 @@ The current version of the IHE Technical Framework can be found at [https://prof
 
 # Introduction to this Supplement
 
-This supplement defines new functionalities for an affinity domain with a unique and
+This supplement defines new functionalities for a Community with a unique and
 centralized Access Control system. This profile is limited to those deployment models
 and their policies where a central authorization authority can make complete and
 definitive decisions, yet support federated identity/authentication. In these
@@ -88,7 +88,7 @@ for Document retrieval; then the replication of Access Control functionalities i
 unfeasible and/or too expensive (due to integration burdens and total cost of ownership).
 
 The objective of the Secure Retrieve Profile is the definition of a mechanism to convey
-Authorization Decisions between affinity domain actors, attesting that the reliable
+Authorization Decisions between actors in the Community, attesting that the reliable
 Authorization Decisions Manager implementing a Policy Decision Point (PDP) makes the
 an access decision.
 
@@ -99,7 +99,7 @@ The starting requirements/constraints upon which this profile is developed are d
 below:
 
 * A unique Authorization Decisions Manager (or PDP) performs access decision for all XDS Document
-  Consumer and all XDS Document Repositories involved in the Affinity Domain.
+  Consumer and all XDS Document Repositories involved in a Community.
 * XDS Document Repositories cannot manage the whole set of information needed to perform
   access decisions (XDS Document Repositories are not required to store metadata.
   If the Repository stores metadata, the metadata might be insufficient to perform an
@@ -321,7 +321,7 @@ This type of approach is useful in many situations:
 - XDS environments with many XDS Document Repositories which expose clinical documents
   without an access control system already implemented. These systems require minimal
   integration burden to support functionalities defined in this profile.
-- Federation of repositories in a new Affinity Domain. The federation of repositories
+- Federation of repositories in a new XDS Affinity Domain. The federation of repositories
   requires the subscription of the whole set of domain policies for content
   Creation/Access/Disclosure. A centralized Access Decision Manager coupled with the
   central XDS Document Registry allows the management of accesses to local Repositories
@@ -356,7 +356,7 @@ exposure):
   If it provides the document inappropriately, there is a risk to confidentiality.
   The SeR Profile allows this actor to be aware of the decision made, only asking for
   the existence of Authorizations granted by the trusted Access Decision Manager and
-  enforcing that decision. In accordance with Affinity Domain policies, the
+  enforcing that decision. In accordance with the Community policies, the
   actor storing clinical data can make further access control decisions.
 
 - A separation of duties between the clinical data consumer (that requests authorization and
@@ -402,7 +402,7 @@ This section documents any additional requirements on profile's actors.
 #### 39.1.1.1 Authorization Decisions Manager
 
 The Authorization Decisions Manager is responsible for the management of access control
-decisions in the entire affinity domain. From the Access Control point of view, this actor is
+decisions in the entire Community. From the Access Control point of view, this actor is
 the unique Policy Decision Point (PDP) of the entire domain because it
 may decide on the outcome of an incoming authorization request in order to provide access
 to specific resources (e.g. documents). The Authorization Decisions Manager creates an
@@ -535,7 +535,8 @@ needed to perform an access decision and therefore combines the functionality of
 Policy Decision Point (PDP) and a Policy Information Point (PIP).
 
 The Authorization Decisions Manager may also implement functions of a Policy
-Administration Point (PAP), administering and maintaining Affinity Domain Policies.
+Administration Point (PAP), administering and maintaining Policies in the
+XDS Affinity Domain.
 
 In this use case a special implementation is used intended to increase the overall
 perfomance. Access Decisions are created when the Requester Entity queries the XDS
@@ -579,7 +580,7 @@ _Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML 
 
 #### 39.4.2.2 Use Case #2: Query Type Extension Use Case
 
-This use case describes how an XDS Affinity Domain uses the SeR Profile to
+This use case describes how an Community uses the SeR Profile to
 enforce authorization for all actors which manage sensitive data and uses
 various query types in a national extensions.
 
@@ -593,7 +594,7 @@ may be used to draw conclusions about about the disorder
 which may be used to draw conclusions about the employer-employee relationship
 
 To protect the sensitive information against malicious misuse the following actors
-in the Affinity Domain are grouped with the Authorization Decisions Verifier:
+in the Community are grouped with the Authorization Decisions Verifier:
 - XDS Document Repository
 - XDS Document Registry
 - Patient Demographics Supplier
@@ -601,7 +602,7 @@ in the Affinity Domain are grouped with the Authorization Decisions Verifier:
 
 These actors use Authorization Decisions Query [ITI-79] messages whenever a Requester
 Entity queries for the sensitive data to retrieve an Access Decision from a single
-Authorization Decisions Manager in the Affinity Domain and disclose the data only
+Authorization Decisions Manager in the Community and disclose the data only
 in the case the access is authorized.
 
 Actors which request sensitive information are grouped with the X-Service User actor
@@ -692,8 +693,8 @@ Access Decisions should not be exposed to other systems and encryption may be us
 (when stored by the Authorization Decisions Manager) to avoid the disclosure
 of sensitive information.
 
-The centralized Access Control system introduces a single point-of-failure risk in the
-affinity domain. A failure of the Authorization Decisions Manager could result in
+The centralized Access Control system introduces a single point-of-failure risk in a
+Community. A failure of the Authorization Decisions Manager could result in
 legitimate access being denied.
 
 This profile introduces an XDS Error Code in order to codify an additional reason for
