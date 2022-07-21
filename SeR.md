@@ -98,8 +98,8 @@ requirements and constraints, i.e. the history and not the current state. -->
 The starting requirements/constraints upon which this profile is developed are described
 below:
 
-* A unique Authorization Decisions Manager (or PDP) performs Authorization Decision for all XDS Document
-  Consumer and all XDS Document Repositories involved in a Community.
+* A unique Authorization Decisions Manager (or PDP) performs Authorization Decisions
+	for all XDS Document Consumer and all XDS Document Repositories involved in a Community.
 * XDS Document Repositories cannot manage the whole set of information needed to perform
   Authorization Decisions (XDS Document Repositories are not required to store metadata.
   If the Repository stores metadata, the metadata might be insufficient to perform an
@@ -107,7 +107,7 @@ below:
 * The XDS infrastructure is not fully federated; a clear separation of duties and
   responsibilities between PDP and XDS Document Repositories is needed (Repositories
   store clinical documents; PDP evaluates access rights to those contents).
-* The XDS Document Repositories must enforce Authorization Decision made by the Policy
+* The XDS Document Repositories must enforce Authorization Decisions made by the Policy
   Decision Point.
 * A technical pattern that reduces behavioral and transactional changes for the
   Consumer side is clearly preferred (lower costs for deployment and for security reasons).
