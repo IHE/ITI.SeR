@@ -1143,20 +1143,20 @@ described below:
 Expected actions are part of each query type definition. This section describes expected
 actions of the standard SeR query types.
 
-###### 3.79.4.2.3.1 Retrieve Document Set Authorization Decision Expected Actions
-
 When the Authorization Decisions Verifier receives a XACMLAuthorizationDecisionQuery
-Response, the XDS Document Repository shall enforce the decision results according to local
-policy.
+Response, it shall enforce the decision results by disclosing the clinical data the
+Requester Entity is authorized for.
 
-If a Deny decision is returned, the XDS Document Repository shall not disclose the document,
-unless local policies allow it.
+If a Deny decision is returned, the Authorization Decisions Verifier shall not
+disclose the clinical data item.
 
-If a Permit decision is returned, the XDS Document Repository shall disclose the document,
-unless additional local decisions are applied.
+If a Permit decision is returned, the Authorization Decisions Verifier shall disclose
+the document.
 
 If NotApplicable or Indeterminate decisions are returned, local policies determine what
-action is appropriate for the XDS Document Repository to perform.
+action is appropriate for the Authorization Decisions Verifier to perform.
+
+###### 3.79.4.2.3.1 Retrieve Document Set Authorization Decision Expected Actions
 
 If one or more of the requested documents are not authorized, then the Document Repository
 shall send a status `urn:ihe:iti:2007:ResponseStatusType:PartialSuccess` in the Retrieve
