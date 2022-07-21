@@ -999,9 +999,16 @@ Action or Environment) each additional Attribute belongs.
 
 When the Authorization Decisions Manager receives an XACMLAuthorizationDecisionQuery
 Request message, it evaluates each Authorization Request conveyed within the
-XACMLAuthorizationDecision (one for each `<Resource>` element). If the Authorization Decisions
-Manager supports decision caching, then it shall verify the existence of Authorization
-Decisions that match the XACML Query parameters:
+XACMLAuthorizationDecision (one for each `<Resource>` element).
+
+The Authorization Decisions Manager shall produce a XACMLAuthorizationDecisionQuery
+Response message that conveys the Access Decisions. One Result for each
+`<Resource>` shall be sent in the response message.
+
+###### 3.79.4.1.3.1 Retrieve Document Set Authorization Decision Expected Actions
+
+If the Authorization Decisions Manager supports decision caching, then it shall verify the existence of
+Authorization Decisions that match the XACML Query parameters:
 
 - The Requester Entity identified within the XACMLAuthorizationDecisionQuery
   (`<Subject>/<Attribute>` element with
@@ -1021,13 +1028,6 @@ require the creation of authorizations related to these parameters, then the Aut
 Decisions Manager shall verify the match with these additional parameters (e.g., an
 authorization is created for clinical data item A for entity X acting for PurposeOfUse Y, the same
 entity cannot retrieve the clinial data item acting for PurposeOfUse Z).
-
-The Authorization Decisions Manager may cache Access Decisions and return the cached
-Access Decisions to requests whose query parameters match.
-
-The Authorization Decisions Manager shall produce a XACMLAuthorizationDecisionQuery
-Response message that conveys the results of this evaluation. One Result for each
-`<Resource>` shall be sent in the response message.
 
 #### 3.79.4.2 XACMLAuthorizationDecisionQuery Response
 
