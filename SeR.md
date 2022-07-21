@@ -56,14 +56,14 @@ The current version of the IHE Technical Framework can be found at [https://prof
   - [Appendix D - Glossary](#appendix-d---glossary)
 - [Volume 1 - Profiles](#volume-1---profiles)
 - [39 Secure Retrieve (SeR) Profile](#39-secure-retrieve-ser-profile)
-    - [39.1 SeR Actors, Transactions, and Content Modules](#391-ser-actors-transactions-and-content-modules)
-    - [39.2 SeR Actor Options](#392-ser-actor-options)
-    - [39.3 SeR Required Actor Groupings](#393-ser-required-actor-groupings)
-    - [39.4 SeR Overview](#394-ser-overview)
-    - [39.5 SeR Security Considerations](#395-ser-security-considerations)
-    - [39.6 SeR Cross Profile Considerations](#396-ser-cross-profile-considerations)
-- [Volume 2 - Transactions](#volume-2---transactions)
-    - [3.79 Authorization Decision Query [ITI-79]](#371-get-access-token-iti-71)
+  - [39.1 SeR Actors, Transactions, and Content Modules](#391-ser-actors-transactions-and-content-modules)
+  - [39.2 SeR Actor Options](#392-ser-actor-options)
+  - [39.3 SeR Required Actor Groupings](#393-ser-required-actor-groupings)
+  - [39.4 SeR Overview](#394-ser-overview)
+  - [39.5 SeR Security Considerations](#395-ser-security-considerations)
+  - [39.6 SeR Cross Profile Considerations](#396-ser-cross-profile-considerations)
+- [Volume 2 - Transactions](#volume-2--transactions)
+		- [3.79 Authorization Decision Query \[ITI-79\]](#379-authorization-decisions-query-iti-79)
 - [Volume 2 - Appendices](#volume-2--appendices)
 - [Volume 3 - Content Modules](#volume-3--content-modules)
 - [Volume 4 - National Extensions](#volume-4--national-extensions)
@@ -292,15 +292,9 @@ General Introduction Appendix D</a>
 
 | Glossary Term | Definition |
 |--|--|
-| Access Decision Manager | A system that is responsible for access/creation/disclosure decisions performed
-according to Domain Policies, Consent Documents, etc. This actor may implement additional functionalities
-of Policy Decision Points (PDP), Policy Administration Points (PAP) and a Policy Information Points
-(PIP). |
-| Authorization Decision  | An authorization token that describes whether clinical data can be accessed by a
-specific Requester Entity.|
-| Requester Entity        | The entity identified within the identity assertion. This entity queries any actor
-grouped with the Authorization Decision Verifier for clinical data (e.g., documents). Access Decisions are
-created and associated with the Requester Entity.|
+| Access Decision Manager | A system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor may implement additional functionalities of Policy Decision Points (PDP), Policy Administration Points (PAP) and a Policy Information Points (PIP). |
+| Authorization Decision  | An authorization token that describes whether clinical data can be accessed by a specific Requester Entity.|
+| Requester Entity        | The entity identified within the identity assertion. This entity queries any actor grouped with the Authorization Decision Verifier for clinical data (e.g., documents). Access Decisions are created and associated with the Requester Entity.|
 
 # Volume 1 - Profiles
 
