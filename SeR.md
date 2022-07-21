@@ -1140,9 +1140,6 @@ described below:
 
 ##### 3.79.4.2.3 Expected Actions
 
-Expected actions are part of each query type definition. This section describes expected
-actions of the standard SeR query types.
-
 When the Authorization Decisions Verifier receives a XACMLAuthorizationDecisionQuery
 Response, it shall enforce the decision results by disclosing the clinical data the
 Requester Entity is authorized for.
