@@ -63,7 +63,7 @@ The current version of the IHE Technical Framework can be found at [https://prof
   	- [39.5 SeR Security Considerations](#395-ser-security-considerations)
   	- [39.6 SeR Cross Profile Considerations](#396-ser-cross-profile-considerations)
 - [Volume 2 - Transactions](#volume-2--transactions)
-	- [3.79 Authorization Decision Query ITI-79](##379-authorization-decisions-query-iti-79)
+	- [3.79 Authorization Decision Query [ITI-79]](##379-authorization-decisions-query-iti-79)
 - [Volume 2 - Appendices](#volume-2--appendices)
 - [Volume 3 - Content Modules](#volume-3--content-modules)
 - [Volume 4 - National Extensions](#volume-4--national-extensions)
