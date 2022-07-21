@@ -646,13 +646,13 @@ an Authorization Decisions Query [ITI-79] messages whenever a MHD Document
 Consumer queries for the sensitive data to disclose the data based on the Access
 Decision.
 
-In this use case the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with IUA Authorization Client
+In this use case the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with [IUA Authorization Client](https://profiles.ihe.net/ITI/IUA/index.html)
 actor and uses the data provided by the [IUA Authorization Server](https://profiles.ihe.net/ITI/IUA/index.html) which identifies
 the Requester Entity and further information required for Authorization Decisions (user role,
 user institution, etc.).
 
 In addition the [MHD Document Responder](https://profiles.ihe.net/ITI/MHD/index.html) is grouped with the [IUA Resource Server](https://profiles.ihe.net/ITI/IUA/index.html) to
-support the Incorporate Access Token [ITI-72] transaction.
+support the [Incorporate Access Token](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) [ITI-72] transaction.
 
 ##### 39.4.2.3.1  Mobile Health Use Case Description
 
@@ -707,7 +707,7 @@ case, the aforementioned error code shall not be used.
 XDS Document Consumer that participates in an XDS environment using SeR framework
 shall be grouped with an [XUA X-Service User](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html).
 
-XUA X-Service User involved in a SeR framework shall be able to identify the specific
+[XUA X-Service User](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) involved in a SeR framework shall be able to identify the specific
 Requester Entity conveying its logical identity (user ID, application ID, etc.)
 within the `<Subject>/<NameID>` element.
 
@@ -721,7 +721,7 @@ Add Section 3.79
 
 ### 3.79.1 Scope
 
-This transaction is used by the Authorization Decisions Verifier to query for Access Decsions
+This transaction is used by the Authorization Decisions Verifier to query for Authorization
 Decisions, granted and managed by the Authorization Decisions Manager. These Authorization Decisions
 are created to disclose specific clinical data.
 
