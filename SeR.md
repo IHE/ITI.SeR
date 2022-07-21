@@ -377,8 +377,8 @@ _Table 39.1-1: SeR Profile - Actors and Transactions_
 
 | Actors                           | Transactions                             | Optionality | Reference      |
 |----------------------------------|------------------------------------------|-------------|----------------|
-| Authorization Decisions Manager  | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 |
-| Authorization Decisions Verifier | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 |
+| Authorization Decisions Manager  | Authorization Decisions Query [ITI-79] | R           | [ITI TF-2: 3.79](#379-authorization-decisions-query-iti-79) |
+| Authorization Decisions Verifier | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 [ITI TF-2: 3.79](#379-authorization-decisions-query-iti-79) |
 
 The Authorization Decisions Query [ITI-79] provides support for different query types,
 depending on which actor is grouped with the Authorization Decisions Verifier and which
@@ -452,8 +452,8 @@ An actor from this profile (Column 1) shall implement all of the required transa
 and/or content modules in this profile __*in addition*__ to all of the transactions required
 for the grouped actor (Column 2).
 
-Section 39.5 describes some optional groupings that may be of interest for security
-considerations and Section 39.6 describes some optional groupings in other related profiles.
+[Section 39.5](#395-ser-security-considerations) describes some optional groupings that may be of interest for security
+considerations and [Section 39.6](#396-ser-cross-profile-considerations) describes some optional groupings in other related profiles.
 
 _Table 39.3-1: SeR - Required Actor Groupings_
 <table border="1">
@@ -546,7 +546,7 @@ _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 ##### 39.4.2.1.1 XDS Repositories with a centralized Authorization Decision Manager Use Case Description
 
 When an Requester Entity request documents from an XDS Repository, the XDS Document
-Repository uses an Authorization Decisions Query [ITI-79] to query the Authorization
+Repository uses an [Authorization Decisions Query [ITI-79] to query the Authorization
 Decision from the Authorization Decisions Manager. The Authorization Decisions Manager
 builds an Authorization Decision based on
 - the information send with the Authorization Decisions Query [ITI-79]
@@ -600,7 +600,7 @@ Authorization Decisions Manager in the Community and disclose the data only
 in the case the access is authorized.
 
 Actors which request sensitive information are grouped with the X-Service User actor
-of the XUA Profile. They use the authentication data identifying the Requester
+of the [XUA Profile](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html). They use the authentication data identifying the Requester
 Entity to retrieve the X-User Assertion from the X-Assertion Provider and provides
 the X-User Assertion in the security header of the request for sensitive information.
 The X-User Assertion conveys the identity data and further information required
@@ -637,7 +637,7 @@ _Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Ac
 
 #### 39.4.2.3 Use Case #3: Mobile Health Use Case
 
-This use case describes how an MHD Document Responder uses Authorization Decisions
+This use case describes how an [MHD Document Responder](https://profiles.ihe.net/ITI/MHD/index.html) uses Authorization Decisions
 made by the Authorization Decisions Manager.
 
 To protect the sensitive information against malicious misuse the MHD Document
@@ -646,12 +646,12 @@ an Authorization Decisions Query [ITI-79] messages whenever a MHD Document
 Consumer queries for the sensitive data to disclose the data based on the Access
 Decision.
 
-In this use case the MHD Document Consumer actor is grouped with IUA Authorization Client
-actor and uses the data provided by the IUA Authorization Server which identifies
+In this use case the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with IUA Authorization Client
+actor and uses the data provided by the [IUA Authorization Server](https://profiles.ihe.net/ITI/IUA/index.html) which identifies
 the Requester Entity and further information required for Authorization Decisions (user role,
 user institution, etc.).
 
-In addition the MHD Document Responder is grouped with the IUA Resource Server to
+In addition the [MHD Document Responder](https://profiles.ihe.net/ITI/MHD/index.html) is grouped with the [IUA Resource Server](https://profiles.ihe.net/ITI/IUA/index.html) to
 support the Incorporate Access Token [ITI-72] transaction.
 
 ##### 39.4.2.3.1  Mobile Health Use Case Description
@@ -761,7 +761,7 @@ Decisions Manager for Access Decisions. This message relies on the SAML v2.0 ext
 for XACML and uses the element `<XACMLAuthzDecisionQuery>` to convey the subject
 identifier and other query parameters. The request message complies
 with the multiple resource profile of XACML v2.0 and the Authorization Decisions Verifier may query
-Authorization Decisions for many clinical data items in one query. Actors involved support XUA and use
+Authorization Decisions for many clinical data items in one query. Actors involved support [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) and use
 SAML assertions to identify entities (see [ITI TF-1: 39.5](#395-ser-security-considerations) and [ITI TF-1: 39.6](#396-ser-cross-profile-considerations)).
 SAML attribute elements shall be mapped into xacml-context attribute elements as defined
 in SAML 2.0 Profile of XACML v2.0 (Section 2).
