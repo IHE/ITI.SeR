@@ -98,7 +98,7 @@ requirements and constraints, i.e. the history and not the current state. -->
 The starting requirements/constraints upon which this profile is developed are described
 below:
 
-* A unique Authorization Decisions Manager (or PDP) performs access decision for all XDS Document
+* A unique Authorization Decisions Manager (or PDP) performs Authorization Decision for all XDS Document
   Consumer and all XDS Document Repositories involved in a Community.
 * XDS Document Repositories cannot manage the whole set of information needed to perform
   access decisions (XDS Document Repositories are not required to store metadata.
@@ -107,7 +107,7 @@ below:
 * The XDS infrastructure is not fully federated; a clear separation of duties and
   responsibilities between PDP and XDS Document Repositories is needed (Repositories
   store clinical documents; PDP evaluates access rights to those contents).
-* The XDS Document Repositories must enforce access decision made by the Policy
+* The XDS Document Repositories must enforce Authorization Decision made by the Policy
   Decision Point.
 * A technical pattern that reduces behavioral and transactional changes for the
   Consumer side is clearly preferred (lower costs for deployment and for security reasons).
@@ -219,7 +219,7 @@ Authorization Decisions for clinical data granted to an Requester Entity
    and Document Registry. It is an obvious grouping, but implementations could also use
    other approaches. Readers are asked to provide feedback on this requirement.
     - The profile does not profile the transaction to request Authorizations.
-      This access decision is likely performed during the Query Request processing and
+      This Authorization Decision is likely performed during the Query Request processing and
       requires input parameters local defined by the Domain. However, the performing of
       these decisions needs a lot of information managed by the Registry or conveyed
       within the Query Request. In accordance to this a grouping approach is proposed.
@@ -267,7 +267,7 @@ General Introduction Appendix A</a>
 
 | Actor | Definition |
 |--|--|
-| Authorization Decisions Manager  | Actor that can perform Access decision, evaluating requests for authorization. The result of this evaluation is an Access Decision that certifies the disclosing of clinical data.|
+| Authorization Decisions Manager  | Actor that can perform Access decision, evaluating requests for authorization. The result of this evaluation is an Authorization Decision that certifies the disclosing of clinical data.|
 | Authorization Decisions Verifier | This actor queries for Authorization Decisions for Requester Entities used to enforce Access Decisions.|
 
 ## Appendix B - Transaction Summary Definitions
@@ -292,7 +292,7 @@ General Introduction Appendix D</a>
 
 | Glossary Term | Definition |
 |--|--|
-| Access Decision Manager | A system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor may implement additional functionalities of Policy Decision Points (PDP), Policy Administration Points (PAP) and a Policy Information Points (PIP). |
+| Authorization Decision Manager | A system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor may implement additional functionalities of Policy Decision Points (PDP), Policy Administration Points (PAP) and a Policy Information Points (PIP). |
 | Authorization Decision  | An authorization token that describes whether clinical data can be accessed by a specific Requester Entity.|
 | Requester Entity        | The entity identified within the identity assertion. This entity queries any actor grouped with the Authorization Decision Verifier for clinical data (e.g., documents). Access Decisions are created and associated with the Requester Entity.|
 
@@ -317,7 +317,7 @@ This type of approach is useful in many situations:
   integration burden to support functionalities defined in this profile.
 - Federation of repositories in a new XDS Affinity Domain. The federation of repositories
   requires the subscription of the whole set of domain policies for content
-  Creation/Access/Disclosure. A centralized Access Decision Manager coupled with the
+  Creation/Access/Disclosure. A centralized Authorization Decision Manager coupled with the
   central XDS Document Registry allows the management of accesses to local Repositories
   without requiring the development of complex Access Control systems.
 - Environments where Consent Documents, Policies and Data Access Rules can be collected,
@@ -327,11 +327,11 @@ This type of approach is useful in many situations:
   Servers that store/register clinical data and cannot be regulated by the Consumer itself.
 
 In those scenarios, this profile defines how to create a "logical federation" between an
-Access Decision Manager (responsible for enabling/denying accesses) and
+Authorization Decision Manager (responsible for enabling/denying accesses) and
 actors that enforce Access Decisions (e.g. XDS Document
 Repositories that store documents and expose them without knowledge related to the
 user/role/consent documents/policies etc.). Actors that store clinical data could only
-trust a decision made by the Access Decision Manager.
+trust a decision made by the Authorization Decision Manager.
 
 Authorization Decision Manager functionalities are out of scope for this profile. The
 implementation details typically are domain specific and locally defined.
@@ -345,11 +345,11 @@ Creation, management and enforcement of policies are out of scope for this profi
 This profile allows addressing the following security risks (related to clinical data
 exposure):
 
-- The actor storing clinical data does not know the Access Decision that should be
+- The actor storing clinical data does not know the Authorization Decision that should be
   enforced. Therefore, if it denies access to data, there is a failure of availability.
   If it provides the document inappropriately, there is a risk to confidentiality.
   The SeR Profile allows this actor to be aware of the decision made, only asking for
-  the existence of Authorizations granted by the trusted Access Decision Manager and
+  the existence of Authorizations granted by the trusted Authorization Decision Manager and
   enforcing that decision. In accordance with the Community policies, the
   actor storing clinical data can make further access control decisions.
 
@@ -406,7 +406,7 @@ Access Decision.
 
 The Authorization Decision does not need to be exposed to other systems, and it
 certifies the decision made. The Authorization Decisions Manager may cache the
-Access Decision and reuse it when processing subsequent requests with the same
+Authorization Decision and reuse it when processing subsequent requests with the same
 parameters, if the local domain policies allow such behavior, and implement additional
 Access Control functionalities required in the specific implementation scenario.
 
@@ -419,7 +419,7 @@ for further information about PDP and Access Control Systems.)
 The Authorization Decisions Verifier is the actor that verifies if the Requester Entity
 is authorized to access clinical data by querying the Authorization Decisions Verifier.
 The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP)
-and enforces the Access Decision made by the trusted Policy Decision Point.
+and enforces the Authorization Decision made by the trusted Policy Decision Point.
 
 (Refer to the White Paper IHE ITI
 [Access Control White Paper](https://www.ihe.net/Technical_Framework/upload/IHE_ITI_TF_WhitePaper_AccessControl_2009-09-28.pdf)
@@ -506,7 +506,7 @@ This section describes use-cases for the SeR Profile.
 
 ### 39.4.2 Use Cases
 
-#### 39.4.2.1 Use Case #1: XDS Repositories with a centralized Access Decision Manager
+#### 39.4.2.1 Use Case #1: XDS Repositories with a centralized Authorization Decision Manager
 
 This use case describes how an XDS Document Repository uses Authorization Decisions
 made by the Authorization Decisions Manager.
@@ -525,7 +525,7 @@ Domain and delegate Access Decisions to the Authorization Decisions Manager grou
 with the XDS Document Registry.
 
 In this use case the Authorization Decisions Manager manages all information
-needed to perform an access decision and therefore combines the functionality of a
+needed to perform an Authorization Decision and therefore combines the functionality of a
 Policy Decision Point (PDP) and a Policy Information Point (PIP).
 
 The Authorization Decisions Manager may also implement functions of a Policy
@@ -536,25 +536,25 @@ In this use case a special implementation is used intended to increase the overa
 perfomance. Access Decisions are created when the Requester Entity queries the XDS
 metadata and stored for a specific time interval, expecting that the document metadatda
 are queried from the XDS Registry before the documents are queried from the XDS
-Repository within the time frame set by the Access Decision lifetime.     
+Repository within the time frame set by the Authorization Decision lifetime.     
 
 ![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
 _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 
 <!-- Dmytro: This diagram is moved from section 39.1. -->
 
-##### 39.4.2.1.1 XDS Repositories with a centralized Access Decision Manager Use Case Description
+##### 39.4.2.1.1 XDS Repositories with a centralized Authorization Decision Manager Use Case Description
 
 When an Requester Entity request documents from an XDS Repository, the XDS Document
 Repository uses an Authorization Decisions Query [ITI-79] to query the Authorization
 Decision from the Authorization Decisions Manager. The Authorization Decisions Manager
-builds an Access Decision based on
+builds an Authorization Decision based on
 - the information send with the Authorization Decisions Query [ITI-79]
 - the document metadata stored in the XDS Registry
 - the Patient Consent and the Access Policies.
 
 The XDS Document Repository grouped with an Authorization Decisions Verifier enforces
-the Access Decision returned with the Authorization Decisions Query [ITI-79].
+the Authorization Decision returned with the Authorization Decisions Query [ITI-79].
 
 For example:
 
@@ -563,10 +563,10 @@ Report is shared in an XDS infrastructure. Using his EHR, Dr. Brown queries for 
 Laboratory Reports shared in the XDS infrastructure. The Query Response returns some
 DocumentEntries to the XDS Document Consumer. Each XDSDocumentEntry in the response is
 authorized for the retrieval. Dr. Brown uses his XDS Document Consumer to retrieve these
-documents. The XDS Document Repository enforces the Access Decision for each document
+documents. The XDS Document Repository enforces the Authorization Decision for each document
 requested by limiting the documents provided to Dr. Brown.
 
-##### 39.4.2.1.2 XDS Repositories with a centralized Access Decision Manager Process Flow
+##### 39.4.2.1.2 XDS Repositories with a centralized Authorization Decision Manager Process Flow
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/uc1-flow.png)
 _Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
@@ -595,7 +595,7 @@ in the Community are grouped with the Authorization Decisions Verifier:
 - Healthcare Provider Directory
 
 These actors use Authorization Decisions Query [ITI-79] messages whenever a Requester
-Entity queries for the sensitive data to retrieve an Access Decision from a single
+Entity queries for the sensitive data to retrieve an Authorization Decision from a single
 Authorization Decisions Manager in the Community and disclose the data only
 in the case the access is authorized.
 
@@ -616,7 +616,7 @@ extensions (e.g., national extension) to this profile.
 
 A healthcare professional queries sensitive data which requires authorization from
 an actor managing the data. The actors involved perform all nessesary actions to
-enforce Access Decision for the data in the background and returns only the data
+enforce Authorization Decision for the data in the background and returns only the data
 the healthcare professional is autorized for.    
 
 The actor used by the healthcare professional to query the sensitive information
@@ -626,8 +626,8 @@ perfoms the following steps:
 - perform the query adding the X-User Assertion in the security header of the query request.
 
 The actor queried for the sensitive data performs the following steps:
-- request an Access Decision from the Authorization Decisions Manager using the information provided with the query payload and the X-User Assertion
-- enforce the Access Decision returning only the data the healthcare professional is authorized for.  
+- request an Authorization Decision from the Authorization Decisions Manager using the information provided with the query payload and the X-User Assertion
+- enforce the Authorization Decision returning only the data the healthcare professional is authorized for.  
 
 ##### 39.4.2.2.2  Query Type Extension Process Flow
 
@@ -725,7 +725,7 @@ This transaction is used by the Authorization Decisions Verifier to query for Ac
 Decisions, granted and managed by the Authorization Decisions Manager. These Access Decisions
 are created to disclose specific clinical data.
 
-The information required to perfom Access Decision shall be conveyed with the
+The information required to perfom Authorization Decisions shall be conveyed with the
 Authorization Decisions Query [ITI-79] request, i.e., the identifier of the
 Requester Entity and other attributes required for a given use case.
 
