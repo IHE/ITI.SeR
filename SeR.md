@@ -131,7 +131,7 @@ Authorization Decisions for clinical data granted to an Requester Entity
 # Open Issues and Questions
 
 11. As the profile covers not only document retrieval, shall it be renamed from
-    "Secure Retrieve" (SeR) to e.g. "User Authorization" (UAZ)?
+    "Secure Retrieve" (SeR) to e.g. "Health IT Access Decision Delegation" (HADD)?
 12. A change in section 3.79.4.2.2 prescribes to populate the status code according
     to section 4.10 "Element <samlp:Response>: XACMLAuthzDecision Response" of OASIS
     SAML 2.0 profile of XACML v2.0 (errata) instead of using a fixed value
