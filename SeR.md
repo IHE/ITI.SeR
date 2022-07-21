@@ -405,7 +405,7 @@ The Authorization Decisions Manager is responsible for the management of access 
 decisions in the entire affinity domain. From the Access Control point of view, this actor is
 the unique Policy Decision Point (PDP) of the entire domain because it
 may decide on the outcome of an incoming authorization request in order to provide access
-to specific resources (e.g. documents). The Authorization Decisions Manager creates an
+to specific clinical data (e.g. documents). The Authorization Decisions Manager creates an
 Access Decision.
 
 <!-- Dmytro: See the sentence inserted below; token caching should not be a required feature. -->
@@ -726,9 +726,9 @@ Add Section 3.79
 
 ### 3.79.1 Scope
 
-This transaction is used by the Authorization Decisions Verifier to query for authorization
-decisions, granted and managed by the Authorization Decisions Manager. These authorization
-decisions are created for an Requester Entity that is authorized to disclose specific documents.
+This transaction is used by the Authorization Decisions Verifier to query for Access Decsions
+Decisions, granted and managed by the Authorization Decisions Manager. These Access Decisions
+are created to disclose specific clinical data.
 
 The information required to perfom Access Decision shall be conveyed with the
 Authorization Decisions Query [ITI-79] request, i.e., the identifier of the
@@ -846,9 +846,9 @@ following assignment of request attributes:
       `@DataType="http://www.w3.org/2001/XMLSchema#anyURI"`. The `<AttributeValue>` child
       element stores the value of the XDSDocumentEntry.repositoryUniqueId.
 
-Any other SAML attribute related to the resource requested shall be added as additional
+Any other SAML attribute related to the clinical data requested shall be added as additional
 XACML attribute (e.g., homeCommunityId). Table 3.79.4.1.2-1 defines which XUA attributes
-are identified as related to the resource (each attribute with "XACML Category" equal
+are identified as related to the clinical data (each attribute with "XACML Category" equal
 to `urn:oasis:names:tc:xacml:1.0:resource`).
 
 Attributes that belong to the XACML environment category (e.g., XUA attributes with
@@ -1015,7 +1015,7 @@ Decisions that match the XACML Query parameters:
 
 AND
 
-- Among these authorizations, there is an authorization for each document identified within
+- Among these authorizations, there is an authorization for each clinical data item identified within
   the XACMLAuthorizationDecisionQuery (`<Resource>/<Attribute>` elements with
   `@AttributeId="urn:oasis:names:tc:xacml:1.0:resource:resource-id"` and
   `"urn:ihe:iti:xds-b:2007:document-entry:repository-unique-id"`).
@@ -1024,11 +1024,11 @@ If other parameters (such as attributes taken from an [ITI-40] identity assertio
 specified within the XACMLAuthorizationDecisionQuery Request message and if domain policies
 require the creation of authorizations related to these parameters, then the Authorization
 Decisions Manager shall verify the match with these additional parameters (e.g., an
-authorization is created for document A for entity X acting for PurposeOfUse Y, the same
-entity cannot retrieve the documents acting for PurposeOfUse Z).
+authorization is created for clinical data item A for entity X acting for PurposeOfUse Y, the same
+entity cannot retrieve the clinial data item acting for PurposeOfUse Z).
 
 The Authorization Decisions Manager may cache Access Decisions and return the cached
-Access Decisions to requests whose query parameters macth.
+Access Decisions to requests whose query parameters match.
 
 The Authorization Decisions Manager shall produce a XACMLAuthorizationDecisionQuery
 Response message that conveys the results of this evaluation. One Result for each
@@ -1039,7 +1039,7 @@ Response message that conveys the results of this evaluation. One Result for eac
 The XACMLAuthorizationDecisionQuery Response message is created by the Authorization
 Decisions Manager in response to the XACMLAuthorizationDecisionQuery Request. This
 message conveys to the Authorization Decisions Verifier the results of the evaluation
-made by the Authorization Decisions Manager. For each Resource (e.g. a document) specified within
+made by the Authorization Decisions Manager. For each clinical data item (e.g. a document) specified within
 the Request message, the Authorization Decisions Manager provides an Authorization Result
 that shall be used by the Authorization Decisions Verifier to
 determine which of the requested clinical data items to return to the client in response
@@ -1071,7 +1071,7 @@ The `<Issuer>` of the Authorization Assertion should identify the trusted Author
 Decisions Manager (e.g. SOAP endpoint of the Web Service, or the home community OID
 in URN format, depending on local policies).
 
-See Section 3.1 of the OASIS SAML 2.0 Profile of XACML Version 2.0 document for further
+See Section 3.1 of the OASIS SAML 2.0 Profile of XACML Version 2.0 for further
 details on the message structure. As specified in the OASIS Multiple resource profile of
 XACML v2.0, the XACML `<Response>` element shall contain one `<Result>` element for each
 `<Resource>` element identified within the XACMLAuthorizationDecisionQuery Request message.
@@ -1083,15 +1083,15 @@ As defined in the XACML v2.0 standard, there are four possible values associated
 described below:
 
 - Permit: if a valid authorization decision exists allowing the disclosure of the requested
-  document to the Requester Entity.
+  clinical data item to the Requester Entity.
 - Deny: if no valid authorization decisions exist for the identified Document/Requester
   Entity, or if authorization decision does not allow disclosure of the Document to the
   Requester Entity.
 - Indeterminate: if the Authorization Decisions Manager cannot discover if authorization
   decisions are granted (e.g., internal Errors, or DB unreachable for network problems, ...).
-- NotApplicable: if access to the requested document is not managed by the Authorization
+- NotApplicable: if access to the requested clinial data item is not managed by the Authorization
   Decisions Manager. If the Authorization Decisions Manager cannot determine if the Requester
-  Entity can access the resource requested.
+  Entity can access the clinical data item requested.
 
 ###### 3.79.4.2.2.1 Example of a SOAP v1.2 XACMLAuthorizationDecisionQuery Response message
 
@@ -1384,7 +1384,7 @@ The audit message shall identify:
     <tr>
         <td>ParticipantObjectID</td>
         <td>M</td>
-        <td>The Requester Entity who wants to retrieve documents (identified in the Attribute with AttributeId urn:oasis:names:tc:xacml:1.0:subject:subject-id)</td>
+        <td>The Requester Entity who wants to retrieve clinical data (identified in the Attribute with AttributeId urn:oasis:names:tc:xacml:1.0:subject:subject-id)</td>
     </tr>
     <tr>
         <td><i>ParticipantObjectName</i></td>
@@ -1691,7 +1691,7 @@ The audit message shall identify:
     <tr>
         <td>ParticipantObjectID</td>
         <td>M</td>
-        <td>The person who wants to create retrieve documents (identified in the Attribute with AttributeId urn:oasis:names:tc:xacml:1.0:subject:subject-id)</td>
+        <td>The person who wants to create retrieve clinical data (identified in the Attribute with AttributeId urn:oasis:names:tc:xacml:1.0:subject:subject-id)</td>
     </tr>
     <tr>
         <td><i>ParticipantObjectName</i></td>
