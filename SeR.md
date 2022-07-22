@@ -28,8 +28,9 @@ This supplement describes changes to the existing technical framework documents.
 
 "Boxed" instructions like the sample below indicate to the Volume Editor how to integrate the relevant section(s) into the relevant Technical Framework volume.
 
-| **Editor: Please amend Section X.X by the following** |
-|------------------------------------------------------|
+<table border="1"><tr><td><i>
+Editor: Please amend Section X.X by the following
+</i></td></tr></table>
 
 Where the amendment adds text, make the added text **<ins>bold underline</ins>**. Where the amendment removes text, make the removed text **~~bold strikethrough~~**. When entire new sections are added, introduce with editor's instructions to "add new text" or similar, which for readability are not bolded or underlined.
 
@@ -266,7 +267,7 @@ General Introduction Appendix A</a>
 </i></td></tr></table>
 
 | Actor | Definition |
-|--|--|
+|---|---|
 | Authorization Decisions Manager  | Actor that can perform Access Decisions, evaluating requests for authorization. The result of this evaluation is an Authorization Decision that certifies the disclosing of clinical data.|
 | Authorization Decisions Verifier | This actor queries for Authorization Decisions for Requester Entities used to enforce Authorization Decisions.|
 
@@ -279,7 +280,7 @@ General Introduction Appendix B</a>
 </i></td></tr></table>
 
 | Transaction | Definition |
-|--|--|
+|---|---|
 | Authorization Decisions Query [ITI-79] | Transaction used by the Service Provider (Authorization Decisions Verifier) to request Authorization Decisions to clinical data granted for the Requester Entity. |
 
 ## Appendix D - Glossary
@@ -291,7 +292,7 @@ General Introduction Appendix D</a>
 </i></td></tr></table>
 
 | Glossary Term | Definition |
-|--|--|
+|---|---|
 | Authorization Decision Manager | A system that is responsible for access/creation/disclosure decisions performed according to Domain Policies, Consent Documents, etc. This actor may implement additional functionalities of Policy Decision Points (PDP), Policy Administration Points (PAP) and a Policy Information Points (PIP). |
 | Authorization Decision  | An authorization token that describes whether clinical data can be accessed by a specific Requester Entity.|
 | Requester Entity        | The entity identified within the identity assertion. This entity queries any actor grouped with the Authorization Decision Verifier for clinical data (e.g., documents). Authorization Decisions are created and associated with the Requester Entity.|
@@ -432,10 +433,39 @@ Table 39.2-1. Dependencies between options when applicable are specified in note
 
 _Table 39.2-1: SeR - Actors and Options_
 
-| Actor                            | Option Name        | Reference |
-|----------------------------------|--------------------|-----------|
-| Authorization Decisions Manager  | No options defined | --        |
-| Authorization Decisions Verifier | No options defined | --        |
+| Actor                            | Option Name        | Reference      |
+|----------------------------------|--------------------|----------------|
+| Authorization Decisions Manager  | XUA (Note 1)       | Section 39.2.1 |
+|                                  | IUA (Note 1)       | Section 39.2.2 |
+| Authorization Decisions Verifier | XUA (Note 1)       | Section 39.2.1 |
+|                                  | IUA (Note 1)       | Section 39.2.2 |
+
+Note 1: The actor shall support at least one of the options
+
+### 39.2.1 XUA Option
+
+The Authorization Decisions Manager supporting this option shall be grouped with XUA X-Service Provider
+([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4)).
+
+The Authorization Decisions Verifier supporting this option shall be grouped with XUA X-Service User 
+([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4)).
+Moreover, it may be optionally grouped with XUA X-Service Provider
+([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4)) -- in this case, 
+the X-User Assertion sent to the Authorization Decisions Manager may be the one obtained from the client
+(token forwarding).
+
+### 39.2.2 IUA Option
+
+The Authorization Decisions Manager supporting this option shall be grouped with Resource Server
+([ITI TF-1: 34.1.1.3](https://profiles.ihe.net/ITI/IUA/index.html#34113-resource-server)).
+
+The Authorization Decisions Verifier supporting this option shall be grouped with Authorization Client
+([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/IUA/index.html#34111-authorization-client)).
+Moreover, it may be optionally grouped with Resource Server
+([ITI TF-1: 34.1.1.3](https://profiles.ihe.net/ITI/IUA/index.html#34113-resource-server)) -- in this case,
+the access token sent to the Authorization Decisions Manager may be the one obtained from the client
+(token forwarding).
+
 
 ## 39.3 SeR Required Actor Groupings
 
@@ -464,39 +494,18 @@ _Table 39.3-1: SeR - Required Actor Groupings_
         <th>Content Bindings Reference</th>
     <tr>
     <tr>
-        <td rowspan="2">Authorization Decisions Manager</td>
-        <td>XUA X-Service Provider</td>
-        <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4">ITI TF-1: 13.4</a></td>
-        <td>--</td>
-    </tr>
-    <tr>
+        <td >Authorization Decisions Manager</td>
         <td>ATNA Secure Node or Secure Application</td>
         <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1">ITI TF-1: 9.1</a></td>
         <td>--</td>
     </tr>
     <tr>
-        <td rowspan="2">Authorization Decisions Verifier</td>
-        <td>XUA X-Service Provider</td>
-        <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4">ITI TF-1: 13.4</a></td>
-        <td>--</td>
-    </tr>
-    <tr>
+        <td>Authorization Decisions Verifier</td>
         <td>ATNA Secure Node or Secure Application</td>
         <td><a href="https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1">ITI TF-1: 9.1</a></td>
         <td>--</td>
     </tr>
 </table>
-
-<!--
-| SeR Actor                        | Actor to be grouped with               | Reference                                                                 | Content Bindings Reference |
-|----------------------------------|----------------------------------------|---------------------------------------------------------------------------|----------------------------|
-| Authorization Decisions Manager  | XDS Document Registry                  | [ITI TF-1: 10.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1) | --                         |
-| --- " ---                        | XUA X-Service Provider                 | [ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4) | --                         |
-| --- " ---                        | ATNA Secure Node or Secure Application | [ITI TF-1: 9.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1)    | --                         |
-| Authorization Decisions Verifier | XDS Document Repository                | [ITI TF-1: 10.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-10.html#10.1) | --                         |
-| --- " ---                        | XUA X-Service Provider                 | [ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4) | --                         |
-| --- " ---                        | ATNA Secure Node or Secure Application | [ITI TF-1: 9.1](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html#9.1)    | --                         |
--->
 
 ## 39.4 SeR Overview
 
@@ -514,7 +523,7 @@ made by the Authorization Decisions Manager.
 <!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory"
 originally present there is removed. -->
 
-In this use case the groupings between XDS Actors and SeR Actors enforce the system
+In this use case, the XUA Option is used. The groupings between XDS Actors and SeR Actors enforce the system
 of trust between the XDS Document Registry that localizes the XDS DocumentEntries
 and the XDS Document Repositories that store XDS documents. This use case assumes
 that Authorization Decisions are based on the document metadata and groups
@@ -533,8 +542,8 @@ Administration Point (PAP), administering and maintaining Policies in the
 XDS Affinity Domain.
 
 In this use case a special implementation is used intended to increase the overall
-perfomance. Authorization Decisions are created when the Requester Entity queries the XDS
-metadata and stored for a specific time interval, expecting that the document metadatda
+performance. Authorization Decisions are created when the Requester Entity queries the XDS
+metadata and stored for a specific time interval, expecting that the document metadata
 are queried from the XDS Registry before the documents are queried from the XDS
 Repository within the time frame set by the Authorization Decision lifetime.     
 
@@ -545,7 +554,7 @@ _Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
 
 ##### 39.4.2.1.1 XDS Repositories with a centralized Authorization Decision Manager Use Case Description
 
-When an Requester Entity request documents from an XDS Repository, the XDS Document
+When a Requester Entity request documents from an XDS Repository, the XDS Document
 Repository uses an [Authorization Decisions Query [ITI-79] to query the Authorization
 Decision from the Authorization Decisions Manager. The Authorization Decisions Manager
 builds an Authorization Decision based on
@@ -569,7 +578,7 @@ requested by limiting the documents provided to Dr. Brown.
 ##### 39.4.2.1.2 XDS Repositories with a centralized Authorization Decision Manager Process Flow
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/uc1-flow.png)
-_Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
+_Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
 
 
 #### 39.4.2.2 Use Case #2: Query Type Extension Use Case
@@ -583,7 +592,7 @@ In this use case sensitive information has been identified to be:
 - the document metadata which contain information on the author and clinical facility
 which may be used to draw conclusions about the disorder
 - the patient identifiers which contain identifier of the assigning authorities and
-may be used to draw conclusions about about the disorder
+may be used to draw conclusions about the disorder
 - the personal data of the healthcare professionals and their relation to institutions
 which may be used to draw conclusions about the employer-employee relationship
 
@@ -599,7 +608,7 @@ Entity queries for the sensitive data to retrieve an Authorization Decision from
 Authorization Decisions Manager in the Community and disclose the data only
 in the case the access is authorized.
 
-Actors which request sensitive information are grouped with the X-Service User actor
+As defined in the XUA Option, actors which request sensitive information are grouped with the X-Service User actor
 of the [XUA Profile](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html). They use the authentication data identifying the Requester
 Entity to retrieve the X-User Assertion from the X-Assertion Provider and provides
 the X-User Assertion in the security header of the request for sensitive information.
@@ -609,18 +618,18 @@ for Authorization Decisions (user role, user institution, etc.) from other sourc
 
 The information required by the Authorization Decisions Manager differs depending on
 the actor which is queried for sensitive information. The difference is reflected in
-the query options choosen and different query types are used, which are specified as
+the query options chosen and different query types are used, which are specified as
 extensions (e.g., national extension) to this profile.
 
 ##### 39.4.2.2.1  Query Type Extension Use Case Description
 
 A healthcare professional queries sensitive data which requires authorization from
-an actor managing the data. The actors involved perform all nessesary actions to
+an actor managing the data. The actors involved perform all necessary actions to
 enforce Authorization Decision for the data in the background and returns only the data
-the healthcare professional is autorized for.    
+the healthcare professional is authorized for.    
 
 The actor used by the healthcare professional to query the sensitive information
-perfoms the following steps:  
+performs the following steps:  
 - authenticate the healthcare professional
 - exchange the authentication assertion to an X-User Assertion
 - perform the query adding the X-User Assertion in the security header of the query request.
@@ -632,7 +641,7 @@ The actor queried for the sensitive data performs the following steps:
 ##### 39.4.2.2.2  Query Type Extension Process Flow
 
 ![Figure 39.4.2.2.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
-_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc2-flow.plantuml)._
+_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc2-flow.plantuml)._
 
 
 #### 39.4.2.3 Use Case #3: Mobile Health Use Case
@@ -646,12 +655,12 @@ an Authorization Decisions Query [ITI-79] messages whenever a MHD Document
 Consumer queries for the sensitive data to disclose the data based on the Access
 Decision.
 
-In this use case the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with [IUA Authorization Client](https://profiles.ihe.net/ITI/IUA/index.html)
+In this use case, the IUA Option is used, i.e. the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with [IUA Authorization Client](https://profiles.ihe.net/ITI/IUA/index.html)
 actor and uses the data provided by the [IUA Authorization Server](https://profiles.ihe.net/ITI/IUA/index.html) which identifies
 the Requester Entity and further information required for Authorization Decisions (user role,
 user institution, etc.).
 
-In addition the [MHD Document Responder](https://profiles.ihe.net/ITI/MHD/index.html) is grouped with the [IUA Resource Server](https://profiles.ihe.net/ITI/IUA/index.html) to
+In addition, the [MHD Document Responder](https://profiles.ihe.net/ITI/MHD/index.html) is grouped with the [IUA Resource Server](https://profiles.ihe.net/ITI/IUA/index.html) to
 support the [Incorporate Access Token](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) [ITI-72] transaction.
 
 ##### 39.4.2.3.1  Mobile Health Use Case Description
@@ -725,7 +734,7 @@ This transaction is used by the Authorization Decisions Verifier to query for Au
 Decisions, granted and managed by the Authorization Decisions Manager. These Authorization Decisions
 are created to disclose specific clinical data.
 
-The information required to perfom Authorization Decisions shall be conveyed with the
+The information required to perform Authorization Decisions shall be conveyed with the
 Authorization Decisions Query [ITI-79] request, i.e., the identifier of the
 Requester Entity and other attributes required for a given use case.
 
@@ -735,8 +744,8 @@ This transaction is based on SOAP v1.2 exchange protocol and Synchronous Web ser
 ### 3.79.2 Actor Roles
 
 | Actor | Role |
-|--|--|
-| Authorization Decisions Manager  | This actor manages Authorization Decisions granted for an Requester Entity and for specific clinical data.|
+|---|---|
+| Authorization Decisions Manager  | This actor manages Authorization Decisions granted for a Requester Entity and for specific clinical data.|
 | Authorization Decisions Verifier | This actor queries for Authorization Decisions based on the Requester Entity and requested clinical data. |
 
 ### 3.79.3 Referenced Standards
@@ -761,9 +770,9 @@ Decisions Manager for Access Decisions. This message relies on the SAML v2.0 ext
 for XACML and uses the element `<XACMLAuthzDecisionQuery>` to convey the subject
 identifier and other query parameters. The request message complies
 with the multiple resource profile of XACML v2.0 and the Authorization Decisions Verifier may query
-Authorization Decisions for many clinical data items in one query. Actors involved support [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) and use
-SAML assertions to identify entities (see [ITI TF-1: 39.5](#395-ser-security-considerations) and [ITI TF-1: 39.6](#396-ser-cross-profile-considerations)).
-SAML attribute elements shall be mapped into xacml-context attribute elements as defined
+Authorization Decisions for many clinical data items in one query. 
+Attributes of XUA or IUA assertions (depending from the supported option)
+shall be mapped into xacml-context attribute elements as defined
 in SAML 2.0 Profile of XACML v2.0 (Section 2).
 
 ##### 3.79.4.1.1 Trigger Events
@@ -814,8 +823,9 @@ community, regulatory domain, or national level.
 
 ###### 3.79.4.1.2.1.1 Retrieve Document Set Authorization Decision Request Attributes
 
-The SeR query type "Retrieve Document Set Authorization Decision" requires the
-following assignment of request attributes:
+The SeR query type "Retrieve Document Set Authorization Decision"
+mandates the usage of the XUA Option and 
+requires the following assignment of request attributes:
 
 - The `<Subject>` element shall have at least one child element `<Attribute>`
   characterized by `@AttributeId="urn:oasis:names:tc:xacml:1.0:subject:subject-id"`
@@ -1028,7 +1038,7 @@ specified within the XACMLAuthorizationDecisionQuery Request message and if doma
 require the creation of authorizations related to these parameters, then the Authorization
 Decisions Manager shall verify the match with these additional parameters (e.g., an
 Authorization Decision is created for clinical data item A for entity X acting for
-PurposeOfUse Y, the same entity cannot retrieve the clinial data item acting for
+PurposeOfUse Y, the same entity cannot retrieve the clinical data item acting for
 PurposeOfUse Z).
 
 #### 3.79.4.2 XACMLAuthorizationDecisionQuery Response
@@ -1086,7 +1096,7 @@ described below:
   Requester Entity.
 - Indeterminate: if the Authorization Decisions Manager cannot discover if Authorization
   Decisions are granted (e.g., internal Errors, or DB unreachable for network problems, ...).
-- NotApplicable: if access to the requested clinial data item is not managed by the Authorization
+- NotApplicable: if access to the requested clinical data item is not managed by the Authorization
   Decisions Manager. If the Authorization Decisions Manager cannot determine if the Requester
   Entity can access the clinical data item requested.
 
