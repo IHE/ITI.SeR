@@ -91,7 +91,7 @@ unfeasible and/or too expensive (due to integration burdens and total cost of ow
 The objective of the Secure Retrieve Profile is the definition of a mechanism to convey
 Authorization Decisions between actors in the Community, attesting that the reliable
 Authorization Decisions Manager implementing a Policy Decision Point (PDP) makes the
-an access decision.
+access decision.
 
 <!-- Dmytro: No changes are required below because this fragment describes _starting_
 requirements and constraints, i.e. the history and not the current state. -->
@@ -356,7 +356,7 @@ exposure):
 
 - A separation of duties between the clinical data consumer (that requests authorization and
   clinical data items) and the Authorization Decisions Manager (or PDP) is created. The SeR Profile
-  delegates decisions to the the Authorization Decisions Manager and the enforcement to the Authorization Decisions Verifier.
+  delegates decisions to the Authorization Decisions Manager and the enforcement to the Authorization Decisions Verifier.
 
 ## 39.1 SeR Actors, Transactions, and Content Modules
 
@@ -440,7 +440,7 @@ _Table 39.2-1: SeR - Actors and Options_
 | Authorization Decisions Verifier | XUA (Note 1)       | Section 39.2.1 |
 |                                  | IUA (Note 1)       | Section 39.2.2 |
 
-Note 1: The actor shall support at least one of the options
+_Note 1: The actor shall support at least one of the options_
 
 ### 39.2.1 XUA Option
 
@@ -569,7 +569,7 @@ _Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML 
 
 #### 39.4.2.2 Use Case #2: Query Type Extension Use Case
 
-This use case describes how an Community uses the SeR Profile to
+This use case describes how a Community uses the SeR Profile to
 enforce authorization for all actors which manage sensitive data and uses
 various query types in a national extensions.
 
@@ -1133,8 +1133,13 @@ described below:
 
 ##### 3.79.4.2.3 Expected Actions
 
-Expected actions are part of each query type definition. This section describes expected
-actions of the standard SeR query types.
+Expected actions are part of each query type definition (a generalized description is not
+possible because of different semantics of transactions which can be combined with ITI-79, 
+possibility of partial success vs. requirement of strong atomicity, potential dependencies 
+between clinical data items ("if the decision is Permit for item X and Deny for item Y, 
+then..."), potential presence of local policies and other "environmental" factors, etc.). 
+
+This section describes expected actions of the standard SeR query types.
 
 ###### 3.79.4.2.3.1 Retrieve Document Set Authorization Decision Expected Actions
 
