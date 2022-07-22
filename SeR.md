@@ -1133,11 +1133,12 @@ described below:
 
 ##### 3.79.4.2.3 Expected Actions
 
-Expected actions are part of each query type definition (a generalized description is not
-possible because of different semantics of transactions which can be combined with ITI-79, 
+Expected actions are part of each query type definition, because a generalized guidance 
+on the enforcement of decisions is 
+impossible due to different semantics of transactions which can be combined with ITI-79, 
 possibility of partial success vs. requirement of strong atomicity, potential dependencies 
 between clinical data items ("if the decision is Permit for item X and Deny for item Y, 
-then..."), potential presence of local policies and other "environmental" factors, etc.). 
+then..."), potential presence of local policies and other "environmental" factors, etc. 
 
 This section describes expected actions of the standard SeR query types.
 
