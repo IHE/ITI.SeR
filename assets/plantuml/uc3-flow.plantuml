@@ -22,7 +22,7 @@ AuthorizationServer --> AuthorizationServer: authorize mHealth app
 AuthorizationServer --> RequestingActor: Get Access Token Response (IUA)
 
 |||
-RequestingActor --> RespondingActor: Retrieve Document [ITI-68] Request (Incorporate Access Token [ITI-72])
+RequestingActor --> RespondingActor: MHD Retrieve Document [ITI-68] Request (Incorporate Access Token [ITI-72])
 
 RespondingActor -> Manager: Auth Decisions Query [ITI-79]
 Manager -> Manager: create Access Decisions
@@ -32,7 +32,7 @@ Manager -> RespondingActor: Access Decisions
 RespondingActor -> RespondingActor: enforce Access Decisions
 |||
 
-RespondingActor --> RequestingActor: Retrieve Document [ITI-68] Response
+RespondingActor --> RequestingActor: MHD Retrieve Document [ITI-68] Response
 
 autonumber stop
 
