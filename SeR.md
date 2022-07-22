@@ -378,7 +378,7 @@ _Table 39.1-1: SeR Profile - Actors and Transactions_
 | Actors                           | Transactions                             | Optionality | Reference      |
 |----------------------------------|------------------------------------------|-------------|----------------|
 | Authorization Decisions Manager  | Authorization Decisions Query [ITI-79] | R           | [ITI TF-2: 3.79](#379-authorization-decisions-query-iti-79) |
-| Authorization Decisions Verifier | Authorization Decisions Query [ITI-79] | R           | ITI TF-2: 3.79 [ITI TF-2: 3.79](#379-authorization-decisions-query-iti-79) |
+| Authorization Decisions Verifier | Authorization Decisions Query [ITI-79] | R           | [ITI TF-2: 3.79](#379-authorization-decisions-query-iti-79) |
 
 The Authorization Decisions Query [ITI-79] provides support for different query types,
 depending on which actor is grouped with the Authorization Decisions Verifier and which
