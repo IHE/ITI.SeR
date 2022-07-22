@@ -444,27 +444,13 @@ Note 1: The actor shall support at least one of the options
 
 ### 39.2.1 XUA Option
 
-The Authorization Decisions Manager supporting this option shall be grouped with XUA X-Service Provider
+The actors supporting this option shall be grouped with XUA X-Service Provider
 ([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4)).
-
-The Authorization Decisions Verifier supporting this option shall be grouped with XUA X-Service User 
-([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4)).
-Moreover, it may be optionally grouped with XUA X-Service Provider
-([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html#13.4)) -- in this case, 
-the X-User Assertion sent to the Authorization Decisions Manager may be the one obtained from the client
-(token forwarding).
 
 ### 39.2.2 IUA Option
 
-The Authorization Decisions Manager supporting this option shall be grouped with Resource Server
+The actors supporting this option shall be grouped with IUA Resource Server
 ([ITI TF-1: 34.1.1.3](https://profiles.ihe.net/ITI/IUA/index.html#34113-resource-server)).
-
-The Authorization Decisions Verifier supporting this option shall be grouped with Authorization Client
-([ITI TF-1: 13.4](https://profiles.ihe.net/ITI/IUA/index.html#34111-authorization-client)).
-Moreover, it may be optionally grouped with Resource Server
-([ITI TF-1: 34.1.1.3](https://profiles.ihe.net/ITI/IUA/index.html#34113-resource-server)) -- in this case,
-the access token sent to the Authorization Decisions Manager may be the one obtained from the client
-(token forwarding).
 
 
 ## 39.3 SeR Required Actor Groupings
