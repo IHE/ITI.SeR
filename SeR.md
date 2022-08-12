@@ -8,9 +8,9 @@
 
 **Secure Retrieve (SeR)**
 
-**Revision 1.6 - Trial Implementation**
+**Revision 2.0 - Public Comment**
 
-Date: July 16, 2022
+Date: August 12, 2022
 
 Author: ITI Technical Committee
 
@@ -22,39 +22,39 @@ Email: iti@ihe.net
 
 This is a supplement to the IHE IT Infrastructure Technical Framework. Each supplement undergoes a process of public comment and trial implementation before being incorporated into the volumes of the Technical Frameworks.
 
-This supplement is published on June 17, 2022 for trial implementation and may be available for testing at subsequent IHE Connectathons. The supplement may be amended based on the results of testing. Following successful testing it will be incorporated into the IT Infrastructure Technical Framework. Comments are invited and can be submitted using the [ITI Public Comment form](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](https://github.com/IHE/ITI.IUA/issues/new?assignees=&labels=&template=public-comment-issue-template.md&title=).
+This supplement is published on August 12, 2022 for public comment. Comments are invited and can be submitted using the [ITI Public Comment form](http://www.ihe.net/ITI_Public_Comments/) or by creating a [GitHub Issue](https://github.com/IHE/ITI.SeR/issues/new?assignees=&labels=&template=public-comment-issue-template.md&title=). In order to be considered in development of the trial implementation version of the supplement, comments must be received by September 12, 2022.
 
 This supplement describes changes to the existing technical framework documents.
 
 "Boxed" instructions like the sample below indicate to the Volume Editor how to integrate the relevant section(s) into the relevant Technical Framework volume.
 
-<table border="1"><tr><td><i>
-Editor: Please amend Section X.X by the following
-</i></td></tr></table>
+| **Editor: Please amend Section X.X by the following** |
+|------------------------------------------------------|
 
 Where the amendment adds text, make the added text **<ins>bold underline</ins>**. Where the amendment removes text, make the removed text **~~bold strikethrough~~**. When entire new sections are added, introduce with editor's instructions to "add new text" or similar, which for readability are not bolded or underlined.
 
-General information about IHE can be found at [http://www.ihe.net](http://www.ihe.net).
+General information about IHE can be found at [IHE.net](http://www.ihe.net).
 
-Information about the IHE IT Infrastructure domain can be found at [https://www.ihe.net/IHE_Domains](https://www.ihe.net/IHE_Domains/).
+Information about the IHE IT Infrastructure domain can be found at [IHE Domains](https://www.ihe.net/IHE_Domains/).
 
-Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at [https://www.ihe.net/about_ihe/ihe_process](https://www.ihe.net/about_ihe/ihe_process/) and [https://www.ihe.net/resources/profiles](https://www.ihe.net/resources/profiles/).
+Information about the organization of IHE Technical Frameworks and Supplements and the process used to create them can be found at [Profiles](https://www.ihe.net/resources/profiles/) and [IHE Process](https://www.ihe.net/about_ihe/ihe_process/).
 
-The current version of the IHE Technical Framework can be found at [https://profiles.ihe.net/](https://profiles.ihe.net/).
+The current version of the IHE Technical Framework can be found at [https://profiles.ihe.net/ITI](https://profiles.ihe.net/ITI/).
 
 **CONTENTS**
 
 <!-- TOC depthFrom:1 depthTo:2 -->
 
-- [Introduction to this Supplement](#introduction-to-this-supplement)
+- [Introduction to This Supplement](#introduction-to-this-supplement)
 - [Open Issues and Questions](#open-issues-and-questions)
 - [Closed Issues](#closed-issues)
 - [IHE Technical Frameworks General Introduction](#ihe-technical-frameworks-general-introduction)
-	- [9 Copyright Licenses](#9-copyright-licenses)
+  	- [9 Copyright Licenses](#9-copyright-licenses)
+  	- [10 Trademark](#10-trademark)
 - [IHE Technical Frameworks General Introduction Appendices](#ihe-technical-frameworks-general-introduction-appendices)
-  - [Appendix A - Actor Summary Definition](#appendix-a---actor-summary-definitions)
-  - [Appendix B - Transaction Summary Definitions](#appendix-b---transaction-summary-definitions)
-  - [Appendix D - Glossary](#appendix-d---glossary)
+  	- [Appendix A - Actor Summary Definition](#appendix-a---actor-summary-definitions)
+  	- [Appendix B - Transaction Summary Definitions](#appendix-b---transaction-summary-definitions)
+  	- [Appendix D - Glossary](#appendix-d---glossary)
 - [Volume 1 - Profiles](#volume-1---profiles)
 - [39 Secure Retrieve (SeR) Profile](#39-secure-retrieve-ser-profile)
   	- [39.1 SeR Actors, Transactions, and Content Modules](#391-ser-actors-transactions-and-content-modules)
@@ -63,14 +63,14 @@ The current version of the IHE Technical Framework can be found at [https://prof
   	- [39.4 SeR Overview](#394-ser-overview)
   	- [39.5 SeR Security Considerations](#395-ser-security-considerations)
   	- [39.6 SeR Cross Profile Considerations](#396-ser-cross-profile-considerations)
-- [Volume 2 - Transactions](#volume-2--transactions)
-	- [3.79 Authorization Decisions Query ITI-79](#379-authorization-decisions-query-iti-79)
+- [Volume 2 - Transactions](#volume-2---transactions)
+  	- [3.79 Authorization Decisions Query \[ITI-79\]](#379-authorization-decisions-query-iti-79)
 - [Volume 2 - Appendices](#volume-2--appendices)
-- [Volume 3 - Content Modules](#volume-3--content-modules)
-- [Volume 4 - National Extensions](#volume-4--national-extensions)
+- [Volume 3 - Content Modules](#volume-3---content-modules)
+- [Volume 4 - National Extensions](#volume-4---national-extensions)
 
 
-# Introduction to this Supplement
+# Introduction to This Supplement
 
 This supplement defines new functionalities for a Community with a unique and
 centralized Access Control system. This profile is limited to those deployment models
@@ -94,7 +94,7 @@ Authorization Decisions Manager implementing a Policy Decision Point (PDP) makes
 access decision.
 
 <!-- Dmytro: No changes are required below because this fragment describes _starting_
-requirements and constraints, i.e. the history and not the current state. -->
+requirements and constraints, i.e., the history and not the current state. -->
 
 The starting requirements/constraints upon which this profile is developed are described
 below:
@@ -125,17 +125,17 @@ This profile does not describe how Authorization Decisions are performed. Howeve
 this profile relies on the XACML-SAML framework for messages and transactions between
 the actors.
 
-This profile describes how a Service Provider (e.g. Document Repository) can request
+This profile describes how a Service Provider (e.g., Document Repository) can request
 Authorization Decisions for clinical data granted to an Requester Entity
 (e.g., a user retrieving clinical documents).
 
 # Open Issues and Questions
 
 11. As the profile covers not only document retrieval, shall it be renamed from
-    "Secure Retrieve" (SeR) to e.g. "Health IT Access Decision Delegation" (HADD)?
-12. A change in section 3.79.4.2.2 prescribes to populate the status code according
-    to section 4.10 "Element <samlp:Response>: XACMLAuthzDecision Response" of OASIS
-    SAML 2.0 profile of XACML v2.0 (errata) instead of using a fixed value
+    "Secure Retrieve" (SeR) to e.g., "Health IT Access Decision Delegation" (HADD)?
+12. A change in Section 3.79.4.2.2 prescribes to populate the status code according
+    to Section 4.10 "Element <samlp:Response>: XACMLAuthzDecision Response" of OASIS
+    SAML 2.0 Profile of XACML v2.0 (errata) instead of using a fixed value
     `urn:oasis:names:tc:SAML:2.0:status:Success` -- this is because otherwise it would
     be impossible cover error cases. Does this change break the backward compatibility?
 13. Shall information about human users in the Authorization Decisions Manager's audit
@@ -201,7 +201,7 @@ Authorization Decisions for clinical data granted to an Requester Entity
    urn:oasis:names:tc:SAML:2.0:profiles:attribute:XPSA:subject
    in accordance to XSPA instead of the subject-id. The proposal was rejected. The using of
    the XSPA guideline does not add value, and add requirements that do not match with
-   SeR use case..
+   SeR use case.
 
 7. This profile mandates the grouping between XDS Actors and XUA Actors (see Section 3).
    Readers are asked to provide feedback on this requirement. It is obvious that XUA
@@ -244,27 +244,22 @@ contains links to this document where appropriate.
 
 IHE technical documents refer to, and make use of, a number of standards developed and published by several standards development organizations. Please refer to the IHE Technical Frameworks General Introduction, Chapter 9 - [Copyright Licenses](https://profiles.ihe.net/GeneralIntro/ch-9.html) for copyright license information for frequently referenced base standards.
 
+## 10 Trademark
+
+IHE® and the IHE logo are trademarks of the Healthcare Information Management Systems Society in the United States and trademarks of IHE Europe in the European Community. Please refer to the IHE Technical Frameworks General Introduction, [Section 10 - Trademark](https://profiles.ihe.net/GeneralIntro/ch-10.html) for information on their use.
+
 # IHE Technical Frameworks General Introduction Appendices
 
 The [IHE Technical Framework General Introduction Appendices](https://profiles.ihe.net/GeneralIntro/index.html)
-are components shared by all of the IHE domain technical frameworks. Each technical
-framework volume contains links to these documents where appropriate.
+are components shared by all of the IHE domain technical frameworks. Each technical framework volume contains links to these documents where appropriate.
 
-<table border="1"><tr><td><i>
-Update the following appendices to the General Introduction as indicated below.
-Note that these are <b>not</b> appendices to this domain's Technical Framework
-(TF-1, TF-2, TF-3 or TF-4) but rather, they are appendices to the IHE Technical
-Frameworks General Introduction located
-<a href="https://profiles.ihe.net/GeneralIntro/index.html">here</a>.
-</i></td></tr></table>
+| **Editor: Please update the following appendices to the General Introduction as indicated below. Note that these are not appendices to this domain's Technical Framework (TF-1, TF-2, TF-3, or TF-4) but rather, they are appendices to the IHE Technical Frameworks General Introduction located [here](https://profiles.ihe.net/GeneralIntro/index.html). ** |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 
 ## Appendix A - Actor Summary Definitions
 
-<table border="1"><tr><td><i>
-Add the following <b>new or modified</b> actors to the
-<a href="https://profiles.ihe.net/GeneralIntro/ch-A.html">IHE Technical Frameworks
-General Introduction Appendix A</a>
-</i></td></tr></table>
+| **Editor: Please add the following new or modified actors to the [IHE Technical Frameworks General Introduction Appendix A:](https://profiles.ihe.net/GeneralIntro/ch-A.html) ** |
+|-----------------------------------------------------------------------------------------------------------------|
 
 | Actor | Definition |
 |---|---|
@@ -273,11 +268,8 @@ General Introduction Appendix A</a>
 
 ## Appendix B - Transaction Summary Definitions
 
-<table border="1"><tr><td><i>
-Add the following <b>new or modified</b> transactions to the
-<a href="https://profiles.ihe.net/GeneralIntro/ch-B.html">IHE Technical Frameworks
-General Introduction Appendix B</a>
-</i></td></tr></table>
+| **Editor: Please add the following new or modified transactions to the [IHE Technical Frameworks General Introduction Appendix B:](https://profiles.ihe.net/GeneralIntro/ch-B.html) ** |
+|-----------------------------------------------------------------------------------------------------------------------------|
 
 | Transaction | Definition |
 |---|---|
@@ -285,11 +277,8 @@ General Introduction Appendix B</a>
 
 ## Appendix D - Glossary
 
-<table border="1"><tr><td><i>
-Add the following <b>new or modified</b> glossary terms to the
-<a href="https://profiles.ihe.net/GeneralIntro/ch-D.html">IHE Technical Frameworks
-General Introduction Appendix D</a>
-</i></td></tr></table>
+| **Editor: Please add the following new or modified glossary terms to the [IHE Technical Frameworks General Introduction Appendix D](https://profiles.ihe.net/GeneralIntro/ch-D.html) **|
+|-----------------------------------------------------------------------------------------------------------------------------|
 
 | Glossary Term | Definition |
 |---|---|
@@ -299,17 +288,14 @@ General Introduction Appendix D</a>
 
 # Volume 1 - Profiles
 
-<table border="1"><tr><td><i>
-Add new Section 39
-</i></td></tr></table>
+| **Editor: Please add the following Section 39 to Volume 1** |
+|------------------------------------------------------------|
 
-## 39 Secure Retrieve (SeR) Profile
+# 39 Secure Retrieve (SeR) Profile
 
-This profile defines a framework for a centralized Access Control system, which
-separates the duties of creation and enforcement of Authorization Decisions.
+This profile defines a framework for a centralized Access Control system, which separates the duties of creation and enforcement of Authorization Decisions.
 
-The main objective of this profile is to create a system of trust between the actor
-that produces Authorization Decisions (Authorization Decisions Manager), and actors that are groouped with Authorization Decisions Verifier to enforce the Authorization Decisions (e.g., XDS Document Repositories).
+The main objective of this profile is to create a system of trust between the actor that produces Authorization Decisions (Authorization Decisions Manager), and actors that are grouped with Authorization Decisions Verifier to enforce the Authorization Decisions (e.g., XDS Document Repositories).
 
 This type of approach is useful in many situations:
 
@@ -329,7 +315,7 @@ This type of approach is useful in many situations:
 
 In those scenarios, this profile defines how to create a "logical federation" between an
 Authorization Decision Manager (responsible for enabling/denying accesses) and
-actors that enforce Authorization Decisions (e.g. XDS Document
+actors that enforce Authorization Decisions (e.g., XDS Document
 Repositories that store documents and expose them without knowledge related to the
 user/role/consent documents/policies etc.). Actors that store clinical data could only
 trust a decision made by the Authorization Decision Manager.
@@ -366,15 +352,16 @@ Figure 39.1-1 shows the actors directly involved in the SeR Profile and the rele
 transactions between them.
 
 ![Figure 39.1-1: SeR Actor Diagram](assets/images/SeR_Actor_Diagram-NEW.svg)
-_Figure 39.1-1: SeR Actor Diagram_
 
-<!-- Dmytro: The original diagram is moved to section 39.4.2.1. -->
+**Figure 39.1-1: SeR Actor Diagram**
+
+<!-- Dmytro: The original diagram is moved to Section 39.4.2.1. -->
 
 Table 39.1-1 lists the transactions for each actor directly involved in the SeR Profile.
 To claim compliance with this profile, an actor shall support all required
 transactions (labeled "R") and may support the optional transactions (labeled "O").
 
-_Table 39.1-1: SeR Profile - Actors and Transactions_
+**Table 39.1-1: SeR Profile - Actors and Transactions**
 
 | Actors                           | Transactions                             | Optionality | Reference      |
 |----------------------------------|------------------------------------------|-------------|----------------|
@@ -400,7 +387,7 @@ The Authorization Decisions Manager is responsible for the management of access 
 decisions in the entire Community. From the Access Control point of view, this actor is
 the unique Policy Decision Point (PDP) of the entire domain because it
 may decide on the outcome of an incoming authorization request in order to provide access
-to specific clinical data (e.g. documents). The Authorization Decisions Manager creates an
+to specific clinical data (e.g., documents). The Authorization Decisions Manager creates an
 Access Decision.
 
 <!-- Dmytro: See the sentence inserted below; token caching should not be a required feature. -->
@@ -431,7 +418,7 @@ for further information about PEP and Access Control Systems.)
 Options that may be selected for each actor in this profile, if any, are listed in the
 Table 39.2-1. Dependencies between options when applicable are specified in notes.
 
-_Table 39.2-1: SeR - Actors and Options_
+**Table 39.2-1: SeR - Actors and Options**
 
 | Actor                            | Option Name        | Reference      |
 |----------------------------------|--------------------|----------------|
@@ -455,7 +442,7 @@ The actors supporting this option shall be grouped with IUA Resource Server
 
 ## 39.3 SeR Required Actor Groupings
 
-<!-- Dmytro: The paragraph is moved to section 39.4.2.1. -->
+<!-- Dmytro: The paragraph is moved to Section 39.4.2.1. -->
 
 This profile requires the identification of the entity that queries clinical data.
 Authorization Decisions are granted to a specific entity and can be used only by
@@ -471,7 +458,7 @@ for the grouped actor (Column 2).
 [Section 39.5](#395-ser-security-considerations) describes some optional groupings that may be of interest for security
 considerations and [Section 39.6](#396-ser-cross-profile-considerations) describes some optional groupings in other related profiles.
 
-_Table 39.3-1: SeR - Required Actor Groupings_
+**Table 39.3-1: SeR - Required Actor Groupings**
 <table border="1">
     <tr bgcolor="#eeeeee">
         <th>SeR Actor</th>
@@ -497,7 +484,7 @@ _Table 39.3-1: SeR - Required Actor Groupings_
 
 ### 39.4.1 Concepts
 
-This section describes use-cases for the SeR Profile.
+This section describes use cases for the SeR Profile.
 
 ### 39.4.2 Use Cases
 
@@ -506,7 +493,7 @@ This section describes use-cases for the SeR Profile.
 This use case describes how an XDS Document Repository uses Authorization Decisions
 made by the Authorization Decisions Manager.
 
-<!-- Dmytro: The paragraph below is moved from section 39.3, the word "mandatory"
+<!-- Dmytro: The paragraph below is moved from Section 39.3, the word "mandatory"
 originally present there is removed. -->
 
 In this use case, the XUA Option is used. The groupings between XDS Actors and SeR Actors enforce the system
@@ -534,9 +521,9 @@ are queried from the XDS Registry before the documents are queried from the XDS
 Repository within the time frame set by the Authorization Decision lifetime.     
 
 ![Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings](assets/images/SeR_Actor_Diagram.png)
-_Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings_
+**Figure 39.4.2.1-1: SeR Actor Diagram with XDS Actor Groupings**
 
-<!-- Dmytro: This diagram is moved from section 39.1. -->
+<!-- Dmytro: This diagram is moved from Section 39.1. -->
 
 ##### 39.4.2.1.1 XDS Repositories with a centralized Authorization Decision Manager Use Case Description
 
@@ -564,7 +551,8 @@ requested by limiting the documents provided to Dr. Brown.
 ##### 39.4.2.1.2 XDS Repositories with a centralized Authorization Decision Manager Process Flow
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/uc1-flow.png)
-_Figure 39.4.2.1.2-1: Process Flow of the use-case. The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
+**Figure 39.4.2.1.2-1: Process Flow of the use case.**
+_Note: The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
 
 
 #### 39.4.2.2 Use Case #2: Query Type Extension Use Case
@@ -594,7 +582,7 @@ Entity queries for the sensitive data to retrieve an Authorization Decision from
 Authorization Decisions Manager in the Community and disclose the data only
 in the case the access is authorized.
 
-As defined in the XUA Option, actors which request sensitive information are grouped with the X-Service User actor
+As defined in the XUA Option, actors which request sensitive information are grouped with the X-Service User Actor
 of the [XUA Profile](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html). They use the authentication data identifying the Requester
 Entity to retrieve the X-User Assertion from the X-Assertion Provider and provides
 the X-User Assertion in the security header of the request for sensitive information.
@@ -627,7 +615,8 @@ The actor queried for the sensitive data performs the following steps:
 ##### 39.4.2.2.2  Query Type Extension Process Flow
 
 ![Figure 39.4.2.2.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
-_Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc2-flow.plantuml)._
+**Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension**
+_Note: Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc2-flow.plantuml)._
 
 
 #### 39.4.2.3 Use Case #3: Mobile Health Use Case
@@ -641,7 +630,7 @@ an Authorization Decisions Query [ITI-79] messages whenever a MHD Document
 Consumer queries for the sensitive data to disclose the data based on the Access
 Decision.
 
-In this use case, the IUA Option is used, i.e. the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with [IUA Authorization Client](https://profiles.ihe.net/ITI/IUA/index.html)
+In this use case, the IUA Option is used, i.e., the [MHD Document Consumer](https://profiles.ihe.net/ITI/MHD/index.html) actor is grouped with [IUA Authorization Client](https://profiles.ihe.net/ITI/IUA/index.html)
 actor and uses the data provided by the [IUA Authorization Server](https://profiles.ihe.net/ITI/IUA/index.html) which identifies
 the Requester Entity and further information required for Authorization Decisions (user role,
 user institution, etc.).
@@ -666,7 +655,8 @@ identity and role of Dr. Brown, employment state, etc.).
 ##### 39.4.2.3.2  Mobile Health Use Case Process Flow
 
 ![Figure 39.4.2.3.2-1: Mobile Health Process Flow](assets/images/uc3-flow.png)
-_Figure 39.4.2.3.2-1: Process Flow of the mhealth use case. Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines. The source code for the UML diagram is avaliable [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc3-flow.plantuml)._
+**Figure 39.4.2.3.2-1: Process Flow of the mhealth use case.**
+_Note: Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines. The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc3-flow.plantuml)._
 
 
 ## 39.5 SeR Security Considerations
@@ -706,11 +696,10 @@ shall be grouped with an [XUA X-Service User](https://profiles.ihe.net/ITI/TF/Vo
 Requester Entity conveying its logical identity (user ID, application ID, etc.)
 within the `<Subject>/<NameID>` element.
 
-# Volume 2 &mdash; Transactions
+# Volume 2 - Transactions
 
-<table border="1"><tr><td><i>
-Add Section 3.79
-</i></td></tr></table>
+| **Editor: Please add the following Section 3.79 to Volume 2** |
+|------------------------------------------------------------|
 
 ## 3.79 Authorization Decisions Query [ITI-79]
 
@@ -747,7 +736,7 @@ This transaction is based on SOAP v1.2 exchange protocol and Synchronous Web ser
 ### 3.79.4 Messages
 
 ![Figure 3.79.4-1: Interaction Diagram](assets/images/Interaction_Diagram.png)
-_Figure 3.79.4-1: Interaction Diagram_
+**Figure 3.79.4-1: Interaction Diagram**
 
 #### 3.79.4.1 XACMLAuthorizationDecisionQuery Request
 
@@ -764,7 +753,7 @@ in SAML 2.0 Profile of XACML v2.0 (Section 2).
 ##### 3.79.4.1.1 Trigger Events
 
 Actors grouped with a Authorization Decisions Verifier triggers the XACMLAuthorizationDecisionQuery
-Request when a Requester Entity requests clinical data items (e.g. a Retrieve Document Set Request
+Request when a Requester Entity requests clinical data items (e.g., a Retrieve Document Set Request
 message) which require authorization.
 
 ##### 3.79.4.1.2 Message Semantics
@@ -861,7 +850,7 @@ The mapping of attributes from SAML v2.0 assertion defined in the
 transaction into XACML query attributes is defined below. For each attribute from [ITI-40],
 the XACML Category and @AttributeId are identified:
 
-_Table 3.79.4.1.2-1: [ITI-40] Attributes mapping into XACML Query Attributes_
+**Table 3.79.4.1.2-1: [ITI-40] Attributes mapping into XACML Query Attributes**
 
 | [ITI-40] Attribute                 | XACML Category                                               | AttributeId                                         | DataType                                |
 |------------------------------------|--------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------|
@@ -877,7 +866,7 @@ _Table 3.79.4.1.2-1: [ITI-40] Attributes mapping into XACML Query Attributes_
 
 _Note 1: To enable Authorization Decisions for this [ITI-79] transaction, Home Community Id
 identifies the requesting user's community identity as identified in the SAML header
-in [ITI-40]. I.e., it is not the homeCommunityId of the community where the requested document
+in [ITI-40]. In other words, it is not the homeCommunityId of the community where the requested document
 resides._
 
 Any SAML 2.0 Attribute codified using the HL7 CD or CE dataType shall be codified into a
@@ -1032,7 +1021,7 @@ PurposeOfUse Z).
 The XACMLAuthorizationDecisionQuery Response message is created by the Authorization
 Decisions Manager in response to the XACMLAuthorizationDecisionQuery Request. This
 message conveys to the Authorization Decisions Verifier the results of the evaluation
-made by the Authorization Decisions Manager. For each clinical data item (e.g. a document) specified within
+made by the Authorization Decisions Manager. For each clinical data item (e.g., a document) specified within
 the Request message, the Authorization Decisions Manager provides an Authorization Result
 that shall be used by the Authorization Decisions Verifier to
 determine which of the requested clinical data items to return to the client in response
@@ -1057,11 +1046,11 @@ The Addressing Action header of the SOAP message shall be:
 The XACMLAuthorizationStatement (defined in the OASIS SAML 2.0 Profile of XACML Version 2.0)
 is conveyed within a SAML v2.0 Assertion. The Assertion does not need to be
 signed. The SAML StatusCode of the Response message shall be
-set as defined in section 4.10 "Element `<samlp:Response>`: XACMLAuthzDecision Response"
-of OASIS SAML 2.0 profile of XACML v2.0 (errata).
+set as defined in Section 4.10 "Element `<samlp:Response>`: XACMLAuthzDecision Response"
+of OASIS SAML 2.0 Profile of XACML v2.0 (errata).
 
 The `<Issuer>` of the Authorization Assertion should identify the trusted Authorization
-Decisions Manager (e.g. SOAP endpoint of the Web Service, or the home community OID
+Decisions Manager (e.g., SOAP endpoint of the Web Service, or the home community OID
 in URN format, depending on local policies).
 
 See Section 3.1 of the OASIS SAML 2.0 Profile of XACML Version 2.0 for further
@@ -1135,7 +1124,7 @@ described below:
 
 Expected actions are part of each query type definition, because a generalized guidance 
 on the enforcement of decisions is 
-impossible due to different semantics of transactions which can be combined with ITI-79, 
+impossible due to different semantics of transactions which can be combined with [ITI-79], 
 possibility of partial success vs. requirement of strong atomicity, potential dependencies 
 between clinical data items ("if the decision is Permit for item X and Deny for item Y, 
 then..."), potential presence of local policies and other "environmental" factors, etc. 
@@ -1303,14 +1292,14 @@ The audit message shall identify:
         <td>Access Control role(s) the user holds that allows this transaction</td>
     </tr>
     <tr>
-        <td><i>NetworkAccessPointTypeCode</i></td>
-        <td><i>NA</i></td>
-        <td><i></i></td>
+        <td>NetworkAccessPointTypeCode</td>
+        <td>NA</td>
+        <td></td>
     </tr>
     <tr>
-        <td><i>NetworkAccessPointID</i></td>
-        <td><i>NA</i></td>
-        <td><i></i></td>
+        <td>NetworkAccessPointID</td>
+        <td>NA</td>
+        <td></td>
     </tr>
 </table>
 
@@ -1610,14 +1599,14 @@ The audit message shall identify:
         <td>Access Control role(s) the user holds that allows this transaction</td>
     </tr>
     <tr>
-        <td><i>NetworkAccessPointTypeCode</i></td>
-        <td><i>NA</i></td>
-        <td><i></i></td>
+        <td>NetworkAccessPointTypeCode</td>
+        <td>NA</td>
+        <td></td>
     </tr>
     <tr>
-        <td><i>NetworkAccessPointID</i></td>
-        <td><i>NA</i></td>
-        <td><i></i></td>
+        <td>NetworkAccessPointID</td>
+        <td>NA</td>
+        <td></td>
     </tr>
 </table>
 
@@ -1815,22 +1804,20 @@ None
 
 None
 
-# Volume 2 &mdash; Appendices
+# Volume 2 Appendices
 
-Not applicable
+None
 
-# Volume 3 &mdash; Content Modules
+# Volume 3 - Content Modules
 
-<table border="1"><tr><td><i>
-Add the following ErrorCode in
-<a href="https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1">ITI TF-3: Table 4.2.4.1-2</a>:
-Error Codes
-</i></td></tr></table>
+| **Editor: Please add the following ErrorCode in [ITI TF-3: Table 4.2.4.1-2: Error Codes](https://profiles.ihe.net/ITI/TF/Volume3/ch-4.2.html#4.2.4.1)** |
+|--------------------------------------------------------------------------------------------------------------------------------------------|
 
-| Error Code<sup>1</sup>      | Discussion                                                                       | Transaction (See Note 1) |
-|-----------------------------|----------------------------------------------------------------------------------|--------------------------|
+
+| Error Code<sup>1</sup>      | Discussion                                                                 | Transaction (See Note 1) |
+|-----------------------------|----------------------------------------------------------------------------|--------------------------|
 | DocumentAccessNotAuthorized | The document requested is not authorized to be disclosed to the Requester Entity | RS                       |
 
-# Volume 4 &mdash; National Extensions
+# Volume 4 - National Extensions
 
 Not applicable
