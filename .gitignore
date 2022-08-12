@@ -8,3 +8,4 @@ target
 .settings/
 work
 .DS_Store
+/*.html
