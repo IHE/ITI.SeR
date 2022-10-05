@@ -398,7 +398,7 @@ Authorization Decision and reuse it when processing subsequent requests with the
 parameters, if the local domain policies allow such behavior, and implement additional
 Access Control functionalities required in the specific implementation scenario.
 
-(Refer to the White Paper IHE ITI
+(Refer to the IHE ITI
 [Access Control White Paper](https://www.ihe.net/Technical_Framework/upload/IHE_ITI_TF_WhitePaper_AccessControl_2009-09-28.pdf)
 for further information about PDP and Access Control Systems.)
 
@@ -409,7 +409,7 @@ is authorized to access clinical data by querying the Authorization Decisions Ve
 The Authorization Decisions Verifier actor acts as a Policy Enforcement Point (PEP)
 and enforces the Authorization Decision made by the trusted Policy Decision Point.
 
-(Refer to the White Paper IHE ITI
+(Refer to the IHE ITI
 [Access Control White Paper](https://www.ihe.net/Technical_Framework/upload/IHE_ITI_TF_WhitePaper_AccessControl_2009-09-28.pdf)
 for further information about PEP and Access Control Systems.)
 
