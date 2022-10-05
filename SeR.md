@@ -126,7 +126,7 @@ this profile relies on the XACML-SAML framework for messages and transactions be
 the actors.
 
 This profile describes how a Service Provider (e.g., Document Repository) can request
-Authorization Decisions for clinical data granted to an Requester Entity
+Authorization Decisions for clinical data granted to a Requester Entity
 (e.g., a user retrieving clinical documents).
 
 # Open Issues and Questions
@@ -343,6 +343,13 @@ exposure):
 - A separation of duties between the clinical data consumer (that requests authorization and
   clinical data items) and the Authorization Decisions Manager (or PDP) is created. The SeR Profile
   delegates decisions to the Authorization Decisions Manager and the enforcement to the Authorization Decisions Verifier.
+
+This profile makes use of various third-party specifications like SAML and XACML, and, correspondingly, 
+of the terminology defined there.  In that way, different terms may exist for the same concept.
+For example, the user which tries to perform a particular action on a protected resource
+(e.g. to read a document in a patient's EHR) can be referred to as a Subject
+or a Requester Entity, depending on the context.
+
 
 ## 39.1 SeR Actors, Transactions, and Content Modules
 
@@ -859,17 +866,21 @@ the XACML Category and @AttributeId are identified:
 
 | [ITI-40] Attribute                 | XACML Category                                               | AttributeId                                         | DataType                                |
 |------------------------------------|--------------------------------------------------------------|-----------------------------------------------------|-----------------------------------------|
-| Subject ID                         | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xacml:1.0:subject:subject-id     | http://www.w3.org/2001/XMLSchema#string |
+| Subject ID (Note 1)                | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xacml:1.0:subject:subject-id     | http://www.w3.org/2001/XMLSchema#string |
 | Subject Organization               | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:organization    | http://www.w3.org/2001/XMLSchema#string |
 | Subject Organization ID            | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:organization-id | http://www.w3.org/2001/XMLSchema#anyURI |
-| Home Community ID (Note 1)         | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:ihe:iti:xca:2010:homeCommunityId                | http://www.w3.org/2001/XMLSchema#anyURI |
+| Home Community ID (Note 2)         | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:ihe:iti:xca:2010:homeCommunityId                | http://www.w3.org/2001/XMLSchema#anyURI |
 | National Provider Identifier (NPI) | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:npi             | http://www.w3.org/2001/XMLSchema#string |
 | Subject Role                       | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xacml:2.0:subject:role           | http://www.w3.org/2001/XMLSchema#anyURI |
 | Authz-Consent                      | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:ihe:iti:bppc:2007:docid                         | http://www.w3.org/2001/XMLSchema#anyURI |
 | Patient Identifier                 | urn:oasis:names:tc:xacml:1.0:resource                        | urn:ihe:iti:ser:2016:patient-id                     | http://www.w3.org/2001/XMLSchema#string |
 | PurposeOfUse                       | urn:oasis:names:tc:xacml:1.0:subject-category:access-subject | urn:oasis:names:tc:xspa:1.0:subject:purposeofuse    | http://www.w3.org/2001/XMLSchema#anyURI |
 
-_Note 1: To enable Authorization Decisions for this [ITI-79] transaction, Home Community Id
+_Note 1: The term "Subject" denotes in this context the Requester Entity, i.e. the user which tries to access the patient's data.
+It can be, for example, a healthcare professional, a patient's representative, or the patient by themself. 
+In the latter case, the attributes "Subject ID" and "Patient ID" may contain the same value._
+
+_Note 2: To enable Authorization Decisions for this [ITI-79] transaction, Home Community Id
 identifies the requesting user's community identity as identified in the SAML header
 in [ITI-40]. In other words, it is not the homeCommunityId of the community where the requested document
 resides._
