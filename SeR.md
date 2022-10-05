@@ -787,14 +787,19 @@ This element shall have the following child elements:
 - Exactly one element `<Environment>` that identifies run-time properties of the
   execution context.
 
-Particular assignment of attributes on these elements depends on the query type,
+Particular assignment of attributes in these elements depends on the query type,
 as described in the next sub-section.
 
 ###### 3.79.4.1.2.1 Query Types and Request Attribute Assignments
 
 Currently, there is only one standard query type: "Retrieve Document Set
-Authorization Decision". Additional query types may be defined on vendor,
+Authorization Decision". Additional query types may be introduced on vendor,
 community, regulatory domain, or national level.
+
+As the additional query types may relate to very different types of resources, 
+requester entities, and environmental properties, the given Supplement does not
+define any generic request attributes.  Instead, request attributes are
+to be defined separately for each particular query type.
 
 ###### 3.79.4.1.2.1.1 Retrieve Document Set Authorization Decision Request Attributes
 
