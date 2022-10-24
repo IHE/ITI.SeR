@@ -1,8 +1,5 @@
-**Integrating the Healthcare Enterprise**
 
-![IHE\_LOGO\_for\_tf-docs](assets/images/IHE-logo.jpeg)
-
-**[IHE ITI](https://profiles.ihe.net/ITI)**
+**[IHE IT-Infrastructure publications](https://profiles.ihe.net/ITI)**
 
 **Secure Retrieve (SeR) History:**
 * [Revision 2.1](https://profiles.ihe.net/ITI/SeR/index.html) Trial Implementation - October 24, 2022 (current)

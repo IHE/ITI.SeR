@@ -1,8 +1,4 @@
-**Integrating the Healthcare Enterprise**
-
-![IHE\_LOGO\_for\_tf-docs](assets/images/IHE-logo.jpeg)
-
-**[IHE ITI](https://profiles.ihe.net/ITI)**
+**[IHE IT-Infrastructure publications](https://profiles.ihe.net/ITI)**
 
 **Technical Framework Supplement**
 
@@ -12,7 +8,7 @@
 
 Date: October 24, 2022
 
-[SeR history](https://profiles.ihe.net/ITI/SeR/history.html)
+[SeR publications history](https://profiles.ihe.net/ITI/SeR/history.html)
 
 Author: ITI Technical Committee
 
