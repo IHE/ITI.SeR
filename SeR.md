@@ -8,9 +8,9 @@
 
 **Secure Retrieve (SeR)**
 
-**Revision 2.0 - Public Comment**
+**Revision 2.1 - Trial Implementation**
 
-Date: August 12, 2022
+Date: October 24, 2022
 
 Author: ITI Technical Committee
 
