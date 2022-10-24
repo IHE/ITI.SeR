@@ -12,6 +12,8 @@
 
 Date: October 24, 2022
 
+[SeR history](https://profiles.ihe.net/ITI/SeR/history.html)
+
 Author: ITI Technical Committee
 
 Email: iti@ihe.net
