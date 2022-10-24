@@ -557,6 +557,7 @@ requested by limiting the documents provided to Dr. Brown.
 
 ![Figure 39.4.2.1.2-1: Basic Process Flow in SeR Profile](assets/images/uc1-flow.png)
 **Figure 39.4.2.1.2-1: Process Flow of the use case.**
+
 _Note: The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc1-flow.plantuml)._
 
 
@@ -621,6 +622,7 @@ The actor queried for the sensitive data performs the following steps:
 
 ![Figure 39.4.2.2.2-1: Query Type Extension Process Flow](assets/images/uc2-flow.png)
 **Figure 39.4.2.2.2-1: Process Flow of the use case with query type extension**
+
 _Note: Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines.The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc2-flow.plantuml)._
 
 
@@ -661,6 +663,7 @@ identity and role of Dr. Brown, employment state, etc.).
 
 ![Figure 39.4.2.3.2-1: Mobile Health Process Flow](assets/images/uc3-flow.png)
 **Figure 39.4.2.3.2-1: Process Flow of the mhealth use case.**
+
 _Note: Actors profiled in this supplement are yellow boxed and transactions profiled are drawn as solid lines. The source code for the UML diagram is available [here](https://github.com/IHE/ITI.SeR/blob/main/assets/plantuml/uc3-flow.plantuml)._
 
 
